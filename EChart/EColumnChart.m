@@ -9,6 +9,9 @@
 #import "EColumnChart.h"
 
 @implementation EColumnChart
+@synthesize dataSource = _dataSource;
+@synthesize delegate = _delegate;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,7 +24,21 @@
 }
 
 
+- (void)setDelegate:(id<EColumnChartDelegate>)delegate
+{
+    if (_delegate != delegate)
+    {
+        _delegate = delegate;
+    }
+}
 
+- (void)setDataSource:(id<EColumnChartDataSource>)dataSource
+{
+    if (_dataSource != dataSource)
+    {
+        _dataSource = dataSource;
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

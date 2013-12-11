@@ -31,7 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    EColumnChart *chart = [[EColumnChart alloc] init];
+    EColumnChart *chart = [[EColumnChart alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [self.view addSubview:chart];
 }
 
