@@ -21,6 +21,9 @@
 		6CB6E81818586A3800B99AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7FA18586A3800B99AA3 /* UIKit.framework */; };
 		6CB6E82018586A3800B99AA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CB6E81E18586A3800B99AA3 /* InfoPlist.strings */; };
 		6CB6E82218586A3800B99AA3 /* EChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E82118586A3800B99AA3 /* EChartTests.m */; };
+		6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */; };
+		6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E83018586D2500B99AA3 /* EColumnChart.m */; };
+		6CB6E8351858750300B99AA3 /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E8341858750300B99AA3 /* EColumn.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		6CB6E81D18586A3800B99AA3 /* EChartTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EChartTests-Info.plist"; sourceTree = "<group>"; };
 		6CB6E81F18586A3800B99AA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CB6E82118586A3800B99AA3 /* EChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EChartTests.m; sourceTree = "<group>"; };
+		6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartViewController.h; sourceTree = "<group>"; };
+		6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartViewController.m; sourceTree = "<group>"; };
+		6CB6E82F18586D2500B99AA3 /* EColumnChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChart.h; sourceTree = "<group>"; };
+		6CB6E83018586D2500B99AA3 /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
+		6CB6E8331858750300B99AA3 /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
+		6CB6E8341858750300B99AA3 /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,8 @@
 		6CB6E7FC18586A3800B99AA3 /* EChart */ = {
 			isa = PBXGroup;
 			children = (
+				6CB6E832185874CA00B99AA3 /* Components */,
+				6CB6E82E18586CD700B99AA3 /* Charts */,
 				6CB6E80518586A3800B99AA3 /* EChartAppDelegate.h */,
 				6CB6E80618586A3800B99AA3 /* EChartAppDelegate.m */,
 				6CB6E80818586A3800B99AA3 /* Main.storyboard */,
@@ -119,6 +130,8 @@
 				6CB6E80C18586A3800B99AA3 /* EChartViewController.m */,
 				6CB6E80E18586A3800B99AA3 /* Images.xcassets */,
 				6CB6E7FD18586A3800B99AA3 /* Supporting Files */,
+				6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */,
+				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 			);
 			path = EChart;
 			sourceTree = "<group>";
@@ -150,6 +163,24 @@
 				6CB6E81E18586A3800B99AA3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6CB6E82E18586CD700B99AA3 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				6CB6E82F18586D2500B99AA3 /* EColumnChart.h */,
+				6CB6E83018586D2500B99AA3 /* EColumnChart.m */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
+		6CB6E832185874CA00B99AA3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6CB6E8331858750300B99AA3 /* EColumn.h */,
+				6CB6E8341858750300B99AA3 /* EColumn.m */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CB6E80318586A3800B99AA3 /* main.m in Sources */,
+				6CB6E8351858750300B99AA3 /* EColumn.m in Sources */,
+				6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
+				6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
