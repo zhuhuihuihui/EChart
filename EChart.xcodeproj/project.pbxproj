@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C795C8218596AA500C80D60 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C795C8118596AA500C80D60 /* EColor.m */; };
 		6CB6E7F718586A3700B99AA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F618586A3700B99AA3 /* Foundation.framework */; };
 		6CB6E7F918586A3800B99AA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F818586A3800B99AA3 /* CoreGraphics.framework */; };
 		6CB6E7FB18586A3800B99AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7FA18586A3800B99AA3 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C795C8018596AA500C80D60 /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
+		6C795C8118596AA500C80D60 /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
 		6CB6E7F318586A3700B99AA3 /* EChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CB6E7F618586A3700B99AA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6CB6E7F818586A3800B99AA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -179,6 +182,8 @@
 			children = (
 				6CB6E8331858750300B99AA3 /* EColumn.h */,
 				6CB6E8341858750300B99AA3 /* EColumn.m */,
+				6C795C8018596AA500C80D60 /* EColor.h */,
+				6C795C8118596AA500C80D60 /* EColor.m */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
+				6C795C8218596AA500C80D60 /* EColor.m in Sources */,
 				6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +501,7 @@
 				6CB6E82718586A3800B99AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6CB6E82818586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +510,7 @@
 				6CB6E82A18586A3800B99AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

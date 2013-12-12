@@ -10,4 +10,12 @@
 
 @interface EColumn : UIView
 
+@property (nonatomic) float grade;
+
+@property (nonatomic,strong) CAShapeLayer * chartLine;
+
+@property (nonatomic, strong) UIColor * barColor;
+
+-(void)rollBack;
+
 @end

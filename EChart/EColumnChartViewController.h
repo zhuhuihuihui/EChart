@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EColumnChart.h"
+@interface EColumnChartViewController : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
 
-@interface EColumnChartViewController : UIViewController
+@property (strong, nonatomic) EColumnChart *eColumnChart;
 
 @end
