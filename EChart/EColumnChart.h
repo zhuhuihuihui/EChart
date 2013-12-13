@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EColumn.h"
+#import "EColumnDataModel.h"
 @class EColumnChart;
 
 @protocol EColumnChartDataSource <NSObject>
@@ -16,8 +17,8 @@
 - (NSInteger) numberOfColumnsPresentedEveryTime:(EColumnChart *) eColumnChart;
 - (float)     highestValueEColumnChart:(EColumnChart *) eColumnChart;
 
-- (float)     eColumnChart:(EColumnChart *) eColumnChart
-             valueForIndex:(NSInteger)index;
+- (EColumnDataModel *)     eColumnChart:(EColumnChart *) eColumnChart
+                        valueForIndex:(NSInteger)index;
 /**再提供一个定制column的接口，可以定制Ecolumn*/
 
 @end
@@ -31,7 +32,13 @@
 
 
 @interface EColumnChart : UIView
+@property (nonatomic) NSInteger leftMostIndex;
+@property (nonatomic) NSInteger rightMostIndex;
 
+
+- (void)moveLeft;
+- (void)moveRight;
+- (void)initData;
 - (void)reloadData;
 
 @property (weak, nonatomic) id <EColumnChartDataSource> dataSource;

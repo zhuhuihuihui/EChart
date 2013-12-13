@@ -10,7 +10,7 @@
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 
-#define EGrey         [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0f]
+#define EGrey         [UIColor colorWithRed:113.0/255.0 green:112.0/255.0 blue:115.0/255.0 alpha:1.0f]
 #define ELightBlue    [UIColor colorWithRed:94.0/255.0 green:147.0/255.0 blue:196.0/255.0 alpha:1.0f]
 #define EGreen        [UIColor colorWithRed:77.0/255.0 green:186.0/255.0 blue:122.0/255.0 alpha:1.0f]
 #define ETitleColor   [UIColor colorWithRed:0.0/255.0 green:189.0/255.0 blue:113.0/255.0 alpha:1.0f]
