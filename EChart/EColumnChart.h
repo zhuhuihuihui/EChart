@@ -26,6 +26,9 @@
 
 @protocol EColumnChartDelegate <NSObject>
 
+- (void)        eColumnChart:(EColumnChart *) eColumnChart
+      didSelectColumnAtIndex:(NSInteger)index
+        withEColumnDataModel:(EColumnDataModel *)eColumnDataModel;
 
 @end
 
@@ -34,6 +37,10 @@
 @interface EColumnChart : UIView
 @property (nonatomic) NSInteger leftMostIndex;
 @property (nonatomic) NSInteger rightMostIndex;
+
+@property (nonatomic, strong) UIColor *minColumnColor;
+@property (nonatomic, strong) UIColor *maxColumnColor;
+@property (nonatomic, strong) UIColor *normalColumnColor;
 
 
 - (void)moveLeft;

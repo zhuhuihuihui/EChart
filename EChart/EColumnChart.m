@@ -20,7 +20,9 @@
 @end
 
 @implementation EColumnChart
-
+@synthesize minColumnColor = _minColumnColor;
+@synthesize maxColumnColor = _maxColumnColor;
+@synthesize normalColumnColor = _normalColumnColor;
 @synthesize eColumns = _eColumns;
 @synthesize eLabels = _eLabels;
 @synthesize leftMostIndex = _leftMostIndex;
@@ -73,6 +75,11 @@
             /**暂时只支持，从右向左布局，也就是最右边的是原点*/
             _rightMostIndex = 0;
             _leftMostIndex = _rightMostIndex + totalColumnsRequired - 1;
+            /**初始化，最高最低值的颜色*/
+            _minColumnColor = EMinValueColor;
+            _maxColumnColor = EMaxValueColor;
+            
+            
         }
 
         [self reloadData];
@@ -103,14 +110,28 @@
     }
     
     float widthOfTheColumnShouldBe = self.frame.size.width / (float)(totalColumnsRequired + (totalColumnsRequired + 1) * 0.5);
+    float minValue = 1000000.0;
+    float maxValue = 0.0;
+    NSInteger minIndex = 0;
+    NSInteger maxIndex = 0;
     
     for (int i = 0; i < totalColumnsRequired; i++)
     {
-        EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:(_leftMostIndex - i)];
+        NSInteger currentIndex = _leftMostIndex - i;
+        EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:currentIndex];
         if (eColumnDataModel == nil)
             eColumnDataModel = [[EColumnDataModel alloc] init];
+        /**判断当前最大最小值，并设置为响应的颜色*/
+        if (eColumnDataModel.value > maxValue) {
+            maxIndex =  currentIndex;
+            maxValue = eColumnDataModel.value;
+        }
+        if (eColumnDataModel.value < minValue) {
+            minIndex = currentIndex;
+            minValue = eColumnDataModel.value;
+        }
         
-        EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger:(_leftMostIndex - i) ]];
+        EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger:currentIndex ]];
         if (nil == eColumn)
         {
             eColumn = [[EColumn alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), 0, widthOfTheColumnShouldBe, self.frame.size.height)];
@@ -118,23 +139,26 @@
             eColumn.barColor = EGrey;
             eColumn.grade = eColumnDataModel.value / highestValueEColumnChart;
             [self addSubview:eColumn];
-            [_eColumns setObject:eColumn forKey:[NSNumber numberWithInteger:(_leftMostIndex - i) ]];
+            [_eColumns setObject:eColumn forKey:[NSNumber numberWithInteger:currentIndex ]];
         }
+        eColumn.barColor = EGrey;
         
         
-        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:(_leftMostIndex - i)]];
+        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:(currentIndex)]];
         if (nil == eColumnChartLabel)
         {
             eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), self.frame.size.height, widthOfTheColumnShouldBe, 20)];
             [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
             eColumnChartLabel.text = eColumnDataModel.label;
             [self addSubview:eColumnChartLabel];
-            [_eLabels setObject:eColumnChartLabel forKey:[NSNumber numberWithInteger:(_leftMostIndex - i)]];
+            [_eLabels setObject:eColumnChartLabel forKey:[NSNumber numberWithInteger:(currentIndex)]];
         }
-        
-        
-        
     }
+    EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: maxIndex]];
+    eColumn.barColor = _maxColumnColor;
+    eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: minIndex]];
+    eColumn.barColor = _minColumnColor;
+    
     
     [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^
     {

@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class EColumn;
+
+@protocol EColumnDelegate <NSObject>
+
+- (void)eColumnTaped:(EColumn *)eColumn;
+
+
+@end
+
 
 @interface EColumn : UIView
 
@@ -15,6 +24,10 @@
 @property (nonatomic,strong) CAShapeLayer * chartLine;
 
 @property (nonatomic, strong) UIColor * barColor;
+
+@property (nonatomic) NSInteger index;
+
+@property (nonatomic) NSInteger value;
 
 -(void)rollBack;
 

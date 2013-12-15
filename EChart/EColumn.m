@@ -10,6 +10,8 @@
 #import "EColor.h"
 
 @implementation EColumn
+@synthesize value = _value;
+@synthesize index = _index;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -25,8 +27,16 @@
         self.clipsToBounds      = YES;
 		[self.layer addSublayer:_chartLine];
         self.layer.cornerRadius = 2.0;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taped:)];
+        [self addGestureRecognizer:tapGesture];
     }
     return self;
+}
+
+- (void) taped:(UITapGestureRecognizer *)tapGesture
+{
+    
 }
 
 -(void)setGrade:(float)grade
@@ -55,6 +65,11 @@
     [_chartLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
     
     _chartLine.strokeEnd = 1.0;
+}
+
+- (void)setBarColor:(UIColor *)barColor
+{
+    _chartLine.strokeColor = [barColor CGColor];
 }
 
 -(void)rollBack{

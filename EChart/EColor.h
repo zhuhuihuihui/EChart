@@ -38,6 +38,8 @@
 #define EWeiboColor   [UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]
 #define EiOSGreenColor   [UIColor colorWithRed:98.0/255.0 green:247.0/255.0 blue:77.0/255.0 alpha:1.0]
 
+#define EMaxValueColor   [UIColor colorWithRed:241.0/255.0 green:93.0/255.0 blue:31.0/255.0 alpha:1.0]
+#define EMinValueColor   [UIColor colorWithRed:142.0/255.0 green:196.0/255.0 blue:45.0/255.0 alpha:1.0]
 @interface EColor : NSObject
 - (UIImage *)imageFromColor:(UIColor *)color;
 @end

@@ -45,7 +45,7 @@
     _data = [NSArray arrayWithArray:temp];
     
     
-    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(30, 100, 100, 100)];
+    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(30, 100, 200, 100)];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
     [self.view addSubview:_eColumnChart];
@@ -98,6 +98,14 @@
 {
     if (index >= [_data count] || index < 0) return nil;
     return [_data objectAtIndex:index];
+}
+
+#pragma -mark- EColumnChartDelegate
+- (void)        eColumnChart:(EColumnChart *)eColumnChart
+      didSelectColumnAtIndex:(NSInteger)index
+        withEColumnDataModel:(EColumnDataModel *)eColumnDataModel
+{
+    
 }
 
 @end
