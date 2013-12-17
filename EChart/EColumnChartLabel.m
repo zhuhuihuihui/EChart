@@ -15,14 +15,18 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setLineBreakMode:NSLineBreakByWordWrapping];
-        [self setMinimumScaleFactor:11.0f];
-        [self setNumberOfLines:0];
-        [self setFont:[UIFont boldSystemFontOfSize:11.0f]];
+        [self setLineBreakMode:NSLineBreakByClipping];
+        /**这两项仅仅适用于ios7*/
+        self.adjustsFontSizeToFitWidth = YES;
+        [self setMinimumScaleFactor:5.0f/13.0f];
+        
+        [self setNumberOfLines:1];
+        [self setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [self setTextColor: EDeepGrey];
         self.backgroundColor = [UIColor clearColor];
         [self setTextAlignment:NSTextAlignmentLeft];
         self.userInteractionEnabled = YES;
+        [self setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     }
     return self;
 }

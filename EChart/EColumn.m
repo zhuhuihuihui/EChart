@@ -10,9 +10,8 @@
 #import "EColor.h"
 
 @implementation EColumn
-@synthesize value = _value;
-@synthesize index = _index;
-
+@synthesize eColumnDataModel = _eColumnDataModel;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,7 +25,7 @@
         _chartLine.strokeEnd    = 0.0;
         self.clipsToBounds      = YES;
 		[self.layer addSublayer:_chartLine];
-        self.layer.cornerRadius = 2.0;
+        //self.layer.cornerRadius = 2.0;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taped:)];
         [self addGestureRecognizer:tapGesture];
@@ -34,10 +33,7 @@
     return self;
 }
 
-- (void) taped:(UITapGestureRecognizer *)tapGesture
-{
-    
-}
+
 
 -(void)setGrade:(float)grade
 {
@@ -90,5 +86,15 @@
 	CGContextFillRect(context, rect);
     
 }
+
+
+#pragma -mark- detect Geusture
+
+- (void) taped:(UITapGestureRecognizer *)tapGesture
+{
+    [_delegate eColumnTaped:self];
+}
+
+
 
 @end

@@ -37,15 +37,15 @@
     
     
     NSMutableArray *temp = [NSMutableArray array];
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 50; i++)
     {
-        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d++", i] Value:i];
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:i index:i];
         [temp addObject:eColumnDataModel];
     }
     _data = [NSArray arrayWithArray:temp];
     
     
-    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(30, 100, 200, 100)];
+    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(30, 100, 300, 200)];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
     [self.view addSubview:_eColumnChart];
@@ -86,12 +86,12 @@
 
 - (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
 {
-    return 5;
+    return 7;
 }
 
 - (float)highestValueEColumnChart:(EColumnChart *)eColumnChart
 {
-    return 8;
+    return 49;
 }
 
 - (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
@@ -105,7 +105,7 @@
       didSelectColumnAtIndex:(NSInteger)index
         withEColumnDataModel:(EColumnDataModel *)eColumnDataModel
 {
-    
+    NSLog(@"Index: %d  Value: %f", eColumnDataModel.index, eColumnDataModel.value);
 }
 
 @end

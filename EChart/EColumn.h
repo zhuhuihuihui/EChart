@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EColumnDataModel.h"
 @class EColumn;
 
 @protocol EColumnDelegate <NSObject>
 
 - (void)eColumnTaped:(EColumn *)eColumn;
+
+- (void)eColumnLongPressed:(EColumn *)eColumn;
 
 
 @end
@@ -25,10 +28,9 @@
 
 @property (nonatomic, strong) UIColor * barColor;
 
-@property (nonatomic) NSInteger index;
-
-@property (nonatomic) NSInteger value;
+@property (nonatomic, strong) EColumnDataModel *eColumnDataModel;
 
 -(void)rollBack;
 
+@property (weak, nonatomic) id <EColumnDelegate> delegate;
 @end

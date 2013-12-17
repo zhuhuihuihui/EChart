@@ -11,6 +11,7 @@
 @implementation EColumnDataModel
 @synthesize label = _label;
 @synthesize value = _value;
+@synthesize index = _index;
 
 - (id)init
 {
@@ -24,13 +25,15 @@
 }
 
 - (id)initWithLabel:(NSString *)label
-              Value:(float)vaule
+              value:(float)vaule
+              index:(NSInteger)index
 {
     self = [self init];
     if (self)
     {
         _label = label;
         _value = vaule;
+        _index = index;
     }
     return self;
 }

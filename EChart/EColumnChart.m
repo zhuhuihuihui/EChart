@@ -10,6 +10,8 @@
 #import "EColor.h"
 #import "EColumnChartLabel.h"
 #define BOTTOM_LINE_HEIGHT 2
+#define HORIZONTAL_LINE_HEIGHT 0.5
+#define Y_COORDINATE_LABEL_WIDTH 30
 
 
 @interface EColumnChart()
@@ -79,6 +81,24 @@
             _minColumnColor = EMinValueColor;
             _maxColumnColor = EMaxValueColor;
             
+            /**构建横向坐标线*/
+            /**构建横向坐标线的数值*/
+            float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self] * 1.1;//为了给最高值留一点余地
+            for (int i = 0; i < 11; i++)
+            {
+                float heightGap = self.frame.size.height / 10.0;
+                float valueGap = highestValueEColumnChart / 10.0;
+                UIView *horizontalLine = [[UIView alloc] initWithFrame:CGRectMake(0, heightGap * i, self.frame.size.width, HORIZONTAL_LINE_HEIGHT)];
+                horizontalLine.backgroundColor = ELightGrey;
+                [self addSubview:horizontalLine];
+                
+                EColumnChartLabel *eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(-1 * Y_COORDINATE_LABEL_WIDTH, -heightGap / 2.0 + heightGap * i, Y_COORDINATE_LABEL_WIDTH, heightGap)];
+                [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
+                eColumnChartLabel.text = [NSString stringWithFormat:@"%.1f kWh", valueGap * (10 - i)];
+
+                //eColumnChartLabel.backgroundColor = ELightBlue;
+                [self addSubview:eColumnChartLabel];
+            }
             
         }
 
@@ -97,7 +117,7 @@
     
     int totalColumnsRequired = 0;
     totalColumnsRequired = [_dataSource numberOfColumnsPresentedEveryTime:self];
-    int highestValueEColumnChart = [_dataSource highestValueEColumnChart:self];
+    float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self] * 1.1;//为了给最高值留一点余地
     if (0 == totalColumnsRequired)
     {
         NSLog(@"numberOfColumnsPresentedEveryTime haven't been set.");
@@ -115,6 +135,9 @@
     NSInteger minIndex = 0;
     NSInteger maxIndex = 0;
     
+    
+    
+    
     for (int i = 0; i < totalColumnsRequired; i++)
     {
         NSInteger currentIndex = _leftMostIndex - i;
@@ -131,25 +154,30 @@
             minValue = eColumnDataModel.value;
         }
         
+        /**构建Column*/
         EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger:currentIndex ]];
         if (nil == eColumn)
         {
             eColumn = [[EColumn alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), 0, widthOfTheColumnShouldBe, self.frame.size.height)];
             eColumn.backgroundColor = [UIColor whiteColor];
             eColumn.barColor = EGrey;
+            eColumn.backgroundColor = [UIColor clearColor];
             eColumn.grade = eColumnDataModel.value / highestValueEColumnChart;
+            eColumn.eColumnDataModel = eColumnDataModel;
+            [eColumn setDelegate:self];
             [self addSubview:eColumn];
             [_eColumns setObject:eColumn forKey:[NSNumber numberWithInteger:currentIndex ]];
         }
         eColumn.barColor = EGrey;
         
-        
+        /**构建Column对应的label*/
         EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:(currentIndex)]];
         if (nil == eColumnChartLabel)
         {
             eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), self.frame.size.height, widthOfTheColumnShouldBe, 20)];
             [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
             eColumnChartLabel.text = eColumnDataModel.label;
+            //eColumnChartLabel.backgroundColor = ELightBlue;
             [self addSubview:eColumnChartLabel];
             [_eLabels setObject:eColumnChartLabel forKey:[NSNumber numberWithInteger:(currentIndex)]];
         }
@@ -167,10 +195,12 @@
         bottomLine.layer.cornerRadius = 2.0;
         [self addSubview:bottomLine];
         [bottomLine setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, BOTTOM_LINE_HEIGHT)];
+        
     } completion:nil];
-
     
 }
+
+
 
 - (void)moveLeft
 {
@@ -228,6 +258,17 @@
 }
 
 
+#pragma -mark- EColumnDelegate
+- (void)eColumnTaped:(EColumn *)eColumn
+{
+    [_delegate eColumnChart:self didSelectColumnAtIndex:eColumn.eColumnDataModel.index withEColumnDataModel:eColumn.eColumnDataModel];
+}
+
+- (void)eColumnLongPressed:(EColumn *)eColumn
+{
+    NSLog(@"Index: %d Value: %.1f",  eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -236,5 +277,44 @@
     // Drawing code
 }
 */
+
+#pragma -mark- detect Gesture
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
+    NSLog(@"%@",view);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
+    NSLog(@"%@",view);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
+    //NSLog(@"%@",view);
+}
+
+- (UIView *)touchedViewWithTouches:(NSSet *)touches andEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint touchLocation = [touch locationInView:touch.view];
+
+    UIView *touchedView;
+
+    for (EColumn *view in _eColumns.objectEnumerator)
+    {
+        if(CGRectContainsPoint(view.frame, touchLocation))
+        {
+            touchedView = view;
+            NSLog(@"%@",view);
+            break;
+        }
+    }
+
+    return touchedView;
+}
 
 @end

@@ -34,7 +34,7 @@
 
 
 
-@interface EColumnChart : UIView
+@interface EColumnChart : UIView <EColumnDelegate>
 @property (nonatomic) NSInteger leftMostIndex;
 @property (nonatomic) NSInteger rightMostIndex;
 
