@@ -9,6 +9,7 @@
 #import "EColumnChart.h"
 #import "EColor.h"
 #import "EColumnChartLabel.h"
+#import "EFloatBox.h"
 #define BOTTOM_LINE_HEIGHT 2
 #define HORIZONTAL_LINE_HEIGHT 0.5
 #define Y_COORDINATE_LABEL_WIDTH 30
@@ -18,10 +19,12 @@
 
 @property (strong, nonatomic) NSMutableDictionary *eColumns;
 @property (strong, nonatomic) NSMutableDictionary *eLabels;
+@property (strong, nonatomic) EColumn *fingerIsInThisEColumn;
 
 @end
 
 @implementation EColumnChart
+@synthesize fingerIsInThisEColumn = _fingerIsInThisEColumn;
 @synthesize minColumnColor = _minColumnColor;
 @synthesize maxColumnColor = _maxColumnColor;
 @synthesize normalColumnColor = _normalColumnColor;
@@ -33,6 +36,7 @@
 @synthesize delegate = _delegate;
 
 
+#pragma -mark- Custom Methed
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -51,6 +55,30 @@
     if (_delegate != delegate)
     {
         _delegate = delegate;
+        
+        if (![_delegate respondsToSelector:@selector(eColumnChart:didSelectColumnAtIndex:withEColumnDataModel:)])
+        {
+            NSLog(@"@selector(eColumnChart:didSelectColumnAtIndex:withEColumnDataModel:) Not Implemented!");
+            return;
+        }
+        
+        if (![_delegate respondsToSelector:@selector(eColumnChart:fingerDidEnterColumn:)])
+        {
+            NSLog(@"@selector(eColumnChart:fingerDidEnterColumn:) Not Implemented!");
+            return;
+        }
+        
+        if (![_delegate respondsToSelector:@selector(eColumnChart:fingerDidLeaveColumn:)])
+        {
+            NSLog(@"@selector(eColumnChart:fingerDidLeaveColumn:) Not Implemented!");
+            return;
+        }
+        
+        if (![_delegate respondsToSelector:@selector(fingerDidLeaveEColumnChart:)])
+        {
+            NSLog(@"@selector(fingerDidLeaveEColumnChart:) Not Implemented!");
+            return;
+        }
     }
 }
 
@@ -60,20 +88,35 @@
     {
         _dataSource = dataSource;
         
+        if (![_dataSource respondsToSelector:@selector(numberOfColumnsInEColumnChart:)])
+        {
+            NSLog(@"@selector(numberOfColumnsInEColumnChart:) Not Implemented!");
+            return;
+        }
+        
+        if (![_dataSource respondsToSelector:@selector(numberOfColumnsPresentedEveryTime:)])
+        {
+            NSLog(@"@selector(numberOfColumnsPresentedEveryTime:) Not Implemented!");
+            return;
+        }
+        
+        if (![_dataSource respondsToSelector:@selector(highestValueEColumnChart:)])
+        {
+            NSLog(@"@selector(highestValueEColumnChart:) Not Implemented!");
+            return;
+        }
+        
+        if (![_dataSource respondsToSelector:@selector(eColumnChart:valueForIndex:)])
+        {
+            NSLog(@"@selector(eColumnChart:valueForIndex:) Not Implemented!");
+            return;
+        }
+        
         {
             int totalColumnsRequired = 0;
             totalColumnsRequired = [_dataSource numberOfColumnsPresentedEveryTime:self];
             int totalColumns = 0;
             totalColumns = [_dataSource numberOfColumnsInEColumnChart:self];
-            if (0 == totalColumns)
-            {
-                NSLog(@"numberOfColumnsInEColumnChart haven't been set!");
-                return ;
-            }
-            if (0 == totalColumnsRequired) {
-                NSLog(@"numberOfColumnsPresentedEveryTime haven't been set!");
-                return ;
-            }
             /**暂时只支持，从右向左布局，也就是最右边的是原点*/
             _rightMostIndex = 0;
             _leftMostIndex = _rightMostIndex + totalColumnsRequired - 1;
@@ -83,7 +126,7 @@
             
             /**构建横向坐标线*/
             /**构建横向坐标线的数值*/
-            float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self] * 1.1;//为了给最高值留一点余地
+            float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;//为了给最高值留一点余地
             for (int i = 0; i < 11; i++)
             {
                 float heightGap = self.frame.size.height / 10.0;
@@ -94,12 +137,11 @@
                 
                 EColumnChartLabel *eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(-1 * Y_COORDINATE_LABEL_WIDTH, -heightGap / 2.0 + heightGap * i, Y_COORDINATE_LABEL_WIDTH, heightGap)];
                 [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
-                eColumnChartLabel.text = [NSString stringWithFormat:@"%.1f kWh", valueGap * (10 - i)];
+                eColumnChartLabel.text = [[NSString stringWithFormat:@"%.1f ", valueGap * (10 - i)] stringByAppendingString:[_dataSource highestValueEColumnChart:self].unit];;
 
                 //eColumnChartLabel.backgroundColor = ELightBlue;
                 [self addSubview:eColumnChartLabel];
             }
-            
         }
 
         [self reloadData];
@@ -113,30 +155,22 @@
 
 - (void)reloadData
 {
+    if (nil == _dataSource)
+    {
+        NSLog(@"Important!! DataSource Not Set!");
+        return;
+    }
     //self.backgroundColor = [UIColor grayColor];
     
     int totalColumnsRequired = 0;
     totalColumnsRequired = [_dataSource numberOfColumnsPresentedEveryTime:self];
-    float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self] * 1.1;//为了给最高值留一点余地
-    if (0 == totalColumnsRequired)
-    {
-        NSLog(@"numberOfColumnsPresentedEveryTime haven't been set.");
-        return;
-    }
-    if (0 == highestValueEColumnChart)
-    {
-        NSLog(@"highestValueEColumnChart haven't been set.");
-        return;
-    }
+    float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;//为了给最高值留一点余地
     
     float widthOfTheColumnShouldBe = self.frame.size.width / (float)(totalColumnsRequired + (totalColumnsRequired + 1) * 0.5);
     float minValue = 1000000.0;
     float maxValue = 0.0;
     NSInteger minIndex = 0;
     NSInteger maxIndex = 0;
-    
-    
-    
     
     for (int i = 0; i < totalColumnsRequired; i++)
     {
@@ -204,6 +238,11 @@
 
 - (void)moveLeft
 {
+    if (nil == _dataSource)
+    {
+        NSLog(@"Important!! DataSource Not Set!");
+        return;
+    }
     int index = _leftMostIndex + 1;
     EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:index];
     if (nil == eColumnDataModel) return;
@@ -223,12 +262,15 @@
         eColumn.frame = nextEColumn.frame;
     }
     
-    
-    
     [self reloadData];
 }
 - (void)moveRight
 {
+    if (nil == _dataSource)
+    {
+        NSLog(@"Important!! DataSource Not Set!");
+        return;
+    }
     int index = _rightMostIndex - 1;
     EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:index];
     if (nil == eColumnDataModel) return;
@@ -264,11 +306,6 @@
     [_delegate eColumnChart:self didSelectColumnAtIndex:eColumn.eColumnDataModel.index withEColumnDataModel:eColumn.eColumnDataModel];
 }
 
-- (void)eColumnLongPressed:(EColumn *)eColumn
-{
-    NSLog(@"Index: %d Value: %.1f",  eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
-}
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -279,42 +316,51 @@
 */
 
 #pragma -mark- detect Gesture
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
-    NSLog(@"%@",view);
-}
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
-    NSLog(@"%@",view);
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIView *view = [self touchedViewWithTouches:touches andEvent:event];
-    //NSLog(@"%@",view);
-}
-
-- (UIView *)touchedViewWithTouches:(NSSet *)touches andEvent:(UIEvent *)event
-{
+    if (nil == _delegate) return;
+    [_delegate fingerDidLeaveEColumnChart:self];
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
-
-    UIView *touchedView;
-
     for (EColumn *view in _eColumns.objectEnumerator)
     {
         if(CGRectContainsPoint(view.frame, touchLocation))
         {
-            touchedView = view;
-            NSLog(@"%@",view);
-            break;
+            [_delegate eColumnChart:self fingerDidLeaveColumn:view];
+            _fingerIsInThisEColumn = nil;
+            return;
         }
     }
-
-    return touchedView;
 }
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (nil == _delegate) return;
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint touchLocation = [touch locationInView:touch.view];
+    
+    if (nil == _fingerIsInThisEColumn)
+    {
+        for (EColumn *view in _eColumns.objectEnumerator)
+        {
+            if(CGRectContainsPoint(view.frame, touchLocation) )
+            {
+                [_delegate eColumnChart:self fingerDidEnterColumn:view];
+                _fingerIsInThisEColumn = view;
+                return ;
+            }
+        }
+    }
+    if (_fingerIsInThisEColumn && !CGRectContainsPoint(_fingerIsInThisEColumn.frame, touchLocation))
+    {
+        [_delegate eColumnChart:self fingerDidLeaveColumn:_fingerIsInThisEColumn];
+        _fingerIsInThisEColumn = nil;
+    }
+    
+    return ;
+}
+
+
 
 @end

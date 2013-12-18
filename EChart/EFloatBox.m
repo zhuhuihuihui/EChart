@@ -20,15 +20,16 @@
     return self;
 }
 
-- (id)initWithVaule:(float)value
+- (id)initWithFrame:(CGRect)frame
+              value:(float)value
                unit:(NSString *)unit
               title:(NSString *)title
 {
     
-    self = [self initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self = [self initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = ELightYellow;
+        self.backgroundColor = ELightBlue;
         self.layer.cornerRadius = 2.0;
         
 //        if (<#condition#>) {
@@ -39,6 +40,24 @@
         [self sizeToFit];
     }
     return self;
+}
+
+- (id)initWithValue:(float)value
+               unit:(NSString *)unit
+              title:(NSString *)title
+{
+    NSInteger requestWidth = 0;
+    NSInteger requestHeight = 0;
+    
+    UILabel *valueLabel = [[UILabel alloc] init];
+    [valueLabel setNumberOfLines:1];
+    [valueLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
+    valueLabel.text = [NSString stringWithFormat:@"%.1f", value];
+    
+    UILabel *unitLabel = [[UILabel alloc] init];
+    [unitLabel setNumberOfLines:1];
+    [unitLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
+    unitLabel.text = unit;
 }
 
 /*

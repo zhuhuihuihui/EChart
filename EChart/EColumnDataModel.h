@@ -13,9 +13,11 @@
 @property (strong, nonatomic) NSString *label;
 @property (nonatomic) float value;
 @property (nonatomic) NSInteger index;
+@property (nonatomic, strong) NSString *unit;
 
 - (id)initWithLabel:(NSString *)label
-              value:(float)value
-              index:(NSInteger)index;
+              value:(float)vaule
+              index:(NSInteger)index
+               unit:(NSString *)unit;
 
 @end

@@ -13,7 +13,12 @@
 @property (nonatomic, strong) NSString *unit;
 @property (nonatomic, strong) NSString *title;
 
-- (id)initWithVaule:(float)value
+- (id)initWithFrame:(CGRect)frame
+              value:(float)value
+               unit:(NSString *)unit
+              title:(NSString *)title;
+
+- (id)initWithValue:(float)value
                unit:(NSString *)unit
               title:(NSString *)title;
 

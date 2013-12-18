@@ -14,7 +14,7 @@
 
 - (void)eColumnTaped:(EColumn *)eColumn;
 
-- (void)eColumnLongPressed:(EColumn *)eColumn;
+//- (void)eColumnLongPressed:(EColumn *)eColumn;
 
 
 @end

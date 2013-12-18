@@ -15,7 +15,7 @@
 
 - (NSInteger) numberOfColumnsInEColumnChart:(EColumnChart *) eColumnChart;
 - (NSInteger) numberOfColumnsPresentedEveryTime:(EColumnChart *) eColumnChart;
-- (float)     highestValueEColumnChart:(EColumnChart *) eColumnChart;
+- (EColumnDataModel *)     highestValueEColumnChart:(EColumnChart *) eColumnChart;
 
 - (EColumnDataModel *)     eColumnChart:(EColumnChart *) eColumnChart
                         valueForIndex:(NSInteger)index;
@@ -29,6 +29,14 @@
 - (void)        eColumnChart:(EColumnChart *) eColumnChart
       didSelectColumnAtIndex:(NSInteger)index
         withEColumnDataModel:(EColumnDataModel *)eColumnDataModel;
+
+- (void)        eColumnChart:(EColumnChart *) eColumnChart
+        fingerDidEnterColumn:(EColumn *) eColumn;
+
+- (void)        eColumnChart:(EColumnChart *) eColumnChart
+        fingerDidLeaveColumn:(EColumn *) eColumn;
+
+- (void) fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart;
 
 @end
 

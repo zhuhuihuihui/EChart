@@ -12,6 +12,7 @@
 @synthesize label = _label;
 @synthesize value = _value;
 @synthesize index = _index;
+@synthesize unit  = _unit;
 
 - (id)init
 {
@@ -27,13 +28,31 @@
 - (id)initWithLabel:(NSString *)label
               value:(float)vaule
               index:(NSInteger)index
+               unit:(NSString *)unit
 {
     self = [self init];
     if (self)
     {
-        _label = label;
+        if (nil == label)
+        {
+            _label = @"";
+        }
+        else
+        {
+           _label = label;
+        }
+        
+        if (nil == unit)
+        {
+            _unit = @"";
+        }
+        else
+        {
+           _unit = unit; 
+        }
         _value = vaule;
         _index = index;
+        
     }
     return self;
 }
