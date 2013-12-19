@@ -10,54 +10,90 @@
 #import "EColor.h"
 
 @implementation EFloatBox
+@synthesize value = _value;
+@synthesize unit = _unit;
+@synthesize title = _title;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if (self)
+    {
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-              value:(float)value
-               unit:(NSString *)unit
-              title:(NSString *)title
+
+- (id)initWithPosition:(CGPoint)point
+                 value:(float)value
+                  unit:(NSString *)unit
+                 title:(NSString *)title
 {
-    
-    self = [self initWithFrame:frame];
+    self = [self initWithFrame:CGRectMake(point.x, point.y, 100, 100)];
     if (self)
     {
-        self.backgroundColor = ELightBlue;
-        self.layer.cornerRadius = 2.0;
+        _title = title;
+        _value = value;
+        _unit = unit;
         
-//        if (<#condition#>) {
-//            <#statements#>
-//        }
-//        UILabel *title = [[UILabel alloc]init];
+        self.text = [self makeString];;
+        self.backgroundColor = EBlueGreenColor;
+        self.layer.cornerRadius = 3.0;
+        //[self setFont:[UIFont systemFontOfSize:10.0f]];
+        [self setFont:[UIFont fontWithName:@"ChalkboardSE-Regular" size:10.0f]];
+        [self setTextColor: [UIColor blackColor]];
+        [self setTextAlignment:NSTextAlignmentCenter];
         
         [self sizeToFit];
     }
     return self;
+    
+    
 }
 
-- (id)initWithValue:(float)value
-               unit:(NSString *)unit
-              title:(NSString *)title
+- (CGSize)sizeThatFits:(CGSize)size
 {
-    NSInteger requestWidth = 0;
-    NSInteger requestHeight = 0;
+    CGSize resultSize = [super sizeThatFits:size];
+    resultSize = CGSizeMake(resultSize.width + 8, resultSize.height + 4);
+    return resultSize;
+}
+
+
+- (void)setValue:(float)value
+{
+    _value = value;
+    self.text = [self makeString];
+}
+
+- (NSString *)makeString
+{
+    NSString *finalText = nil;
+    if (_title)
+    {
+        [self setNumberOfLines:2];
+        if (_unit)
+        {
+            finalText = [_title stringByAppendingString:[[NSString stringWithFormat:@"\n%.1f ", _value] stringByAppendingString:_unit]];
+        }
+        else
+        {
+            finalText = [_title stringByAppendingString:[NSString stringWithFormat:@"\n%.1f", _value]];
+        }
+    }
+    else
+    {
+        [self setNumberOfLines:1];
+        if (_unit)
+        {
+            finalText = [[NSString stringWithFormat:@"%.1f ", _value] stringByAppendingString:_unit];
+        }
+        else
+        {
+            finalText = [NSString stringWithFormat:@"%.1f", _value];
+        }
+    }
     
-    UILabel *valueLabel = [[UILabel alloc] init];
-    [valueLabel setNumberOfLines:1];
-    [valueLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
-    valueLabel.text = [NSString stringWithFormat:@"%.1f", value];
-    
-    UILabel *unitLabel = [[UILabel alloc] init];
-    [unitLabel setNumberOfLines:1];
-    [unitLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
-    unitLabel.text = unit;
+    return finalText;
 }
 
 /*

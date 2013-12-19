@@ -322,7 +322,7 @@
     if (nil == _delegate) return;
     [_delegate fingerDidLeaveEColumnChart:self];
     UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchLocation = [touch locationInView:touch.view];
+    CGPoint touchLocation = [touch locationInView:self];
     for (EColumn *view in _eColumns.objectEnumerator)
     {
         if(CGRectContainsPoint(view.frame, touchLocation))
@@ -338,7 +338,9 @@
 {
     if (nil == _delegate) return;
     UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchLocation = [touch locationInView:touch.view];
+    /**当触碰到Column的话，就返回Column的坐标系统了，我们总是需要返回Chart的坐标系，所以使用self*/
+    //CGPoint touchLocation = [touch locationInView:touch.view];
+    CGPoint touchLocation = [touch locationInView:self];
     
     if (nil == _fingerIsInThisEColumn)
     {

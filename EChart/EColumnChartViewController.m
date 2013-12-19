@@ -8,11 +8,14 @@
 
 #import "EColumnChartViewController.h"
 #import "EColumnDataModel.h"
+#import "EColumnChartLabel.h"
 #import "EFloatBox.h"
+#import "EColor.h"
 
 @interface EColumnChartViewController ()
 
 @property (nonatomic, strong) NSArray *data;
+//@property (nonatomic, strong) EFloatBox *eFloatBox;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
 @end
@@ -115,27 +118,36 @@ fingerDidEnterColumn:(EColumn *)eColumn
 {
     NSLog(@"Finger did enter %d", eColumn.eColumnDataModel.index);
     CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
-    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade) - ;
+    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
     if (_eFloatBox)
     {
         [_eFloatBox removeFromSuperview];
         _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+        [_eFloatBox setValue:eColumn.eColumnDataModel.value];
         [eColumnChart addSubview:_eFloatBox];
     }
     else
     {
-        _eFloatBox = [[EFloatBox alloc] initWithFrame:CGRectMake(eFloatBoxX, eFloatBoxY, 30, 20) value:11.1 unit:@"kWh" title:@"Hello"];
+        _eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
+        _eFloatBox.alpha = 0.0;
         [eColumnChart addSubview:_eFloatBox];
+
     }
+    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
+    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        _eFloatBox.alpha = 1.0;
+        
+    } completion:^(BOOL finished) {
+    }];
+    
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart
 fingerDidLeaveColumn:(EColumn *)eColumn
 {
     NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
-//    if (_eFloatBox) {
-//        [_eFloatBox removeFromSuperview];
-//    }
+
 }
 
 - (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
@@ -144,6 +156,7 @@ fingerDidLeaveColumn:(EColumn *)eColumn
     {
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
             _eFloatBox.alpha = 0.0;
+            _eFloatBox.frame = CGRectMake(_eFloatBox.frame.origin.x, _eFloatBox.frame.origin.y + _eFloatBox.frame.size.height, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
         } completion:^(BOOL finished) {
             [_eFloatBox removeFromSuperview];
             _eFloatBox = nil;

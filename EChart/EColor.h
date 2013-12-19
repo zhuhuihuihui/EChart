@@ -40,6 +40,7 @@
 
 #define EMaxValueColor   [UIColor colorWithRed:241.0/255.0 green:93.0/255.0 blue:31.0/255.0 alpha:1.0]
 #define EMinValueColor   [UIColor colorWithRed:142.0/255.0 green:196.0/255.0 blue:45.0/255.0 alpha:1.0]
+#define EBlueGreenColor  [UIColor colorWithRed:255.0/255.0 green:209.0/255.0 blue:41.0/255.0 alpha:0.8]
 @interface EColor : NSObject
 - (UIImage *)imageFromColor:(UIColor *)color;
 @end
