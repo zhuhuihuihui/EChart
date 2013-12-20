@@ -18,12 +18,19 @@
 //@property (nonatomic, strong) EFloatBox *eFloatBox;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
+@property (nonatomic, strong) EColumn *eColumnSelected;
+@property (nonatomic, strong) UIColor *tempColor;
+
 @end
 
 @implementation EColumnChartViewController
+@synthesize tempColor = _tempColor;
 @synthesize eFloatBox = _eFloatBox;
 @synthesize eColumnChart = _eColumnChart;
 @synthesize data = _data;
+@synthesize eColumnSelected = _eColumnSelected;
+@synthesize valueLabel = _valueLabel;
+
 
 
 #pragma -mark- ViewController Life Circle
@@ -50,9 +57,10 @@
     _data = [NSArray arrayWithArray:temp];
     
     
-    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(30, 100, 300, 200)];
+    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
+    
     [self.view addSubview:_eColumnChart];
     
 }
@@ -67,6 +75,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma -mark- Actions
+- (IBAction)highlightMaxAndMinChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart setShowHighAndLowColumnWithColor:YES];
+    }
+    else
+    {
+        [_eColumnChart setShowHighAndLowColumnWithColor:NO];
+    }
+}
+
+- (IBAction)eventHandleChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart setDelegate:self];
+    }
+    else
+    {
+        [_eColumnChart setDelegate:nil];
+    }
+}
+
 
 - (IBAction)leftButtonPressed:(id)sender
 {
@@ -79,7 +114,6 @@
     if (self.eColumnChart == nil) return;
     [self.eColumnChart moveRight];
 }
-
 
 
 #pragma -mark- EColumnChartDataSource
@@ -106,11 +140,20 @@
 }
 
 #pragma -mark- EColumnChartDelegate
-- (void)        eColumnChart:(EColumnChart *)eColumnChart
-      didSelectColumnAtIndex:(NSInteger)index
-        withEColumnDataModel:(EColumnDataModel *)eColumnDataModel
+- (void)eColumnChart:(EColumnChart *)eColumnChart
+     didSelectColumn:(EColumn *)eColumn
 {
-    NSLog(@"Index: %d  Value: %f", eColumnDataModel.index, eColumnDataModel.value);
+    NSLog(@"Index: %d  Value: %f", eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
+    
+    if (_eColumnSelected)
+    {
+        _eColumnSelected.barColor = _tempColor;
+    }
+    _eColumnSelected = eColumn;
+    _tempColor = eColumn.barColor;
+    eColumn.barColor = [UIColor blackColor];
+    
+    _valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart

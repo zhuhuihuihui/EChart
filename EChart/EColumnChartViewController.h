@@ -11,5 +11,7 @@
 @interface EColumnChartViewController : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
 
 @property (strong, nonatomic) EColumnChart *eColumnChart;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+
 
 @end

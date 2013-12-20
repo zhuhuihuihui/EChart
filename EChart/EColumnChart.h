@@ -27,15 +27,18 @@
 @protocol EColumnChartDelegate <NSObject>
 
 - (void)        eColumnChart:(EColumnChart *) eColumnChart
-      didSelectColumnAtIndex:(NSInteger)index
-        withEColumnDataModel:(EColumnDataModel *)eColumnDataModel;
+             didSelectColumn:(EColumn *) eColumn;
 
 - (void)        eColumnChart:(EColumnChart *) eColumnChart
         fingerDidEnterColumn:(EColumn *) eColumn;
 
+/**When finger leaves certain column, will 
+ tell you which column you are leaving*/
 - (void)        eColumnChart:(EColumnChart *) eColumnChart
         fingerDidLeaveColumn:(EColumn *) eColumn;
 
+/**When finger leaves wherever in the chart, 
+ will trigger both if finger is leaving from a column */
 - (void) fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart;
 
 @end
@@ -49,6 +52,8 @@
 @property (nonatomic, strong) UIColor *minColumnColor;
 @property (nonatomic, strong) UIColor *maxColumnColor;
 @property (nonatomic, strong) UIColor *normalColumnColor;
+
+@property (nonatomic) BOOL showHighAndLowColumnWithColor;
 
 
 - (void)moveLeft;
