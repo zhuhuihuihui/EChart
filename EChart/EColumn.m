@@ -10,6 +10,7 @@
 #import "EColor.h"
 
 @implementation EColumn
+@synthesize barColor = _barColor;
 @synthesize eColumnDataModel = _eColumnDataModel;
 @synthesize delegate = _delegate;
 
@@ -66,6 +67,11 @@
 - (void)setBarColor:(UIColor *)barColor
 {
     _chartLine.strokeColor = [barColor CGColor];
+}
+
+- (UIColor *)barColor
+{
+    return [UIColor colorWithCGColor:_chartLine.strokeColor];
 }
 
 -(void)rollBack{

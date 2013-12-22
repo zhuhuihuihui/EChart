@@ -24,6 +24,7 @@
 @end
 
 @implementation EColumnChart
+@synthesize showHighAndLowColumnWithColor = _showHighAndLowColumnWithColor;
 @synthesize fingerIsInThisEColumn = _fingerIsInThisEColumn;
 @synthesize minColumnColor = _minColumnColor;
 @synthesize maxColumnColor = _maxColumnColor;
@@ -36,29 +37,16 @@
 @synthesize delegate = _delegate;
 
 
-#pragma -mark- Custom Methed
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        /**还没释放，uiview结束的时候，是不是需要释放资源*/
-        _eLabels = [NSMutableDictionary dictionary];
-        _eColumns = [NSMutableDictionary dictionary];
-    }
-    return self;
-}
-
-
+#pragma -mark- Setter and Getter
 - (void)setDelegate:(id<EColumnChartDelegate>)delegate
 {
     if (_delegate != delegate)
     {
         _delegate = delegate;
         
-        if (![_delegate respondsToSelector:@selector(eColumnChart:didSelectColumnAtIndex:withEColumnDataModel:)])
+        if (![_delegate respondsToSelector:@selector(eColumnChart: didSelectColumn:)])
         {
-            NSLog(@"@selector(eColumnChart:didSelectColumnAtIndex:withEColumnDataModel:) Not Implemented!");
+            NSLog(@"@selector(eColumnChart: didSelectColumn:) Not Implemented!");
             return;
         }
         
@@ -123,6 +111,7 @@
             /**初始化，最高最低值的颜色*/
             _minColumnColor = EMinValueColor;
             _maxColumnColor = EMaxValueColor;
+            _showHighAndLowColumnWithColor = YES;
             
             /**构建横向坐标线*/
             /**构建横向坐标线的数值*/
@@ -138,15 +127,48 @@
                 EColumnChartLabel *eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(-1 * Y_COORDINATE_LABEL_WIDTH, -heightGap / 2.0 + heightGap * i, Y_COORDINATE_LABEL_WIDTH, heightGap)];
                 [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
                 eColumnChartLabel.text = [[NSString stringWithFormat:@"%.1f ", valueGap * (10 - i)] stringByAppendingString:[_dataSource highestValueEColumnChart:self].unit];;
-
+                
                 //eColumnChartLabel.backgroundColor = ELightBlue;
                 [self addSubview:eColumnChartLabel];
             }
         }
-
+        
         [self reloadData];
     }
 }
+- (void)setMaxColumnColor:(UIColor *)maxColumnColor
+{
+    _maxColumnColor = maxColumnColor;
+    [self reloadData];
+}
+
+- (void)setMinColumnColor:(UIColor *)minColumnColor
+{
+    _minColumnColor = minColumnColor;
+    [self reloadData];
+}
+
+- (void)setShowHighAndLowColumnWithColor:(BOOL)showHighAndLowColumnWithColor
+{
+    _showHighAndLowColumnWithColor = showHighAndLowColumnWithColor;
+    [self reloadData];
+}
+
+
+#pragma -mark- Custom Methed
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        /**还没释放，uiview结束的时候，是不是需要释放资源*/
+        _eLabels = [NSMutableDictionary dictionary];
+        _eColumns = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+
 
 - (void)initData
 {
@@ -193,7 +215,6 @@
         if (nil == eColumn)
         {
             eColumn = [[EColumn alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), 0, widthOfTheColumnShouldBe, self.frame.size.height)];
-            eColumn.backgroundColor = [UIColor whiteColor];
             eColumn.barColor = EGrey;
             eColumn.backgroundColor = [UIColor clearColor];
             eColumn.grade = eColumnDataModel.value / highestValueEColumnChart;
@@ -216,10 +237,15 @@
             [_eLabels setObject:eColumnChartLabel forKey:[NSNumber numberWithInteger:(currentIndex)]];
         }
     }
-    EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: maxIndex]];
-    eColumn.barColor = _maxColumnColor;
-    eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: minIndex]];
-    eColumn.barColor = _minColumnColor;
+    
+    if (_showHighAndLowColumnWithColor)
+    {
+        EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: maxIndex]];
+        eColumn.barColor = _maxColumnColor;
+        eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger: minIndex]];
+        eColumn.barColor = _minColumnColor;
+    }
+    
     
     
     [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^
@@ -303,7 +329,8 @@
 #pragma -mark- EColumnDelegate
 - (void)eColumnTaped:(EColumn *)eColumn
 {
-    [_delegate eColumnChart:self didSelectColumnAtIndex:eColumn.eColumnDataModel.index withEColumnDataModel:eColumn.eColumnDataModel];
+    [_delegate eColumnChart:self didSelectColumn:eColumn];
+    [_delegate fingerDidLeaveEColumnChart:self];
 }
 
 /*
