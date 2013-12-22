@@ -47,23 +47,23 @@
 		6C9EDB321860281200291D95 /* EFloatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFloatBox.m; sourceTree = "<group>"; };
 		6CAE9BAC185AEB3F009AA75B /* EColumnChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartLabel.h; sourceTree = "<group>"; };
 		6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartLabel.m; sourceTree = "<group>"; };
-		6CB6E7F318586A3700B99AA3 /* EChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CB6E7F318586A3700B99AA3 /* EChartDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EChartDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CB6E7F618586A3700B99AA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6CB6E7F818586A3800B99AA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6CB6E7FA18586A3800B99AA3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6CB6E7FE18586A3800B99AA3 /* EChart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EChart-Info.plist"; sourceTree = "<group>"; };
 		6CB6E80018586A3800B99AA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CB6E80218586A3800B99AA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6CB6E80418586A3800B99AA3 /* EChart-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EChart-Prefix.pch"; sourceTree = "<group>"; };
+		6CB6E80418586A3800B99AA3 /* EChartDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EChartDemo-Prefix.pch"; sourceTree = "<group>"; };
 		6CB6E80518586A3800B99AA3 /* EChartAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EChartAppDelegate.h; sourceTree = "<group>"; };
 		6CB6E80618586A3800B99AA3 /* EChartAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EChartAppDelegate.m; sourceTree = "<group>"; };
 		6CB6E80918586A3800B99AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CB6E80B18586A3800B99AA3 /* EChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EChartViewController.h; sourceTree = "<group>"; };
 		6CB6E80C18586A3800B99AA3 /* EChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EChartViewController.m; sourceTree = "<group>"; };
 		6CB6E80E18586A3800B99AA3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6CB6E81418586A3800B99AA3 /* EChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CB6E81418586A3800B99AA3 /* EChartDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EChartDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CB6E81518586A3800B99AA3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6CB6E81D18586A3800B99AA3 /* EChartTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EChartTests-Info.plist"; sourceTree = "<group>"; };
+		6CB6E81D18586A3800B99AA3 /* EChartDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EChartDemoTests-Info.plist"; sourceTree = "<group>"; };
 		6CB6E81F18586A3800B99AA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CB6E82118586A3800B99AA3 /* EChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EChartTests.m; sourceTree = "<group>"; };
 		6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartViewController.h; sourceTree = "<group>"; };
@@ -114,8 +114,8 @@
 		6CB6E7F418586A3700B99AA3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6CB6E7F318586A3700B99AA3 /* EChart.app */,
-				6CB6E81418586A3800B99AA3 /* EChartTests.xctest */,
+				6CB6E7F318586A3700B99AA3 /* EChartDemo.app */,
+				6CB6E81418586A3800B99AA3 /* EChartDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,8 +144,7 @@
 				6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */,
 				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 			);
-			name = EChartDemo;
-			path = EChart;
+			path = EChartDemo;
 			sourceTree = "<group>";
 		};
 		6CB6E7FD18586A3800B99AA3 /* Supporting Files */ = {
@@ -154,7 +153,7 @@
 				6CB6E7FE18586A3800B99AA3 /* EChart-Info.plist */,
 				6CB6E7FF18586A3800B99AA3 /* InfoPlist.strings */,
 				6CB6E80218586A3800B99AA3 /* main.m */,
-				6CB6E80418586A3800B99AA3 /* EChart-Prefix.pch */,
+				6CB6E80418586A3800B99AA3 /* EChartDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -171,7 +170,7 @@
 		6CB6E81C18586A3800B99AA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6CB6E81D18586A3800B99AA3 /* EChartTests-Info.plist */,
+				6CB6E81D18586A3800B99AA3 /* EChartDemoTests-Info.plist */,
 				6CB6E81E18586A3800B99AA3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -215,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6CB6E7F218586A3700B99AA3 /* EChart */ = {
+		6CB6E7F218586A3700B99AA3 /* EChartDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CB6E82518586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChart" */;
+			buildConfigurationList = 6CB6E82518586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartDemo" */;
 			buildPhases = (
 				6CB6E7EF18586A3700B99AA3 /* Sources */,
 				6CB6E7F018586A3700B99AA3 /* Frameworks */,
@@ -227,14 +226,14 @@
 			);
 			dependencies = (
 			);
-			name = EChart;
+			name = EChartDemo;
 			productName = EChart;
-			productReference = 6CB6E7F318586A3700B99AA3 /* EChart.app */;
+			productReference = 6CB6E7F318586A3700B99AA3 /* EChartDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6CB6E81318586A3800B99AA3 /* EChartTests */ = {
+		6CB6E81318586A3800B99AA3 /* EChartDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CB6E82818586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartTests" */;
+			buildConfigurationList = 6CB6E82818586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartDemoTests" */;
 			buildPhases = (
 				6CB6E81018586A3800B99AA3 /* Sources */,
 				6CB6E81118586A3800B99AA3 /* Frameworks */,
@@ -245,9 +244,9 @@
 			dependencies = (
 				6CB6E81A18586A3800B99AA3 /* PBXTargetDependency */,
 			);
-			name = EChartTests;
+			name = EChartDemoTests;
 			productName = EChartTests;
-			productReference = 6CB6E81418586A3800B99AA3 /* EChartTests.xctest */;
+			productReference = 6CB6E81418586A3800B99AA3 /* EChartDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -265,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6CB6E7EE18586A3700B99AA3 /* Build configuration list for PBXProject "EChart" */;
+			buildConfigurationList = 6CB6E7EE18586A3700B99AA3 /* Build configuration list for PBXProject "EChartDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -278,8 +277,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6CB6E7F218586A3700B99AA3 /* EChart */,
-				6CB6E81318586A3800B99AA3 /* EChartTests */,
+				6CB6E7F218586A3700B99AA3 /* EChartDemo */,
+				6CB6E81318586A3800B99AA3 /* EChartDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,7 +335,7 @@
 /* Begin PBXTargetDependency section */
 		6CB6E81A18586A3800B99AA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6CB6E7F218586A3700B99AA3 /* EChart */;
+			target = 6CB6E7F218586A3700B99AA3 /* EChartDemo */;
 			targetProxy = 6CB6E81918586A3800B99AA3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -447,10 +446,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
-				INFOPLIST_FILE = "EChart/EChart-Info.plist";
+				GCC_PREFIX_HEADER = "EChartDemo/EChartDemo-Prefix.pch";
+				INFOPLIST_FILE = "EChartDemo/EChart-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EChartDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -461,10 +460,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
-				INFOPLIST_FILE = "EChart/EChart-Info.plist";
+				GCC_PREFIX_HEADER = "EChartDemo/EChartDemo-Prefix.pch";
+				INFOPLIST_FILE = "EChartDemo/EChart-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EChartDemo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -485,8 +484,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "EChartTests/EChartTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EChartTests/EChartDemoTests-Info.plist";
+				PRODUCT_NAME = EChartDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -504,8 +503,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
-				INFOPLIST_FILE = "EChartTests/EChartTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EChartTests/EChartDemoTests-Info.plist";
+				PRODUCT_NAME = EChartDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -514,7 +513,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6CB6E7EE18586A3700B99AA3 /* Build configuration list for PBXProject "EChart" */ = {
+		6CB6E7EE18586A3700B99AA3 /* Build configuration list for PBXProject "EChartDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CB6E82318586A3800B99AA3 /* Debug */,
@@ -523,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CB6E82518586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChart" */ = {
+		6CB6E82518586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CB6E82618586A3800B99AA3 /* Debug */,
@@ -532,7 +531,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CB6E82818586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartTests" */ = {
+		6CB6E82818586A3800B99AA3 /* Build configuration list for PBXNativeTarget "EChartDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CB6E82918586A3800B99AA3 /* Debug */,
