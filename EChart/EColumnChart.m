@@ -105,17 +105,19 @@
             totalColumnsRequired = [_dataSource numberOfColumnsPresentedEveryTime:self];
             int totalColumns = 0;
             totalColumns = [_dataSource numberOfColumnsInEColumnChart:self];
-            /**暂时只支持，从右向左布局，也就是最右边的是原点*/
+            /** Currently only support columns layout from right to left, WILL ADD OPTIONS LATER*/
             _rightMostIndex = 0;
             _leftMostIndex = _rightMostIndex + totalColumnsRequired - 1;
-            /**初始化，最高最低值的颜色*/
+            /** Initialize colors for max and min column*/
             _minColumnColor = EMinValueColor;
             _maxColumnColor = EMaxValueColor;
             _showHighAndLowColumnWithColor = YES;
             
-            /**构建横向坐标线*/
-            /**构建横向坐标线的数值*/
-            float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;//为了给最高值留一点余地
+            /** Start construct horizontal lines*/
+            /** Start construct value labels for horizontal lines*/
+            
+            /** In order to leave some space for the heightest column */
+            float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;
             for (int i = 0; i < 11; i++)
             {
                 float heightGap = self.frame.size.height / 10.0;
@@ -161,7 +163,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        /**还没释放，uiview结束的时候，是不是需要释放资源*/
+        /** Should i release these two objects before self have been destroyed*/
         _eLabels = [NSMutableDictionary dictionary];
         _eColumns = [NSMutableDictionary dictionary];
     }
@@ -182,11 +184,10 @@
         NSLog(@"Important!! DataSource Not Set!");
         return;
     }
-    //self.backgroundColor = [UIColor grayColor];
     
     int totalColumnsRequired = 0;
     totalColumnsRequired = [_dataSource numberOfColumnsPresentedEveryTime:self];
-    float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;//为了给最高值留一点余地
+    float highestValueEColumnChart = [_dataSource highestValueEColumnChart:self].value * 1.1;
     
     float widthOfTheColumnShouldBe = self.frame.size.width / (float)(totalColumnsRequired + (totalColumnsRequired + 1) * 0.5);
     float minValue = 1000000.0;
@@ -200,7 +201,7 @@
         EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:currentIndex];
         if (eColumnDataModel == nil)
             eColumnDataModel = [[EColumnDataModel alloc] init];
-        /**判断当前最大最小值，并设置为响应的颜色*/
+        /** Judge which is the max value and which is min, then set color correspondingly */
         if (eColumnDataModel.value > maxValue) {
             maxIndex =  currentIndex;
             maxValue = eColumnDataModel.value;
@@ -210,7 +211,7 @@
             minValue = eColumnDataModel.value;
         }
         
-        /**构建Column*/
+        /** Construct Columns*/
         EColumn *eColumn = [_eColumns objectForKey: [NSNumber numberWithInteger:currentIndex ]];
         if (nil == eColumn)
         {
@@ -225,7 +226,7 @@
         }
         eColumn.barColor = EGrey;
         
-        /**构建Column对应的label*/
+        /** Construct labels for corresponding columns */
         EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:(currentIndex)]];
         if (nil == eColumnChartLabel)
         {
@@ -315,7 +316,7 @@
         
         eColumnChartLabel.frame = nextEColumnChartLabel.frame;
         eColumn.frame = nextEColumn.frame;
-        /**暂时不实现动画效果*/
+        /** Do not inlclude animations at the moment*/
 //        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 //            eColumn.frame = nextEColumn.frame;
 //        } completion:nil];
@@ -365,7 +366,8 @@
 {
     if (nil == _delegate) return;
     UITouch *touch = [[event allTouches] anyObject];
-    /**当触碰到Column的话，就返回Column的坐标系统了，我们总是需要返回Chart的坐标系，所以使用self*/
+    /** We do not want the coordinate system of the columns here, 
+     we need coordinate system of the Echart instead, so we use self*/
     //CGPoint touchLocation = [touch locationInView:touch.view];
     CGPoint touchLocation = [touch locationInView:self];
     

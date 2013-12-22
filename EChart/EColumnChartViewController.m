@@ -158,6 +158,9 @@
 - (void)eColumnChart:(EColumnChart *)eColumnChart
 fingerDidEnterColumn:(EColumn *)eColumn
 {
+    /**The EFloatBox here, is just to show an example of 
+     taking adventage of the event handling system of the Echart.
+     You can do even better effects here, according to your needs.*/
     NSLog(@"Finger did enter %d", eColumn.eColumnDataModel.index);
     CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
     CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);

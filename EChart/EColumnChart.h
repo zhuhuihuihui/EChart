@@ -63,10 +63,16 @@
 
 @property (nonatomic) BOOL showHighAndLowColumnWithColor;
 
-
+/** Pull out the columns hidden in the left*/
 - (void)moveLeft;
+
+/** Pull out the columns hidden in the left*/
 - (void)moveRight;
+
+/** Haven't been used yet*/
 - (void)initData;
+
+/** Call to redraw the whole chart*/
 - (void)reloadData;
 
 @property (weak, nonatomic) id <EColumnChartDataSource> dataSource;
