@@ -3,7 +3,7 @@
 //  EChart
 //
 //  Created by Efergy China on 13/12/13.
-//  Copyright (c) 2013年 Scott Zhu. All rights reserved.
+//  Copyright (c) 2013 Scott Zhu. All rights reserved.
 //
 
 #import "EColumnChartLabel.h"
@@ -16,7 +16,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setLineBreakMode:NSLineBreakByClipping];
-        /**这两项仅仅适用于ios7*/
         self.adjustsFontSizeToFitWidth = YES;
         [self setMinimumScaleFactor:5.0f/13.0f];
         

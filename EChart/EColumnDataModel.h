@@ -2,8 +2,8 @@
 //  EColumnDataModel.h
 //  EChart
 //
-//  Created by 朱 建慧 on 13-12-12.
-//  Copyright (c) 2013年 Scott Zhu. All rights reserved.
+//  Created by Efergy China on 13-12-12.
+//  Copyright (c) 2013 Scott Zhu. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

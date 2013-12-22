@@ -103,7 +103,8 @@
 		6CB6E7EA18586A3700B99AA3 = {
 			isa = PBXGroup;
 			children = (
-				6CB6E7FC18586A3800B99AA3 /* EChart */,
+				A6E879321866B502007B2977 /* EChart */,
+				6CB6E7FC18586A3800B99AA3 /* EChartDemo */,
 				6CB6E81B18586A3800B99AA3 /* EChartTests */,
 				6CB6E7F518586A3700B99AA3 /* Frameworks */,
 				6CB6E7F418586A3700B99AA3 /* Products */,
@@ -130,11 +131,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6CB6E7FC18586A3800B99AA3 /* EChart */ = {
+		6CB6E7FC18586A3800B99AA3 /* EChartDemo */ = {
 			isa = PBXGroup;
 			children = (
-				6CB6E832185874CA00B99AA3 /* Components */,
-				6CB6E82E18586CD700B99AA3 /* Charts */,
 				6CB6E80518586A3800B99AA3 /* EChartAppDelegate.h */,
 				6CB6E80618586A3800B99AA3 /* EChartAppDelegate.m */,
 				6CB6E80818586A3800B99AA3 /* Main.storyboard */,
@@ -145,6 +144,7 @@
 				6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */,
 				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 			);
+			name = EChartDemo;
 			path = EChart;
 			sourceTree = "<group>";
 		};
@@ -201,6 +201,15 @@
 				6C9EDB321860281200291D95 /* EFloatBox.m */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		A6E879321866B502007B2977 /* EChart */ = {
+			isa = PBXGroup;
+			children = (
+				6CB6E832185874CA00B99AA3 /* Components */,
+				6CB6E82E18586CD700B99AA3 /* Charts */,
+			);
+			path = EChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +449,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
 				INFOPLIST_FILE = "EChart/EChart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -453,6 +463,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
 				INFOPLIST_FILE = "EChart/EChart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

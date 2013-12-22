@@ -3,7 +3,7 @@
 //  EChart
 //
 //  Created by Efergy China on 17/12/13.
-//  Copyright (c) 2013年 Scott Zhu. All rights reserved.
+//  Copyright (c) 2013 Scott Zhu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

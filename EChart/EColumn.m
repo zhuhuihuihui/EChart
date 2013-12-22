@@ -3,7 +3,7 @@
 //  EChart
 //
 //  Created by Efergy China on 11/12/13.
-//  Copyright (c) 2013年 Scott Zhu. All rights reserved.
+//  Copyright (c) 2013 Scott Zhu. All rights reserved.
 //
 
 #import "EColumn.h"
@@ -26,7 +26,6 @@
         _chartLine.strokeEnd    = 0.0;
         self.clipsToBounds      = YES;
 		[self.layer addSublayer:_chartLine];
-        //self.layer.cornerRadius = 2.0;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taped:)];
         [self addGestureRecognizer:tapGesture];
@@ -47,7 +46,6 @@
     [progressline setLineWidth:1.0];
     [progressline setLineCapStyle:kCGLineCapSquare];
 	_chartLine.path = progressline.CGPath;
-    //_chartLine.path = CGPathCreate;
 	if (_barColor) {
 		_chartLine.strokeColor = [_barColor CGColor];
 	}else{

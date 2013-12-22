@@ -3,7 +3,7 @@
 //  EChart
 //
 //  Created by Efergy China on 11/12/13.
-//  Copyright (c) 2013年 Scott Zhu. All rights reserved.
+//  Copyright (c) 2013 Scott Zhu. All rights reserved.
 //
 
 #import "EColumnChartViewController.h"
@@ -15,7 +15,6 @@
 @interface EColumnChartViewController ()
 
 @property (nonatomic, strong) NSArray *data;
-//@property (nonatomic, strong) EFloatBox *eFloatBox;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
 @property (nonatomic, strong) EColumn *eColumnSelected;
