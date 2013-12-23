@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6CB6E7F218586A3700B99AA3"
-            BuildableName = "EChart.app"
-            BlueprintName = "EChart"
-            ReferencedContainer = "container:EChart.xcodeproj">
+            BuildableName = "EChartDemo.app"
+            BlueprintName = "EChartDemo"
+            ReferencedContainer = "container:EChartDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6CB6E7F218586A3700B99AA3"
-            BuildableName = "EChart.app"
-            BlueprintName = "EChart"
-            ReferencedContainer = "container:EChart.xcodeproj">
+            BuildableName = "EChartDemo.app"
+            BlueprintName = "EChartDemo"
+            ReferencedContainer = "container:EChartDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
