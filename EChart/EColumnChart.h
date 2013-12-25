@@ -54,8 +54,8 @@
 
 
 @interface EColumnChart : UIView <EColumnDelegate>
-@property (nonatomic) NSInteger leftMostIndex;
-@property (nonatomic) NSInteger rightMostIndex;
+@property (nonatomic, readonly) NSInteger leftMostIndex;
+@property (nonatomic, readonly) NSInteger rightMostIndex;
 
 @property (nonatomic, strong) UIColor *minColumnColor;
 @property (nonatomic, strong) UIColor *maxColumnColor;
@@ -63,13 +63,16 @@
 
 @property (nonatomic) BOOL showHighAndLowColumnWithColor;
 
+/** IMPORTANT: 
+    This should be setted before datasoucre has been set.*/
+@property (nonatomic) BOOL columnsIndexStartFromLeft;
+
 /** Pull out the columns hidden in the left*/
 - (void)moveLeft;
 
 /** Pull out the columns hidden in the left*/
 - (void)moveRight;
 
-/** Haven't been used yet*/
 - (void)initData;
 
 /** Call to redraw the whole chart*/

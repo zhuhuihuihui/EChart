@@ -13,6 +13,7 @@
 #define BOTTOM_LINE_HEIGHT 2
 #define HORIZONTAL_LINE_HEIGHT 0.5
 #define Y_COORDINATE_LABEL_WIDTH 30
+#define DIRECTION  (_columnsIndexStartFromLeft? - 1 : 1)
 
 
 @interface EColumnChart()
@@ -24,6 +25,7 @@
 @end
 
 @implementation EColumnChart
+@synthesize columnsIndexStartFromLeft = _columnsIndexStartFromLeft;
 @synthesize showHighAndLowColumnWithColor = _showHighAndLowColumnWithColor;
 @synthesize fingerIsInThisEColumn = _fingerIsInThisEColumn;
 @synthesize minColumnColor = _minColumnColor;
@@ -106,12 +108,16 @@
             int totalColumns = 0;
             totalColumns = [_dataSource numberOfColumnsInEColumnChart:self];
             /** Currently only support columns layout from right to left, WILL ADD OPTIONS LATER*/
-            _rightMostIndex = 0;
-            _leftMostIndex = _rightMostIndex + totalColumnsRequired - 1;
-            /** Initialize colors for max and min column*/
-            _minColumnColor = EMinValueColor;
-            _maxColumnColor = EMaxValueColor;
-            _showHighAndLowColumnWithColor = YES;
+            if (_columnsIndexStartFromLeft)
+            {
+                _leftMostIndex = 0;
+                _rightMostIndex = _rightMostIndex + totalColumnsRequired - 1;
+            }
+            else
+            {
+                _rightMostIndex = 0;
+                _leftMostIndex = _rightMostIndex + totalColumnsRequired - 1;
+            }
             
             /** Start construct horizontal lines*/
             /** Start construct value labels for horizontal lines*/
@@ -156,6 +162,16 @@
     [self reloadData];
 }
 
+- (void)setColumnsIndexStartFromLeft:(BOOL)columnsIndexStartFromLeft
+{
+    if (_dataSource)
+    {
+        NSLog(@"setColumnsIndexStartFromLeft Should Be Called Before Setting Datasource!");
+        return;
+    }
+    _columnsIndexStartFromLeft = columnsIndexStartFromLeft;
+}
+
 
 #pragma -mark- Custom Methed
 - (id)initWithFrame:(CGRect)frame
@@ -166,6 +182,8 @@
         /** Should i release these two objects before self have been destroyed*/
         _eLabels = [NSMutableDictionary dictionary];
         _eColumns = [NSMutableDictionary dictionary];
+        
+        [self initData];
     }
     return self;
 }
@@ -174,7 +192,10 @@
 
 - (void)initData
 {
-    
+    /** Initialize colors for max and min column*/
+    _minColumnColor = EMinValueColor;
+    _maxColumnColor = EMaxValueColor;
+    _showHighAndLowColumnWithColor = YES;
 }
 
 - (void)reloadData
@@ -197,7 +218,7 @@
     
     for (int i = 0; i < totalColumnsRequired; i++)
     {
-        NSInteger currentIndex = _leftMostIndex - i;
+        NSInteger currentIndex = _leftMostIndex - i * DIRECTION;
         EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:currentIndex];
         if (eColumnDataModel == nil)
             eColumnDataModel = [[EColumnDataModel alloc] init];
@@ -270,20 +291,20 @@
         NSLog(@"Important!! DataSource Not Set!");
         return;
     }
-    int index = _leftMostIndex + 1;
+    int index = _leftMostIndex + 1 * DIRECTION;
     EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:index];
     if (nil == eColumnDataModel) return;
     
-    _leftMostIndex++;
-    _rightMostIndex++;
+    _leftMostIndex = _leftMostIndex + 1 * DIRECTION;
+    _rightMostIndex = _rightMostIndex + 1 * DIRECTION;
     
     int totalColumnsRequired = [_dataSource numberOfColumnsInEColumnChart:self];
     for (int i = 0; i < totalColumnsRequired; i++)
     {
-        EColumn *eColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i]];
-        EColumn *nextEColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i - 1]];
-        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i]];
-        EColumnChartLabel *nextEColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i - 1]];
+        EColumn *eColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i * DIRECTION]];
+        EColumn *nextEColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - (i + 1)  * DIRECTION]];
+        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i * DIRECTION]];
+        EColumnChartLabel *nextEColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - (i + 1) * DIRECTION]];
         
         eColumnChartLabel.frame = nextEColumnChartLabel.frame;
         eColumn.frame = nextEColumn.frame;
@@ -298,20 +319,20 @@
         NSLog(@"Important!! DataSource Not Set!");
         return;
     }
-    int index = _rightMostIndex - 1;
+    int index = _rightMostIndex - 1 * DIRECTION;
     EColumnDataModel *eColumnDataModel = [_dataSource eColumnChart:self valueForIndex:index];
     if (nil == eColumnDataModel) return;
     
-    _leftMostIndex--;
-    _rightMostIndex--;
+    _leftMostIndex = _leftMostIndex - 1 * DIRECTION;
+    _rightMostIndex = _rightMostIndex - 1 * DIRECTION;
     
     int totalColumnsRequired = [_dataSource numberOfColumnsInEColumnChart:self];
     for (int i = 0; i < totalColumnsRequired; i++)
     {
-        EColumn *eColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i]];
-        EColumn *nextEColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i + 1]];
-        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i]];
-        EColumnChartLabel *nextEColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i + 1]];
+        EColumn *eColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i * DIRECTION]];
+        EColumn *nextEColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_rightMostIndex + (i + 1) * DIRECTION]];
+        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_rightMostIndex + i * DIRECTION]];
+        EColumnChartLabel *nextEColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_rightMostIndex + (i + 1) * DIRECTION]];
         
         
         eColumnChartLabel.frame = nextEColumnChartLabel.frame;

@@ -57,8 +57,10 @@
     
     
     _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+    [_eColumnChart setColumnsIndexStartFromLeft:YES];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
+    
     
     [self.view addSubview:_eColumnChart];
     
@@ -101,6 +103,30 @@
     }
 }
 
+- (IBAction)chartDirectionChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+    else
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setColumnsIndexStartFromLeft:NO];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+}
 
 - (IBAction)leftButtonPressed:(id)sender
 {
