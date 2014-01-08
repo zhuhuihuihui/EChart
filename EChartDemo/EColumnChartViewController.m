@@ -11,6 +11,7 @@
 #import "EColumnChartLabel.h"
 #import "EFloatBox.h"
 #import "EColor.h"
+#include <stdlib.h>
 
 @interface EColumnChartViewController ()
 
@@ -50,7 +51,8 @@
     NSMutableArray *temp = [NSMutableArray array];
     for (int i = 0; i < 50; i++)
     {
-        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:i index:i unit:@"kWh"];
+        int value = arc4random() % 100;
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value index:i unit:@"kWh"];
         [temp addObject:eColumnDataModel];
     }
     _data = [NSArray arrayWithArray:temp];
@@ -155,7 +157,17 @@
 
 - (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
 {
-    return [_data objectAtIndex:49];
+    EColumnDataModel *maxDataModel = nil;
+    float maxValue = -FLT_MIN;
+    for (EColumnDataModel *dataModel in _data)
+    {
+        if (dataModel.value > maxValue)
+        {
+            maxValue = dataModel.value;
+            maxDataModel = dataModel;
+        }
+    }
+    return maxDataModel;
 }
 
 - (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index

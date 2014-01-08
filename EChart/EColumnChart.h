@@ -70,7 +70,7 @@
 /** Pull out the columns hidden in the left*/
 - (void)moveLeft;
 
-/** Pull out the columns hidden in the left*/
+/** Pull out the columns hidden in the right*/
 - (void)moveRight;
 
 - (void)initData;

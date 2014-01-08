@@ -27,7 +27,10 @@
 		6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */; };
 		6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E83018586D2500B99AA3 /* EColumnChart.m */; };
 		6CB6E8351858750300B99AA3 /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E8341858750300B99AA3 /* EColumn.m */; };
+		A69362AF186B00820082E97A /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362AE186B00820082E97A /* ELineChart.m */; };
+		A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362B1186B012E0082E97A /* ELineChartViewController.m */; };
 		A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E24998185A02FF00009F49 /* EColumnDataModel.m */; };
+		D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ED74A018799ECF0040D1AF /* ELineChartDataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +75,14 @@
 		6CB6E83018586D2500B99AA3 /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
 		6CB6E8331858750300B99AA3 /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
 		6CB6E8341858750300B99AA3 /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
+		A69362AD186B00820082E97A /* ELineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChart.h; sourceTree = "<group>"; };
+		A69362AE186B00820082E97A /* ELineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChart.m; sourceTree = "<group>"; };
+		A69362B0186B012E0082E97A /* ELineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChartViewController.h; sourceTree = "<group>"; };
+		A69362B1186B012E0082E97A /* ELineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChartViewController.m; sourceTree = "<group>"; };
 		A6E24997185A02FF00009F49 /* EColumnDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnDataModel.h; sourceTree = "<group>"; };
 		A6E24998185A02FF00009F49 /* EColumnDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnDataModel.m; sourceTree = "<group>"; };
+		D2ED749F18799ECF0040D1AF /* ELineChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChartDataModel.h; sourceTree = "<group>"; };
+		D2ED74A018799ECF0040D1AF /* ELineChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChartDataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,15 +143,12 @@
 		6CB6E7FC18586A3800B99AA3 /* EChartDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A69362B3186B01400082E97A /* ViewControllers */,
 				6CB6E80518586A3800B99AA3 /* EChartAppDelegate.h */,
 				6CB6E80618586A3800B99AA3 /* EChartAppDelegate.m */,
 				6CB6E80818586A3800B99AA3 /* Main.storyboard */,
-				6CB6E80B18586A3800B99AA3 /* EChartViewController.h */,
-				6CB6E80C18586A3800B99AA3 /* EChartViewController.m */,
 				6CB6E80E18586A3800B99AA3 /* Images.xcassets */,
 				6CB6E7FD18586A3800B99AA3 /* Supporting Files */,
-				6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */,
-				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 			);
 			path = EChartDemo;
 			sourceTree = "<group>";
@@ -181,6 +187,8 @@
 			children = (
 				6CB6E82F18586D2500B99AA3 /* EColumnChart.h */,
 				6CB6E83018586D2500B99AA3 /* EColumnChart.m */,
+				A69362AD186B00820082E97A /* ELineChart.h */,
+				A69362AE186B00820082E97A /* ELineChart.m */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -198,8 +206,23 @@
 				6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */,
 				6C9EDB311860281200291D95 /* EFloatBox.h */,
 				6C9EDB321860281200291D95 /* EFloatBox.m */,
+				D2ED749F18799ECF0040D1AF /* ELineChartDataModel.h */,
+				D2ED74A018799ECF0040D1AF /* ELineChartDataModel.m */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		A69362B3186B01400082E97A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6CB6E80B18586A3800B99AA3 /* EChartViewController.h */,
+				6CB6E80C18586A3800B99AA3 /* EChartViewController.m */,
+				6CB6E82B18586C6300B99AA3 /* EColumnChartViewController.h */,
+				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
+				A69362B0186B012E0082E97A /* ELineChartViewController.h */,
+				A69362B1186B012E0082E97A /* ELineChartViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		A6E879321866B502007B2977 /* EChart */ = {
@@ -314,9 +337,12 @@
 				6CAE9BAE185AEB3F009AA75B /* EColumnChartLabel.m in Sources */,
 				6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */,
 				A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */,
+				D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
+				A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */,
 				6C795C8218596AA500C80D60 /* EColor.m in Sources */,
+				A69362AF186B00820082E97A /* ELineChart.m in Sources */,
 				6C9EDB331860281200291D95 /* EFloatBox.m in Sources */,
 				6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */,
 			);
