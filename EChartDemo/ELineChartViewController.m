@@ -63,7 +63,7 @@
 
 - (NSInteger) numberOfPointsPresentedEveryTime:(ELineChart *) eLineChart
 {
-    return 5;
+    return 120;
 }
 
 - (ELineChartDataModel *)     highestValueELineChart:(ELineChart *) eLineChart

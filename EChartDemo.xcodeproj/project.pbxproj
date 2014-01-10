@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C061F56187E4759000CD97A /* EScrollLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C061F55187E4759000CD97A /* EScrollLineChart.m */; };
+		6C061F59187E4A9C000CD97A /* EScrollLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C061F58187E4A9C000CD97A /* EScrollLineChartViewController.m */; };
 		6C795C8218596AA500C80D60 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C795C8118596AA500C80D60 /* EColor.m */; };
 		6C9EDB331860281200291D95 /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9EDB321860281200291D95 /* EFloatBox.m */; };
 		6CAE9BAE185AEB3F009AA75B /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C061F54187E4759000CD97A /* EScrollLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollLineChart.h; sourceTree = "<group>"; };
+		6C061F55187E4759000CD97A /* EScrollLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollLineChart.m; sourceTree = "<group>"; };
+		6C061F57187E4A9C000CD97A /* EScrollLineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollLineChartViewController.h; sourceTree = "<group>"; };
+		6C061F58187E4A9C000CD97A /* EScrollLineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollLineChartViewController.m; sourceTree = "<group>"; };
 		6C795C8018596AA500C80D60 /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
 		6C795C8118596AA500C80D60 /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
 		6C9EDB311860281200291D95 /* EFloatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFloatBox.h; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 				6CB6E83018586D2500B99AA3 /* EColumnChart.m */,
 				A69362AD186B00820082E97A /* ELineChart.h */,
 				A69362AE186B00820082E97A /* ELineChart.m */,
+				6C061F54187E4759000CD97A /* EScrollLineChart.h */,
+				6C061F55187E4759000CD97A /* EScrollLineChart.m */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -221,6 +229,8 @@
 				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 				A69362B0186B012E0082E97A /* ELineChartViewController.h */,
 				A69362B1186B012E0082E97A /* ELineChartViewController.m */,
+				6C061F57187E4A9C000CD97A /* EScrollLineChartViewController.h */,
+				6C061F58187E4A9C000CD97A /* EScrollLineChartViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -333,12 +343,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CB6E80318586A3800B99AA3 /* main.m in Sources */,
+				6C061F59187E4A9C000CD97A /* EScrollLineChartViewController.m in Sources */,
 				6CB6E8351858750300B99AA3 /* EColumn.m in Sources */,
 				6CAE9BAE185AEB3F009AA75B /* EColumnChartLabel.m in Sources */,
 				6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */,
 				A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */,
 				D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
+				6C061F56187E4759000CD97A /* EScrollLineChart.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
 				A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */,
 				6C795C8218596AA500C80D60 /* EColor.m in Sources */,

@@ -38,6 +38,16 @@
                                     <segue destination="Odr-jq-0Cy" kind="push" id="n46-Uk-wmK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6f-zr-IwK">
+                                <rect key="frame" x="117" y="298" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="EScrollChart">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5JR-EV-7T5" kind="push" id="uHP-uX-qxz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -139,6 +149,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkc-e6-MHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1124" y="-186"/>
+        </scene>
+        <!--Scroll Line Chart View Controller - EScrollChart-->
+        <scene sceneID="xvI-z1-aiW">
+            <objects>
+                <viewController id="5JR-EV-7T5" customClass="EScrollLineChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2uw-Bc-C11"/>
+                        <viewControllerLayoutGuide type="bottom" id="CgZ-E6-5S9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PmQ-CM-dE5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="EScrollChart" id="3HG-Ju-oWy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxh-hj-kPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="590" y="661"/>
         </scene>
         <!--Line Chart View Controller - ELineChart-->
         <scene sceneID="9pm-xl-dI3">

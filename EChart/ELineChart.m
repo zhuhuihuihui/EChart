@@ -9,9 +9,12 @@
 #import "ELineChart.h"
 
 #define DIRECTION  -1
+#define VIRTUAL_SCREEN_COUNT 5
 
 @interface ELineChart()
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
+@property (nonatomic, strong) CAShapeLayer *tempShapeLayerForAnimation;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @end
 
 @implementation ELineChart
@@ -20,13 +23,24 @@
 @synthesize leftMostIndex = _leftMostIndex;
 @synthesize rightMostIndex = _rightMostIndex;
 @synthesize shapeLayer = _shapeLayer;
+@synthesize tempShapeLayerForAnimation = _tempShapeLayerForAnimation;
+@synthesize scrollView = _scrollView;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor purpleColor];
+        //self.clipsToBounds = YES;
+        
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        [_scrollView setDelegate:self];
+        [_scrollView setBackgroundColor:[UIColor grayColor]];
+        _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
+        //[_scrollView setContentOffset:CGPointMake(_scrollView.contentSize.width / 2 - CGRectGetWidth(self.bounds) / 2, 0) animated:NO];
+        //[_scrollView setContentOffset:CGPointMake(1, 0) animated:NO];
+        [self addSubview:_scrollView];
         
     }
     return self;
@@ -43,7 +57,8 @@
         
         
         _leftMostIndex = 0;
-        _rightMostIndex = [_dataSource numberOfPointsPresentedEveryTime:self] - 1;
+        _rightMostIndex = ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
+        [self reloadContent];
     }
 }
 
@@ -52,15 +67,17 @@
     
 }
 
-- (void)drawRect:(CGRect)rect
+
+- (void)reloadContent
 {
-    [super drawRect:rect];
+    if (!_shapeLayer)
+    {
+        _shapeLayer = [CAShapeLayer layer];
+    }
     
-    CGFloat horizentalGap = CGRectGetWidth(rect) / ([_dataSource numberOfPointsPresentedEveryTime:self] - 1);
+    CGFloat horizentalGap = _scrollView.contentSize.width / (([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT);
     /** In order to leave some space for the heightest point */
     CGFloat highestPointValue = [_dataSource highestValueELineChart:self].value * 1.1;
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
     
     /** 1. Construct the Path*/
     UIBezierPath *eLineChartPath = [UIBezierPath bezierPath];
@@ -69,106 +86,89 @@
     UIBezierPath *animFromPath = [UIBezierPath bezierPath];
     
     CGFloat firstPointValue = [_dataSource eLineChart:self valueForIndex:_leftMostIndex].value;
-    [eLineChartPath moveToPoint:CGPointMake(0, CGRectGetHeight(rect) - CGRectGetHeight(rect) * (firstPointValue / highestPointValue))];
-    [animFromPath moveToPoint:CGPointMake(0, CGRectGetHeight(rect) - CGRectGetHeight(rect) * (firstPointValue / highestPointValue))];
-    for (int i = _leftMostIndex + 1; i <= _rightMostIndex; i++)
+    [eLineChartPath moveToPoint:CGPointMake(0, CGRectGetHeight(_scrollView.bounds) - CGRectGetHeight(_scrollView.bounds) * (firstPointValue / highestPointValue))];
+    [animFromPath moveToPoint:CGPointMake(0, CGRectGetHeight(_scrollView.bounds) - CGRectGetHeight(_scrollView.bounds) * (firstPointValue / highestPointValue))];
+    for (NSInteger i = _leftMostIndex + 1; i <= _rightMostIndex; i++)
     {
         CGFloat pointValue = [_dataSource eLineChart:self valueForIndex: i].value;
-        [eLineChartPath addLineToPoint:CGPointMake((i - _leftMostIndex) * horizentalGap, CGRectGetHeight(rect) - CGRectGetHeight(rect) * (pointValue / highestPointValue))];
-        [animFromPath addLineToPoint:CGPointMake((i - _leftMostIndex) * horizentalGap, CGRectGetHeight(rect) / 2)];
+        [eLineChartPath addLineToPoint:CGPointMake((i - _leftMostIndex) * horizentalGap, CGRectGetHeight(_scrollView.bounds) - CGRectGetHeight(_scrollView.bounds) * (pointValue / highestPointValue))];
+        [animFromPath addLineToPoint:CGPointMake((i - _leftMostIndex) * horizentalGap, CGRectGetHeight(_scrollView.bounds) / 2)];
     }
     
     
     /** 2. Configure Layer and Add Path to it*/
-    if (!_shapeLayer)
-    {
-        _shapeLayer = [CAShapeLayer layer];
-    }
     _shapeLayer.zPosition = 0.0f;
     _shapeLayer.strokeColor = [UIColor purpleColor].CGColor;
-    _shapeLayer.lineWidth = 1;
+    _shapeLayer.lineWidth = 2;
     _shapeLayer.lineCap = kCALineCapRound;
     _shapeLayer.lineJoin = kCALineJoinRound;
-    _shapeLayer.frame = self.bounds;
+    _shapeLayer.frame = CGRectMake(0, 0, _scrollView.contentSize.width, CGRectGetHeight(self.bounds));
     _shapeLayer.fillColor = [UIColor clearColor].CGColor;
     _shapeLayer.path = eLineChartPath.CGPath;
     
-
+    
     
     
     /** 3. Add Animation to The Layer*/
-//    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"path"];
-//    [anim setRemovedOnCompletion:NO];
-//    anim.fromValue = (id)animFromPath.CGPath;
-//    anim.toValue = (id)eLineChartPath.CGPath;
-//    anim.duration = 0.75f;
-//    anim.removedOnCompletion = NO;
-//    anim.fillMode = kCAFillModeForwards;
-//    anim.autoreverses = NO;
-//    anim.repeatCount = 0;
-//    [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-//    [_shapeLayer addAnimation:anim forKey:@"path"];
+    //    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"path"];
+    //    [anim setRemovedOnCompletion:NO];
+    //    anim.fromValue = (id)animFromPath.CGPath;
+    //    anim.toValue = (id)eLineChartPath.CGPath;
+    //    anim.duration = 0.75f;
+    //    anim.removedOnCompletion = NO;
+    //    anim.fillMode = kCAFillModeForwards;
+    //    anim.autoreverses = NO;
+    //    anim.repeatCount = 0;
+    //    [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    //    [resultLayer addAnimation:anim forKey:@"path"];
     
-    /** 4. Add Layer to Your View*/
-    [self.layer addSublayer:_shapeLayer];
-    
-    
-    
-
+    //[_scrollView.layer addSublayer:_shapeLayer];
+    NSLog(@"%lu layer", (unsigned long)[[_scrollView.layer sublayers] count]);
 }
+
+
 
 #pragma -mark- LineChart Control Methods
-- (void)moveLeft
+
+
+#pragma -mark- UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSAssert(_dataSource, @"Important!! DataSource Not Set!");
+    CGPoint currentOffset = [scrollView contentOffset];
+    CGFloat contentWidth = [scrollView contentSize].width;
+    CGFloat centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
+    //CGFloat distanceFromCenter = fabs(currentOffset.x - centerOffsetX);
+    CGFloat distanceFromCenter = currentOffset.x - centerOffsetX;
     
-    int howManyPointsShouldBeMoved = [_dataSource numberOfPointsPresentedEveryTime:self] / 3;
-    howManyPointsShouldBeMoved = 1;
-    int index = _leftMostIndex + howManyPointsShouldBeMoved * DIRECTION;
-    ELineChartDataModel *eLineDataModel = [_dataSource eLineChart:self valueForIndex:index];
-    if (nil == eLineDataModel) return;
+    if (distanceFromCenter > (contentWidth / 5.0) * 2 && _rightMostIndex < ([_dataSource numberOfPointsInELineChart:self] - 1))
+    {
+        scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+        //reset content layer
+        _leftMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+        _rightMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+        _rightMostIndex = _rightMostIndex > ([_dataSource numberOfPointsInELineChart:self] - 1) ? [_dataSource numberOfPointsInELineChart:self] - 1: _rightMostIndex;
+        [self reloadContent];
+        
+    }
     
-    _leftMostIndex = index;
-    _rightMostIndex = _rightMostIndex + howManyPointsShouldBeMoved * DIRECTION;
+    if (distanceFromCenter < - 1 * (contentWidth / 5.0) * 2 && _leftMostIndex > 0)
+    {
+        scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+        //reset content layer
+        _leftMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+        _rightMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+        _leftMostIndex = _leftMostIndex < 0 ? 0 :_leftMostIndex;
+        [self reloadContent];
+    }
     
-//    int totalColumnsRequired = [_dataSource numberOfPointsInELineChart:self];
-//    for (int i = 0; i < totalColumnsRequired; i++)
-//    {
-//        EColumn *eColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i * DIRECTION]];
-//        EColumn *nextEColumn = [_eColumns objectForKey:[NSNumber numberWithInteger:_leftMostIndex - (i + 1)  * DIRECTION]];
-//        EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - i * DIRECTION]];
-//        EColumnChartLabel *nextEColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:_leftMostIndex - (i + 1) * DIRECTION]];
-//        
-//        eColumnChartLabel.frame = nextEColumnChartLabel.frame;
-//        eColumn.frame = nextEColumn.frame;
-//    }
+    //NSLog(@"%.1f contentScaleFactor = %.1f", [scrollView contentOffset].x, scrollView.contentScaleFactor);
     
-    [self setNeedsDisplay];
 }
 
-- (void)moveRight
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    NSAssert(_dataSource, @"Important!! DataSource Not Set!");
     
-    int howManyPointsShouldBeMoved = [_dataSource numberOfPointsPresentedEveryTime:self] / 3;
-    howManyPointsShouldBeMoved = 1;
-    int index = _rightMostIndex - howManyPointsShouldBeMoved * DIRECTION;
-    ELineChartDataModel *eLineDataModel = [_dataSource eLineChart:self valueForIndex:index];
-    if (nil == eLineDataModel) return;
-    
-    _leftMostIndex = _leftMostIndex - howManyPointsShouldBeMoved * DIRECTION;
-    _rightMostIndex = _rightMostIndex - howManyPointsShouldBeMoved * DIRECTION;
-    
-    CATransition *transition = [CATransition animation];
-    transition.startProgress = 0;
-    transition.endProgress = 0.2;
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    transition.duration = 1;
-    
-    [_shapeLayer addAnimation:transition forKey:@"transition"];
-    
-    [self setNeedsDisplay];
 }
 
 @end
