@@ -25,13 +25,25 @@
 /** Value for each point*/
 - (ELineChartDataModel *)    eLineChart:(ELineChart *) eLineChart
                           valueForIndex:(NSInteger)index;
+
+
 @optional
 
 @end
 
 @protocol ELineChartDelegate <NSObject>
-
 @required
+- (void) eLineChartDidReachTheEnd:(ELineChart *)eLineChart;
+
+- (void) eLineChart:(ELineChart *)eLineChart
+      didTapAtPoint:(ELineChartDataModel *)eLineChartDataModel;
+
+- (void)    eLineChart:(ELineChart *)eLineChart
+ didHoldAndMoveToPoint:(ELineChartDataModel *)eLineChartDataModel;
+
+- (void) fingerDidLeaveELineChart:(ELineChart *)eLineChart;
+
+
 
 @optional
 
@@ -42,6 +54,9 @@
 @property (nonatomic, readonly) NSInteger leftMostIndex;
 @property (nonatomic, readonly) NSInteger rightMostIndex;
 
+@property (nonatomic) NSInteger lineWidth;
+@property (nonatomic, strong) UIColor *lineColor;
+
 //@property (nonatomic, strong) UIColor *minColumnColor;
 //@property (nonatomic, strong) UIColor *maxColumnColor;
 //@property (nonatomic, strong) UIColor *normalColumnColor;
@@ -50,9 +65,8 @@
 @property (weak, nonatomic) id <ELineChartDataSource> dataSource;
 @property (weak, nonatomic) id <ELineChartDelegate> delegate;
 
-/** Pull out the points hidden in the left*/
-- (void)moveLeft;
+- (id)initWithFrame:(CGRect)frame
+          lineWidth:(NSInteger)lineWidth
+          lineColor:(UIColor *)lineColor;
 
-/** Pull out the points hidden in the right*/
-- (void)moveRight;
 @end

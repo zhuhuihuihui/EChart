@@ -17,6 +17,7 @@
 
 @synthesize eLineChart = _eLineChart;
 @synthesize eLineChartData = _eLineChartData;
+@synthesize numberTaped = _numberTaped;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +34,7 @@
     
     /** Generate data for _eLineChart*/
 	NSMutableArray *tempArray = [NSMutableArray array];
-    for (int i = 0 ; i < 1000; i++)
+    for (int i = 0 ; i < 100; i++)
     {
         int number = arc4random() % 100;
         ELineChartDataModel *eLineChartDataModel = [[ELineChartDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:number index:i unit:@"kWh"];
@@ -41,7 +42,9 @@
     }
     _eLineChartData = [NSArray arrayWithArray:tempArray];
     
-    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+    /** The Actual frame for the line is half height of the frame you specified, because the bottom half is for the touch control, but it's empty */
+    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 400)];
+    //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(40, 150, 250, 400) lineWidth:1.0 lineColor:[UIColor purpleColor]];
 	[_eLineChart setDelegate:self];
     [_eLineChart setDataSource:self];
     [self.view addSubview:_eLineChart];
@@ -58,12 +61,13 @@
 #pragma -mark- ELineChart DataSource
 - (NSInteger) numberOfPointsInELineChart:(ELineChart *) eLineChart
 {
+    //NSLog(@"%d", [_eLineChartData count]);
     return [_eLineChartData count];
 }
 
 - (NSInteger) numberOfPointsPresentedEveryTime:(ELineChart *) eLineChart
 {
-    return 120;
+    return 20;
 }
 
 - (ELineChartDataModel *)     highestValueELineChart:(ELineChart *) eLineChart
@@ -90,12 +94,34 @@
 
 #pragma -mark- ELineChart Delegate
 
+- (void)eLineChartDidReachTheEnd:(ELineChart *)eLineChart
+{
+    NSLog(@"Did reach the end");
+}
+
+- (void)eLineChart:(ELineChart *)eLineChart didTapAtPoint:(ELineChartDataModel *)eLineChartDataModel
+{
+    NSLog(@"%d %f", eLineChartDataModel.index, eLineChartDataModel.value);
+    [_numberTaped setText:[NSString stringWithFormat:@"%.f", eLineChartDataModel.value]];
+    
+}
+
+- (void)eLineChart:(ELineChart *)eLineChart didHoldAndMoveToPoint:(ELineChartDataModel *)eLineChartDataModel
+{
+    [_numberTaped setText:[NSString stringWithFormat:@"%.f", eLineChartDataModel.value]];
+}
+
+- (void)fingerDidLeaveELineChart:(ELineChart *)eLineChart
+{
+    
+}
+
 #pragma -mark- Actions
 - (IBAction)leftButtonPressed:(id)sender
 {
     if (_eLineChart)
     {
-        [_eLineChart moveLeft];
+        //[_eLineChart moveLeft];
     }
 }
 
@@ -103,7 +129,7 @@
 {
     if (_eLineChart)
     {
-        [_eLineChart moveRight];
+        //[_eLineChart moveRight];
     }
 }
 

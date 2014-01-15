@@ -13,6 +13,7 @@
 @interface ELineChartViewController : UIViewController<ELineChartDataSource, ELineChartDelegate>
 
 @property (strong, nonatomic) ELineChart *eLineChart;
+@property (weak, nonatomic) IBOutlet UILabel *numberTaped;
 
 
 @end
