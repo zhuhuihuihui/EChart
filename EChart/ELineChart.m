@@ -20,8 +20,8 @@
 @property (nonatomic) NSInteger reloadCount;
 @property (nonatomic) BOOL isInLastScreen;
 
-@property (nonatomic, strong) CALayer *dot;
-
+//@property (nonatomic, strong) CALayer *dot;
+@property (nonatomic ,strong) ELine *eLine;
 @end
 
 @implementation ELineChart
@@ -37,8 +37,10 @@
 @synthesize reloadCount = _reloadCount;
 @synthesize isInLastScreen = _isInLastScreen;
 @synthesize lineWidth = _lineWidth;
-@synthesize dot = _dot;
+//@synthesize dot = _dot;
 @synthesize lineColor = _lineColor;
+
+@synthesize eLine = _eLine;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -59,10 +61,10 @@
         _lineColor = lineColor;
         
         /** Setup Dot*/
-        _dot = [CALayer layer];
-        _dot.frame = CGRectMake(0, 0, _lineWidth * 4, _lineWidth * 4);
-        [_dot setBackgroundColor:_lineColor.CGColor];
-        _dot.cornerRadius = _lineWidth * 2;
+//        _dot = [CALayer layer];
+//        _dot.frame = CGRectMake(0, 0, _lineWidth * 4, _lineWidth * 4);
+//        [_dot setBackgroundColor:_lineColor.CGColor];
+//        _dot.cornerRadius = _lineWidth * 2;
         
         /** Setup Scroll View*/
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
@@ -116,73 +118,86 @@
 - (void)reloadContent
 {
     _reloadCount ++;
-    if (!_shapeLayer)
+    if (!_eLine)
     {
-        _shapeLayer = [CAShapeLayer layer];
+        _eLine = [[ELine alloc] initWithFrame:CGRectMake(0, 0, _scrollView.contentSize.width, CGRectGetHeight(_scrollView.bounds) / 2) lineColor:_lineColor lineWidth:_lineWidth];
+        [_eLine setDataSource:self];
     }
-    /** 1. Configure Layer*/
-    _shapeLayer.zPosition = 0.0f;
-    _shapeLayer.strokeColor = _lineColor.CGColor;
-    _shapeLayer.lineWidth = _lineWidth;
-    _shapeLayer.lineCap = kCALineCapRound;
-    _shapeLayer.lineJoin = kCALineJoinRound;
-    _shapeLayer.frame = CGRectMake(0, 0, _scrollView.contentSize.width, CGRectGetHeight(self.bounds) / 2);
-    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    
-    /** 2. Construct the Path*/
-    /** In order to leave some space for the heightest point */
-    CGFloat highestPointValue = [_dataSource highestValueELineChart:self].value * 1.1;
-    
-    UIBezierPath *eLineChartPath = [UIBezierPath bezierPath];
-    eLineChartPath.miterLimit = -5.0;
-    UIBezierPath *animFromPath = [UIBezierPath bezierPath];
-    CGFloat firstPointValue = [_dataSource eLineChart:self valueForIndex:_leftMostIndex].value;
-    [eLineChartPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (firstPointValue / highestPointValue))];
-    [animFromPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds))];
-    for (NSInteger i = _leftMostIndex + 1; i <= _rightMostIndex; i++)
-    {
-        CGFloat pointValue = [_dataSource eLineChart:self valueForIndex: i].value;
-        [eLineChartPath addLineToPoint:CGPointMake((i - _leftMostIndex) * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (pointValue / highestPointValue))];
-        [animFromPath addLineToPoint:CGPointMake((i - _leftMostIndex) * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds))];
-    }
-    
-    
-    /** 3. Add Path to layer*/
-    _shapeLayer.path = eLineChartPath.CGPath;
-    
-    
-    
-    
-    /** 4. Add Animation to The Layer*/
-    if (_reloadCount <= 1)
-    {
-        CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"path"];
-        [anim setRemovedOnCompletion:YES];
-        anim.fromValue = (id)animFromPath.CGPath;
-        anim.toValue = (id)eLineChartPath.CGPath;
-        anim.duration = 0.75f;
-        anim.removedOnCompletion = NO;
-        anim.fillMode = kCAFillModeForwards;
-        anim.autoreverses = NO;
-        anim.repeatCount = 0;
-        [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-        [_shapeLayer addAnimation:anim forKey:@"path"];
-    }
-    else
-    {
-        [_shapeLayer removeAnimationForKey:@"path"];
-    }
-    
-    if (!_viewWithShapeLayer)
-    {
-        _viewWithShapeLayer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_shapeLayer.frame), CGRectGetHeight(_shapeLayer.frame))];
-    }
-    
-    [_viewWithShapeLayer.layer addSublayer:_shapeLayer];
 
-    //[_scrollView.layer addSublayer:_shapeLayer];
-    [_scrollView addSubview:_viewWithShapeLayer];
-    //NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
+    [_eLine reloadDataWithAnimation:(_reloadCount <= 1)];
+    
+    [_scrollView addSubview:_eLine];
+    
+    
+    
+//    _reloadCount ++;
+//    if (!_shapeLayer)
+//    {
+//        _shapeLayer = [CAShapeLayer layer];
+//    }
+//    /** 1. Configure Layer*/
+//    _shapeLayer.zPosition = 0.0f;
+//    _shapeLayer.strokeColor = _lineColor.CGColor;
+//    _shapeLayer.lineWidth = _lineWidth;
+//    _shapeLayer.lineCap = kCALineCapRound;
+//    _shapeLayer.lineJoin = kCALineJoinRound;
+//    _shapeLayer.frame = CGRectMake(0, 0, _scrollView.contentSize.width, CGRectGetHeight(self.bounds) / 2);
+//    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
+//    
+//    /** 2. Construct the Path*/
+//    /** In order to leave some space for the heightest point */
+//    CGFloat highestPointValue = [_dataSource highestValueELineChart:self].value * 1.1;
+//    
+//    UIBezierPath *eLineChartPath = [UIBezierPath bezierPath];
+//    eLineChartPath.miterLimit = -5.0;
+//    UIBezierPath *animFromPath = [UIBezierPath bezierPath];
+//    CGFloat firstPointValue = [_dataSource eLineChart:self valueForIndex:_leftMostIndex].value;
+//    [eLineChartPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (firstPointValue / highestPointValue))];
+//    [animFromPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds))];
+//    for (NSInteger i = _leftMostIndex + 1; i <= _rightMostIndex; i++)
+//    {
+//        CGFloat pointValue = [_dataSource eLineChart:self valueForIndex: i].value;
+//        [eLineChartPath addLineToPoint:CGPointMake((i - _leftMostIndex) * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (pointValue / highestPointValue))];
+//        [animFromPath addLineToPoint:CGPointMake((i - _leftMostIndex) * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds))];
+//    }
+//    
+//    
+//    /** 3. Add Path to layer*/
+//    _shapeLayer.path = eLineChartPath.CGPath;
+//    
+//    
+//    
+//    
+//    /** 4. Add Animation to The Layer*/
+//    if (_reloadCount <= 1)
+//    {
+//        CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"path"];
+//        [anim setRemovedOnCompletion:YES];
+//        anim.fromValue = (id)animFromPath.CGPath;
+//        anim.toValue = (id)eLineChartPath.CGPath;
+//        anim.duration = 0.75f;
+//        anim.removedOnCompletion = NO;
+//        anim.fillMode = kCAFillModeForwards;
+//        anim.autoreverses = NO;
+//        anim.repeatCount = 0;
+//        [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+//        [_shapeLayer addAnimation:anim forKey:@"path"];
+//    }
+//    else
+//    {
+//        [_shapeLayer removeAnimationForKey:@"path"];
+//    }
+//    
+//    if (!_viewWithShapeLayer)
+//    {
+//        _viewWithShapeLayer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_shapeLayer.frame), CGRectGetHeight(_shapeLayer.frame))];
+//    }
+//    
+//    [_viewWithShapeLayer.layer addSublayer:_shapeLayer];
+//
+//    //[_scrollView.layer addSublayer:_shapeLayer];
+//    [_scrollView addSubview:_viewWithShapeLayer];
+//    //NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
     
 }
 
@@ -212,6 +227,7 @@
             _rightMostIndex = [_dataSource numberOfPointsInELineChart:self] - 1;
             /** Reach the end of data, decrese the contentSize.width to fit*/
             _scrollView.contentSize = CGSizeMake(_horizentalGap * (_rightMostIndex - _leftMostIndex), CGRectGetHeight(_scrollView.bounds));
+            _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
             _isInLastScreen = YES;
         }
         
@@ -225,6 +241,7 @@
         {
             /** contentSize.width is changed before, so change it back, So that you can set the right contentOffset*/
             _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
+            _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
             currentOffset = [scrollView contentOffset];
             contentWidth = [scrollView contentSize].width;
             centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
@@ -300,7 +317,8 @@
     if (_delegate && [_delegate respondsToSelector:@selector(eLineChart:didTapAtPoint:)])
     {
         [_delegate eLineChart:self didTapAtPoint:[self eLineChartDataModelForPoint:touchPoint]];
-        [self putDotAt:[self eLineChartDataModelForPoint:touchPoint]];
+        NSInteger index = [self eLineChartDataModelForPoint:touchPoint].index % ([_dataSource numberOfPointsPresentedEveryTime:self] * VIRTUAL_SCREEN_COUNT - 1);
+        [_eLine putDotAt: index];
     }
     
     
@@ -313,38 +331,58 @@
     if (_delegate && [_delegate respondsToSelector:@selector(eLineChart:didHoldAndMoveToPoint:)])
     {
         [_delegate eLineChart:self didHoldAndMoveToPoint:[self eLineChartDataModelForPoint:touchPoint]];
-        [self putDotAt:[self eLineChartDataModelForPoint:touchPoint]];
+        NSInteger index = [self eLineChartDataModelForPoint:touchPoint].index % ([_dataSource numberOfPointsPresentedEveryTime:self] * VIRTUAL_SCREEN_COUNT - 1);
+        [_eLine putDotAt: index];
     }
 }
 #pragma -mark- Custom method
-- (void) putDotAt:(ELineChartDataModel *) eLineChartDataModel
-{
-    _dot.opacity = 1.0;
-    CGFloat height = CGRectGetHeight(_shapeLayer.bounds);
-    CGFloat dotY = height - (height * (eLineChartDataModel.value / ([_dataSource highestValueELineChart:self].value * 1.1)));
-    CGPoint dotPosition = CGPointMake((eLineChartDataModel.index - _leftMostIndex) * _horizentalGap, dotY);
-    [_dot setPosition:dotPosition];
-    
-    CABasicAnimation *animatdOpacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animatdOpacity.fromValue = [NSNumber numberWithFloat:1.0];
-    animatdOpacity.toValue = [NSNumber numberWithFloat:0.0];
-    animatdOpacity.duration = 1.0;
-    [animatdOpacity setDelegate:self];
-    animatdOpacity.beginTime = CACurrentMediaTime() + 1;
-    [_dot addAnimation:animatdOpacity forKey:@"opacity"];
-    
-    [_scrollView.layer addSublayer:_dot];
-    
-    //TODO: When the path changed, the dot gonna still be there
-}
+//- (void) putDotAt:(ELineChartDataModel *) eLineChartDataModel
+//{
+//    _dot.opacity = 1.0;
+//    CGFloat height = CGRectGetHeight(_shapeLayer.bounds);
+//    CGFloat dotY = height - (height * (eLineChartDataModel.value / ([_dataSource highestValueELineChart:self].value * 1.1)));
+//    CGPoint dotPosition = CGPointMake((eLineChartDataModel.index - _leftMostIndex) * _horizentalGap, dotY);
+//    [_dot setPosition:dotPosition];
+//    
+//    CABasicAnimation *animatdOpacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    animatdOpacity.fromValue = [NSNumber numberWithFloat:1.0];
+//    animatdOpacity.toValue = [NSNumber numberWithFloat:0.0];
+//    animatdOpacity.duration = 1.0;
+//    [animatdOpacity setDelegate:self];
+//    animatdOpacity.beginTime = CACurrentMediaTime() + 1;
+//    [_dot addAnimation:animatdOpacity forKey:@"opacity"];
+//    
+//    [_scrollView.layer addSublayer:_dot];
+//    
+//    //TODO: When the path changed, the dot gonna still be there
+//}
 
+
+#pragma -mark- Animation Delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-//    [_dot removeAnimationForKey:@"opacity"];
-    [CATransaction setDisableActions:YES];
-    _dot.backgroundColor = [UIColor purpleColor].CGColor;
+////    [_dot removeAnimationForKey:@"opacity"];
+//    [CATransaction setDisableActions:YES];
+//    _dot.backgroundColor = [UIColor purpleColor].CGColor;
 
     
 }
+
+#pragma -mark- ELine DataSource Delegate
+- (ELineChartDataModel *)eLine:(ELine *)eLine valueForIndex:(NSInteger)index
+{
+    return [_dataSource eLineChart:self valueForIndex: (_leftMostIndex + index)];
+}
+
+- (NSInteger)numberOfPointsInELine:(ELine *)eLine
+{
+    return _rightMostIndex - _leftMostIndex + 1;
+}
+
+- (ELineChartDataModel *)highestValueInELine:(ELine *)eLine
+{
+    return [_dataSource highestValueELineChart:self];
+}
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ELineChartDataModel.h"
+#import "ELine.h"
 @class ELineChart;
 
 @protocol ELineChartDataSource <NSObject>
@@ -49,7 +50,8 @@
 
 @end
 
-@interface ELineChart : UIView <UIScrollViewDelegate>
+
+@interface ELineChart : UIView <ELineDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, readonly) NSInteger leftMostIndex;
 @property (nonatomic, readonly) NSInteger rightMostIndex;
