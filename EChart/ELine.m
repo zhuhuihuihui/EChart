@@ -57,6 +57,9 @@
 
 - (void) reloadDataWithAnimation: (BOOL) shouldAnimation
 {
+    [_dot.layer removeAllAnimations];
+    _dot = nil;
+    
     if (!_shapeLayer)
     {
         _shapeLayer = [CAShapeLayer layer];
@@ -140,10 +143,12 @@
     
     [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         _dot.alpha = 0;
+        
     } completion:^(BOOL finished) {
         
     }];
 
+    NSLog(@"x = %.1f", _dot.frame.origin.x);
     [self addSubview:_dot];
 
     //TODO: When the path changed, the dot gonna still be there
