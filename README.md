@@ -75,3 +75,10 @@ The implementation of the Delegate is according to your needs
 
 	/** When finger leaves wherever in the chart, will trigger both if finger is leaving from a column */
 	- (void) fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart;
+
+
+#License
+EChart is available under the Apache License. See the LICENSE file for more info.
+
+
+
