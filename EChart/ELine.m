@@ -118,7 +118,7 @@
     }
     
     [self.layer addSublayer:_shapeLayer];
-    //NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
+    
 }
 
 
@@ -152,6 +152,13 @@
     [self addSubview:_dot];
 
     //TODO: When the path changed, the dot gonna still be there
+}
+
+#pragma -mark- UIView Delegate
+- (void)setTransform:(CGAffineTransform)newValue;
+{
+    newValue.d = 1.0;
+    [super setTransform:newValue];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

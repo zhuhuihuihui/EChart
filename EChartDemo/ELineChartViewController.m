@@ -11,6 +11,8 @@
 
 @interface ELineChartViewController ()
 @property (strong, nonatomic) NSArray *eLineChartData;
+
+@property (nonatomic) float eLineChartScale;
 @end
 
 @implementation ELineChartViewController
@@ -18,6 +20,7 @@
 @synthesize eLineChart = _eLineChart;
 @synthesize eLineChartData = _eLineChartData;
 @synthesize numberTaped = _numberTaped;
+@synthesize eLineChartScale = _eLineChartScale;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _eLineChartScale = 1;
     
     /** Generate data for _eLineChart*/
 	NSMutableArray *tempArray = [NSMutableArray array];
@@ -43,12 +47,11 @@
     _eLineChartData = [NSArray arrayWithArray:tempArray];
     
     /** The Actual frame for the line is half height of the frame you specified, because the bottom half is for the touch control, but it's empty */
-    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 200)];
+    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 400)];
     //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(40, 150, 250, 400) lineWidth:1.0 lineColor:[UIColor purpleColor]];
 	[_eLineChart setDelegate:self];
     [_eLineChart setDataSource:self];
     [self.view addSubview:_eLineChart];
-    [_eLineChart setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,12 +64,13 @@
 #pragma -mark- ELineChart DataSource
 - (NSInteger) numberOfPointsInELineChart:(ELineChart *) eLineChart
 {
-    //NSLog(@"%d", [_eLineChartData count]);
     return [_eLineChartData count];
 }
 
 - (NSInteger) numberOfPointsPresentedEveryTime:(ELineChart *) eLineChart
 {
+//    NSInteger num = 20 * (1.0 / _eLineChartScale);
+//    NSLog(@"%d", num);
     return 20;
 }
 
@@ -99,14 +103,16 @@
     NSLog(@"Did reach the end");
 }
 
-- (void)eLineChart:(ELineChart *)eLineChart didTapAtPoint:(ELineChartDataModel *)eLineChartDataModel
+- (void)eLineChart:(ELineChart *)eLineChart
+     didTapAtPoint:(ELineChartDataModel *)eLineChartDataModel
 {
     NSLog(@"%d %f", eLineChartDataModel.index, eLineChartDataModel.value);
     [_numberTaped setText:[NSString stringWithFormat:@"%.f", eLineChartDataModel.value]];
     
 }
 
-- (void)eLineChart:(ELineChart *)eLineChart didHoldAndMoveToPoint:(ELineChartDataModel *)eLineChartDataModel
+- (void)    eLineChart:(ELineChart *)eLineChart
+ didHoldAndMoveToPoint:(ELineChartDataModel *)eLineChartDataModel
 {
     [_numberTaped setText:[NSString stringWithFormat:@"%.f", eLineChartDataModel.value]];
 }
@@ -116,22 +122,19 @@
     
 }
 
-#pragma -mark- Actions
-- (IBAction)leftButtonPressed:(id)sender
+- (void)eLineChart:(ELineChart *)eLineChart
+    didZoomToScale:(float)scale
 {
-    if (_eLineChart)
-    {
-        //[_eLineChart moveLeft];
-    }
+//    _eLineChartScale = scale;
+//    [_eLineChart removeFromSuperview];
+//    _eLineChart = nil;
+//    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 300)];
+//	[_eLineChart setDelegate:self];
+//    [_eLineChart setDataSource:self];
+//    [self.view addSubview:_eLineChart];
 }
 
-- (IBAction)rightButtonPressed:(id)sender
-{
-    if (_eLineChart)
-    {
-        //[_eLineChart moveRight];
-    }
-}
+#pragma -mark- Actions
 
 
 @end

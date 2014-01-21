@@ -44,6 +44,9 @@
 
 - (void) fingerDidLeaveELineChart:(ELineChart *)eLineChart;
 
+- (void) eLineChart:(ELineChart *)eLineChart
+     didZoomToScale:(float)scale;
+
 
 
 @optional

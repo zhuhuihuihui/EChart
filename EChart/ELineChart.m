@@ -12,9 +12,6 @@
 #define VIRTUAL_SCREEN_COUNT 5
 
 @interface ELineChart()
-@property (nonatomic, strong) CAShapeLayer *shapeLayer;
-@property (nonatomic, strong) UIView *viewWithShapeLayer;
-@property (nonatomic, strong) CAShapeLayer *tempShapeLayerForAnimation;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic) CGFloat horizentalGap;
 @property (nonatomic) NSInteger reloadCount;
@@ -28,9 +25,6 @@
 @synthesize delegate = _delegate;
 @synthesize leftMostIndex = _leftMostIndex;
 @synthesize rightMostIndex = _rightMostIndex;
-@synthesize shapeLayer = _shapeLayer;
-@synthesize viewWithShapeLayer = _viewWithShapeLayer;
-@synthesize tempShapeLayerForAnimation = _tempShapeLayerForAnimation;
 @synthesize scrollView = _scrollView;
 @synthesize horizentalGap = _horizentalGap;
 @synthesize reloadCount = _reloadCount;
@@ -115,15 +109,17 @@
         _eLine = [[ELine alloc] initWithFrame:CGRectMake(0, 0, _scrollView.contentSize.width, CGRectGetHeight(_scrollView.bounds) / 2) lineColor:_lineColor lineWidth:_lineWidth];
         [_eLine setDataSource:self];
     }
-
-    NSLog(@"leftindex = %d ; rightindex = %d", _leftMostIndex, _rightMostIndex);
     [_eLine reloadDataWithAnimation:(_reloadCount <= 1)];
-    
     [_scrollView addSubview:_eLine];
     
-    
+    NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
 }
 
+
+- (void) reloadContentAtScale: (float)scale
+{
+    
+}
 
 
 #pragma -mark- LineChart Control Methods
@@ -175,7 +171,6 @@
         //reset content layer
         _leftMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
         _rightMostIndex = _leftMostIndex + ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
-        //_rightMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
         _leftMostIndex = _leftMostIndex < 0 ? 0 :_leftMostIndex;
         [self reloadContent];
     }
@@ -192,9 +187,21 @@
     
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+//{
+//    return _eLine;
+//}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
+                       withView:(UIView *)view
+                        atScale:(CGFloat)scale
 {
-    return _viewWithShapeLayer;
+    //_eLine.transform = CGAffineTransformIdentity;
+    NSLog(@"View.Frame %@", NSStringFromCGRect(view.frame) );
+    NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
+    NSLog(@"Scale %f", scale);
+    [_delegate eLineChart:self didZoomToScale:scale];
+    [self reloadContentAtScale:scale];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
@@ -214,7 +221,7 @@
     }
     else
     {
-        return [_dataSource eLineChart:self valueForIndex:_leftMostIndex + gapCount];
+        return [_dataSource eLineChart:self valueForIndex: _leftMostIndex + gapCount];
     }
 }
 
