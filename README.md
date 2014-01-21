@@ -79,3 +79,6 @@ The implementation of the Delegate is according to your needs
 	
 #License
 EChart is available under the Apache License. See the LICENSE file for more info.
+
+
+
