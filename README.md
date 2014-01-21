@@ -2,7 +2,7 @@
 A highly **extendable**, easy to use chart with **event handling**, **animation** supported. 
 
 
-[![](https://dl.dropboxusercontent.com/s/px1zz1ofxbzrpci/EChart.gif)](https://dl.dropboxusercontent.com/s/px1zz1ofxbzrpci/EChart.gif)
+[![](https://dl.dropboxusercontent.com/s/gn7tue9vm2u4pc7/EChart.gif)](https://dl.dropboxusercontent.com/s/gn7tue9vm2u4pc7/EChart.gif)
 
 ## How To Use
 ### Step 1
@@ -75,3 +75,7 @@ The implementation of the Delegate is according to your needs
 
 	/** When finger leaves wherever in the chart, will trigger both if finger is leaving from a column */
 	- (void) fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart;
+	
+	
+#License
+EChart is available under the Apache License. See the LICENSE file for more info.
