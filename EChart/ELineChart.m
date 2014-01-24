@@ -187,10 +187,10 @@
     
 }
 
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-//{
-//    return _eLine;
-//}
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _eLine;
+}
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
                        withView:(UIView *)view
