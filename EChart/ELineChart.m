@@ -137,6 +137,7 @@
     
     if (distanceFromCenter > centerOffsetX && _rightMostIndex < ([_dataSource numberOfPointsInELineChart:self] - 1))
     {
+        NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
         scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
         //reset content layer
         _leftMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
@@ -156,6 +157,7 @@
     
     if (distanceFromCenter < - 1 * centerOffsetX && _leftMostIndex > 0)
     {
+        NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
         if (_scrollView.contentSize.width < CGRectGetWidth(_scrollView.bounds) * VIRTUAL_SCREEN_COUNT)
         {
             /** contentSize.width is changed before, so change it back, So that you can set the right contentOffset*/
@@ -187,10 +189,10 @@
     
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return _eLine;
-}
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+//{
+//    return _eLine;
+//}
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
                        withView:(UIView *)view
@@ -202,6 +204,8 @@
     NSLog(@"Scale %f", scale);
     [_delegate eLineChart:self didZoomToScale:scale];
     [self reloadContentAtScale:scale];
+    
+    //_scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width * scale, _scrollView.contentSize.height);
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView

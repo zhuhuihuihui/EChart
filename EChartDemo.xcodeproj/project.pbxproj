@@ -28,6 +28,8 @@
 		6CB6E82D18586C6300B99AA3 /* EColumnChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */; };
 		6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E83018586D2500B99AA3 /* EColumnChart.m */; };
 		6CB6E8351858750300B99AA3 /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E8341858750300B99AA3 /* EColumn.m */; };
+		6CBE6F4C1892584E00C439D6 /* EPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBE6F4B1892584E00C439D6 /* EPieChartViewController.m */; };
+		6CBE6F4F1892586D00C439D6 /* EPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBE6F4E1892586D00C439D6 /* EPieChart.m */; };
 		A69362AF186B00820082E97A /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362AE186B00820082E97A /* ELineChart.m */; };
 		A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362B1186B012E0082E97A /* ELineChartViewController.m */; };
 		A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E24998185A02FF00009F49 /* EColumnDataModel.m */; };
@@ -78,6 +80,10 @@
 		6CB6E83018586D2500B99AA3 /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
 		6CB6E8331858750300B99AA3 /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
 		6CB6E8341858750300B99AA3 /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
+		6CBE6F4A1892584E00C439D6 /* EPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPieChartViewController.h; sourceTree = "<group>"; };
+		6CBE6F4B1892584E00C439D6 /* EPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPieChartViewController.m; sourceTree = "<group>"; };
+		6CBE6F4D1892586D00C439D6 /* EPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPieChart.h; sourceTree = "<group>"; };
+		6CBE6F4E1892586D00C439D6 /* EPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPieChart.m; sourceTree = "<group>"; };
 		A69362AD186B00820082E97A /* ELineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChart.h; sourceTree = "<group>"; };
 		A69362AE186B00820082E97A /* ELineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChart.m; sourceTree = "<group>"; };
 		A69362B0186B012E0082E97A /* ELineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChartViewController.h; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 				6CB6E83018586D2500B99AA3 /* EColumnChart.m */,
 				A69362AD186B00820082E97A /* ELineChart.h */,
 				A69362AE186B00820082E97A /* ELineChart.m */,
+				6CBE6F4D1892586D00C439D6 /* EPieChart.h */,
+				6CBE6F4E1892586D00C439D6 /* EPieChart.m */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -226,6 +234,8 @@
 				6CB6E82C18586C6300B99AA3 /* EColumnChartViewController.m */,
 				A69362B0186B012E0082E97A /* ELineChartViewController.h */,
 				A69362B1186B012E0082E97A /* ELineChartViewController.m */,
+				6CBE6F4A1892584E00C439D6 /* EPieChartViewController.h */,
+				6CBE6F4B1892584E00C439D6 /* EPieChartViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -342,11 +352,13 @@
 				6CAE9BAE185AEB3F009AA75B /* EColumnChartLabel.m in Sources */,
 				6CB6E83118586D2500B99AA3 /* EColumnChart.m in Sources */,
 				A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */,
+				6CBE6F4C1892584E00C439D6 /* EPieChartViewController.m in Sources */,
 				D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
 				A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */,
 				6C795C8218596AA500C80D60 /* EColor.m in Sources */,
+				6CBE6F4F1892586D00C439D6 /* EPieChart.m in Sources */,
 				A69362AF186B00820082E97A /* ELineChart.m in Sources */,
 				6C5EB30B18862D710055FFE4 /* ELine.m in Sources */,
 				6C9EDB331860281200291D95 /* EFloatBox.m in Sources */,

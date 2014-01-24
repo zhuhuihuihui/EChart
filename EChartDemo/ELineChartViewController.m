@@ -38,7 +38,7 @@
     
     /** Generate data for _eLineChart*/
 	NSMutableArray *tempArray = [NSMutableArray array];
-    for (int i = 0 ; i < 200; i++)
+    for (int i = 0 ; i < 1000; i++)
     {
         int number = arc4random() % 100;
         ELineChartDataModel *eLineChartDataModel = [[ELineChartDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:number index:i unit:@"kWh"];
@@ -47,8 +47,8 @@
     _eLineChartData = [NSArray arrayWithArray:tempArray];
     
     /** The Actual frame for the line is half height of the frame you specified, because the bottom half is for the touch control, but it's empty */
-    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 400)];
-    //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(40, 150, 250, 400) lineWidth:1.0 lineColor:[UIColor purpleColor]];
+    //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 400)];
+    _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 300)];
 	[_eLineChart setDelegate:self];
     [_eLineChart setDataSource:self];
     [self.view addSubview:_eLineChart];
