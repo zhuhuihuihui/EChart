@@ -15,14 +15,27 @@
 
 @property (strong, nonatomic) EPie *ePie;
 
+@property (strong, nonatomic) EPie *backPie;
+
+@property (nonatomic) BOOL isUpsideDown;
+
 @end
 
 @interface EPie : UIView
 
+@property (nonatomic) CGFloat lineWidth;
+
+@property (strong, nonatomic) UIColor *budgetColor;
+@property (strong, nonatomic) UIColor *currentColor;
+@property (strong, nonatomic) UIColor *estimateColor;
+
 @property (strong, nonatomic) EPieChartDataModel *ePieChartDataModel;
 
 - (id)initWithCenter:(CGPoint) center
-              radius:(CGFloat) radiu
+              radius:(CGFloat) radius;
+
+- (id)initWithCenter:(CGPoint) center
+              radius:(CGFloat) radius
   ePieChartDataModel:(EPieChartDataModel *)ePieChartDataModel;
 @end
 

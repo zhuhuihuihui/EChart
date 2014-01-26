@@ -11,20 +11,54 @@
 
 @implementation EPieChart
 @synthesize ePie = _ePie;
+@synthesize backPie = _backPie;
+@synthesize isUpsideDown = _isUpsideDown;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
     {
+        _isUpsideDown = NO;
         //self.backgroundColor = ELightGrey;
         EPieChartDataModel *ePieChartDataModel = [[EPieChartDataModel alloc] init];
         _ePie = [[EPie alloc] initWithCenter: CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0)
                                       radius: MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) / 2.0
                           ePieChartDataModel:ePieChartDataModel];
+        
+        _ePie.layer.shadowOffset = CGSizeMake(0, 3);
+        _ePie.layer.shadowRadius = 5;
+        _ePie.layer.shadowColor = EGrey.CGColor;
+        _ePie.layer.shadowOpacity = 0.8;
+        
+        _backPie = [[EPie alloc] initWithCenter: CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0)
+                                         radius: MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) / 2.0 ];
+        
         [self addSubview:_ePie];
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taped:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
+}
+
+- (void) taped:(UITapGestureRecognizer *) tapGestureRecognizer
+{
+    [UIView transitionWithView:self duration:0.3 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+        if (_isUpsideDown)
+        {
+            [self.ePie removeFromSuperview];
+            [self addSubview:_backPie];
+        }
+        else
+        {
+            [self.backPie removeFromSuperview];
+            [self addSubview:_ePie];
+        }
+        
+    } completion:nil];
+    
+    _isUpsideDown = _isUpsideDown * -1;
 }
 
 /*
@@ -56,7 +90,26 @@
 @synthesize circleEstimate = _circleEstimate;
 @synthesize center = _center;
 @synthesize radius = _radius;
+@synthesize budgetColor = _budgetColor;
+@synthesize currentColor = _currentColor;
+@synthesize estimateColor = _estimateColor;
+@synthesize lineWidth = _lineWidth;
 
+
+- (id)initWithCenter:(CGPoint) center
+              radius:(CGFloat) radius
+{
+    self = [super initWithFrame:CGRectMake(center.x - radius, center.y - radius, radius * 2, radius * 2)];
+    if (self)
+    {
+        _center = center;
+        _radius = radius;
+        
+        self.backgroundColor = EGreen;
+        self.layer.cornerRadius = CGRectGetWidth(self.bounds) / 2.0;
+    }
+    return self;
+}
 
 - (id)initWithCenter:(CGPoint) center
               radius:(CGFloat) radius
@@ -65,11 +118,20 @@
     self = [super initWithFrame:CGRectMake(center.x - radius, center.y - radius, radius * 2, radius * 2)];
     if (self)
     {
+        /** Default settings*/
+        _budgetColor = [UIColor whiteColor];
+        _currentColor = EGrey;
+        _estimateColor = EBlueGreenColor;
+        _lineWidth = radius / 5;
+        
+        
         _center = center;
         _radius = radius;
         self.backgroundColor = EGreen;
         self.layer.cornerRadius = CGRectGetWidth(self.bounds) / 2.0;
         _ePieChartDataModel = ePieChartDataModel;
+        
+        //self.layer.shadowColor = EGrey.CGColor;
         
         [self reloadContent];
         
@@ -81,49 +143,61 @@
 
 - (void) reloadContent
 {
+    UIBezierPath* circleBudgetPath = [UIBezierPath bezierPathWithArcCenter:self.center
+                                                                    radius:self.frame.size.height*0.4
+                                                                startAngle: 0
+                                                                  endAngle: 2 * M_PI
+                                                                 clockwise:NO];
     if (!_circleBudget)
-    {
-        UIBezierPath* circleBudgetPath = [UIBezierPath bezierPathWithArcCenter:self.center
-                                                                        radius:self.frame.size.height*0.4
-                                                                    startAngle:0
-                                                                      endAngle: 2 * M_PI
-                                                                     clockwise:NO];
         _circleBudget = [CAShapeLayer layer];
-        _circleBudget.path = circleBudgetPath.CGPath;
-        _circleBudget.fillColor = [UIColor clearColor].CGColor;
-        _circleBudget.strokeColor = [UIColor whiteColor].CGColor;
-        _circleBudget.lineCap = kCALineCapRound;
-        _circleBudget.lineWidth = 13;
-        
-        UIBezierPath* circleCurrentPath = [UIBezierPath bezierPathWithArcCenter: self.center
-                                                                        radius: self.frame.size.height*0.4
-                                                                    startAngle: M_PI_2 * 3
-                                                                      endAngle: M_PI_2 * 3 - (_ePieChartDataModel.current / _ePieChartDataModel.budget) * (M_PI * 2)
-                                                                     clockwise: NO];
+    _circleBudget.path = circleBudgetPath.CGPath;
+    _circleBudget.fillColor = [UIColor clearColor].CGColor;
+    _circleBudget.strokeColor = _budgetColor.CGColor;
+    _circleBudget.lineCap = kCALineCapRound;
+    _circleBudget.lineWidth = _lineWidth;
+    _circleBudget.zPosition = -1;
+    
+    UIBezierPath* circleCurrentPath = [UIBezierPath bezierPathWithArcCenter: self.center
+                                                                     radius: self.frame.size.height*0.4
+                                                                 startAngle: M_PI_2 * 3
+                                                                   endAngle: M_PI_2 * 3 - (_ePieChartDataModel.current / _ePieChartDataModel.budget) * (M_PI * 2)
+                                                                  clockwise: NO];
+    if (!_circleCurrent)
         _circleCurrent = [CAShapeLayer layer];
-        _circleCurrent.path = circleCurrentPath.CGPath;
-        _circleCurrent.fillColor = [UIColor clearColor].CGColor;
-        _circleCurrent.strokeColor = EGrey.CGColor;
-        _circleCurrent.lineCap = kCALineCapRound;
-        _circleCurrent.lineWidth = 13;
-        
-        
-        
-        
-        
-        
-        
-        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        pathAnimation.duration = 1.0;
-        pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-        pathAnimation.toValue = [NSNumber numberWithFloat:(_ePieChartDataModel.current / _ePieChartDataModel.budget)];
-        [_circleCurrent addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
-        
-        
-        [self.layer addSublayer:_circleBudget];
-        [self.layer addSublayer:_circleCurrent];
-    }
+    _circleCurrent.path = circleCurrentPath.CGPath;
+    _circleCurrent.fillColor = [UIColor clearColor].CGColor;
+    _circleCurrent.strokeColor = _currentColor.CGColor;
+    _circleCurrent.lineCap = kCALineCapRound;
+    _circleCurrent.lineWidth = _lineWidth;
+    _circleCurrent.zPosition = 1;
+    
+    UIBezierPath* circleEstimatePath = [UIBezierPath bezierPathWithArcCenter:self.center
+                                                                      radius:self.frame.size.height*0.4
+                                                                  startAngle: M_PI_2 * 3
+                                                                    endAngle: M_PI_2 * 3 - (_ePieChartDataModel.estimate / _ePieChartDataModel.budget) * (M_PI * 2)
+                                                                   clockwise:NO];
+    if (!_circleEstimate)
+        _circleEstimate = [CAShapeLayer layer];
+    _circleEstimate.path = circleEstimatePath.CGPath;
+    _circleEstimate.fillColor = [UIColor clearColor].CGColor;
+    _circleEstimate.strokeColor = _estimateColor.CGColor;
+    _circleEstimate.lineCap = kCALineCapRound;
+    _circleEstimate.lineWidth = _lineWidth;
+    _circleEstimate.zPosition = 0;
+    
+    
+    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAnimation.duration = 2.0;
+    pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+    [_circleCurrent addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+    [_circleEstimate addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
+    
+    
+    [self.layer addSublayer:_circleBudget];
+    [self.layer addSublayer:_circleCurrent];
+    [self.layer addSublayer:_circleEstimate];
 }
 
 - (void) reloadContentWithEPieChartDataModel:(EPieChartDataModel *)ePieChartDataModel
