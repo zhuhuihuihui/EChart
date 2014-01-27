@@ -10,6 +10,7 @@
 		6C5EB30B18862D710055FFE4 /* ELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB30A18862D710055FFE4 /* ELine.m */; };
 		6C795C8218596AA500C80D60 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C795C8118596AA500C80D60 /* EColor.m */; };
 		6C9EDB331860281200291D95 /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9EDB321860281200291D95 /* EFloatBox.m */; };
+		6C9FB09D18962E14002920E6 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9FB09C18962E14002920E6 /* UICountingLabel.m */; };
 		6CAE9BAE185AEB3F009AA75B /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */; };
 		6CB6E7F718586A3700B99AA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F618586A3700B99AA3 /* Foundation.framework */; };
 		6CB6E7F918586A3800B99AA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F818586A3800B99AA3 /* CoreGraphics.framework */; };
@@ -53,6 +54,8 @@
 		6C795C8118596AA500C80D60 /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
 		6C9EDB311860281200291D95 /* EFloatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFloatBox.h; sourceTree = "<group>"; };
 		6C9EDB321860281200291D95 /* EFloatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFloatBox.m; sourceTree = "<group>"; };
+		6C9FB09B18962E14002920E6 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		6C9FB09C18962E14002920E6 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		6CAE9BAC185AEB3F009AA75B /* EColumnChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartLabel.h; sourceTree = "<group>"; };
 		6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartLabel.m; sourceTree = "<group>"; };
 		6CB6E7F318586A3700B99AA3 /* EChartDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EChartDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C9FB09A18962E06002920E6 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				6C9FB09B18962E14002920E6 /* UICountingLabel.h */,
+				6C9FB09C18962E14002920E6 /* UICountingLabel.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
 		6CB6E7EA18586A3700B99AA3 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +255,7 @@
 		A6E879321866B502007B2977 /* EChart */ = {
 			isa = PBXGroup;
 			children = (
+				6C9FB09A18962E06002920E6 /* ThirdParty */,
 				6CB6E832185874CA00B99AA3 /* Components */,
 				6CB6E82E18586CD700B99AA3 /* Charts */,
 			);
@@ -354,6 +367,7 @@
 				A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */,
 				6CBE6F4C1892584E00C439D6 /* EPieChartViewController.m in Sources */,
 				D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */,
+				6C9FB09D18962E14002920E6 /* UICountingLabel.m in Sources */,
 				6CB6E80D18586A3800B99AA3 /* EChartViewController.m in Sources */,
 				6CB6E80718586A3800B99AA3 /* EChartAppDelegate.m in Sources */,
 				A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */,

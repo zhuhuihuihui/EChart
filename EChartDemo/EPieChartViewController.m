@@ -7,7 +7,6 @@
 //
 
 #import "EPieChartViewController.h"
-#import "EPieChart.h"
 
 @interface EPieChartViewController ()
 
@@ -29,7 +28,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    EPieChart *ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(50, 150, 150, 150)];
+    EPieChart *ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(100, 150, 150, 150)];
+    ePieChart.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    [ePieChart setDelegate:self];
     
     [self.view addSubview:ePieChart];
 }
@@ -38,6 +39,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)            ePieChart:(EPieChart *)ePieChart
+didTurnToBackViewWithBackView:(UIView *)backView
+{
+//    UILabel *label = [[UILabel alloc] initWithFrame:backView.bounds];
+//    label.text = @"hello";
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    label.center = CGPointMake(CGRectGetMidX(backView.bounds), CGRectGetMidY(backView.bounds));
+//    [backView addSubview:label];
+}
+
+- (void)ePieChart:(EPieChart *)ePieChart didTurnToFrontViewWithFrontView:(UIView *)frontView
+{
+    
 }
 
 @end

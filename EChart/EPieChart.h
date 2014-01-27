@@ -10,6 +10,34 @@
 
 @class EPie;
 @class EPieChartDataModel;
+@class EPieChart;
+
+@protocol EPieChartDataSource <NSObject>
+
+@optional
+/** You can customize the front view by implimenting
+    this dataSoure, If it's not implimented, it will use
+    default view*/
+- (UIView *) frontViewForEPieChart:(EPieChart *) ePieChart;
+
+/** You can customize the back view by implimenting
+ this dataSoure, If it's not implimented, it will use
+ default view*/
+- (UIView *) backViewForEPieChart:(EPieChart *) ePieChart;
+
+@end
+
+@protocol EPieChartDelegate <NSObject>
+
+@optional
+- (void)                ePieChart:(EPieChart *)ePieChart
+  didTurnToFrontViewWithFrontView:(UIView *)frontView;
+
+- (void)                ePieChart:(EPieChart *)ePieChart
+    didTurnToBackViewWithBackView:(UIView *)backView;
+
+@end
+
 
 @interface EPieChart : UIView
 
@@ -18,6 +46,10 @@
 @property (strong, nonatomic) EPie *backPie;
 
 @property (nonatomic) BOOL isUpsideDown;
+
+@property (weak, nonatomic) id <EPieChartDelegate> delegate;
+
+@property (weak ,nonatomic) id <EPieChartDataSource> dataSource;
 
 @end
 
