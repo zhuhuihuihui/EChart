@@ -2,9 +2,18 @@
 A highly **extendable**, easy to use chart with **event handling**, **animation** supported. 
 
 
-[![](https://dl.dropboxusercontent.com/s/gn7tue9vm2u4pc7/EChart.gif)](https://dl.dropboxusercontent.com/s/gn7tue9vm2u4pc7/EChart.gif)
+[![](https://dl.dropboxusercontent.com/s/d2yxmmqa4yjigbu/eColumn.gif)](https://dl.dropboxusercontent.com/s/d2yxmmqa4yjigbu/eColumn.gif)
+
+[![](https://dl.dropboxusercontent.com/s/ehhscvf1m48v04h/eLine.gif)](https://dl.dropboxusercontent.com/s/ehhscvf1m48v04h/eLine.gif)
+
+[![](https://dl.dropboxusercontent.com/s/2we5ay0fv5jmc6y/ePie.gif)](https://dl.dropboxusercontent.com/s/2we5ay0fv5jmc6y/ePie.gif)
+
+
 
 ## How To Use
+
+#### Download and run the [EChartDemo](https://github.com/zhuhuihuihui/EChart/archive/master.zip) project is the best practise to know how to use EChart. 
+
 ### Step 1
 Download project [here](https://github.com/zhuhuihuihui/EChart)
 
