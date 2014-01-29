@@ -41,9 +41,11 @@
 
 @interface EPieChart : UIView
 
-@property (strong, nonatomic) EPie *ePie;
+@property (strong, nonatomic) EPie *frontPie;
 
 @property (strong, nonatomic) EPie *backPie;
+
+@property (strong, nonatomic) EPieChartDataModel *ePieChartDataModel;
 
 @property (nonatomic) BOOL isUpsideDown;
 
@@ -51,17 +53,26 @@
 
 @property (weak ,nonatomic) id <EPieChartDataSource> dataSource;
 
+- (id)initWithFrame:(CGRect)frame
+ ePieChartDataModel:(EPieChartDataModel *)ePieChartDataModel;
+
 @end
 
 @interface EPie : UIView
 
+@property (strong, nonatomic) UIView *contentView;
+
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat radius;
 
 @property (strong, nonatomic) UIColor *budgetColor;
 @property (strong, nonatomic) UIColor *currentColor;
 @property (strong, nonatomic) UIColor *estimateColor;
 
+
 @property (strong, nonatomic) EPieChartDataModel *ePieChartDataModel;
+
+- (void) reloadContent;
 
 - (id)initWithCenter:(CGPoint) center
               radius:(CGFloat) radius;

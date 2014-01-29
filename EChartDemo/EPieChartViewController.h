@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EPieChart.h"
-@interface EPieChartViewController : UIViewController<EPieChartDelegate>
+@interface EPieChartViewController : UIViewController<EPieChartDelegate, EPieChartDataSource>
 
 @end
