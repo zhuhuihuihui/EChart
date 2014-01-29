@@ -56,6 +56,7 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _scrollView.minimumZoomScale = 0.5;
         _scrollView.maximumZoomScale = 2;
+        _scrollView.showsHorizontalScrollIndicator = NO;
         [_scrollView setDelegate:self];
         _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
         [self addSubview:_scrollView];
