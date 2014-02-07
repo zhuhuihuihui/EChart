@@ -12,19 +12,26 @@ A highly **extendable**, easy to use chart with **event handling**, **animation*
 
 ## How To Use
 
-#### Download and run the [EChartDemo](https://github.com/zhuhuihuihui/EChart/archive/master.zip) project is the best practise to know how to use EChart. 
+#### Download and run the [EChartDemo](https://github.com/zhuhuihuihui/EChart/archive/master.zip) project is the best practice to know how to use EChart. 
 
-### Step 1
-Download project [here](https://github.com/zhuhuihuihui/EChart)
+### Step 1: Add EChart to Your Project
+use [CocoaPods](http://cocoapods.org/) with **Podfile**:
+
+	platform :ios, '7.0'
+	pod "EChart"
+
+or Download project [here](https://github.com/zhuhuihuihui/EChart)
 
 And Drag `/EChart/` folder into your project
 
-### Step 2
+### Step 2: Include ECharts in your View Controller 
+**EColumnChart** as a example, all ECharts work in a similar way.
+
 Import the head file:
 
 	#import "EColumnChart.h"
 	
-Make your ViewController adopts the EColumnChart's protocal:
+Make your ViewController adopts the EColumnChart's protocol:
 
 	@interface YourViewController : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
 	
@@ -49,7 +56,7 @@ Add EColumnChart to wherever you want:
 ## Provide data & Get events
 After setting up your EColumnChart, you may need to provide the data for the EColumnChart and you will be able to get events from EColumnChart as well.
 
-If you were a expert with `UITableView`, you will be quite familier with the way `EColumnChart` works. Because they work in a same way.
+If you were a expert with `UITableView`, you will be quite familiar with the way `EColumnChart` works. Because they work in a same way.
 
 ### DataSource  
 You need to implement every method in the `EColumnChartDataSource`
@@ -60,7 +67,7 @@ You need to implement every method in the `EColumnChartDataSource`
 	/** How many Columns should be presented on the screen each time*/
 	- (NSInteger) numberOfColumnsPresentedEveryTime:(EColumnChart *) eColumnChart;
 
-	/** The hightest vaule among the whole chart*/
+	/** The highest value among the whole chart*/
 	- (EColumnDataModel *)     highestValueEColumnChart:(EColumnChart *) eColumnChart;
 
 	/** Value for each column*/
@@ -87,7 +94,7 @@ The implementation of the Delegate is according to your needs
 	
 	
 #License
-EChart is available under the Apache License. See the LICENSE file for more info.
+EChart is available under the Apache License. See the LICENSE file for more info..
 
 
 
