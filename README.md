@@ -17,8 +17,10 @@ A highly **extendable**, easy to use chart with **event handling**, **animation*
 ### Step 1: Add EChart to Your Project
 use [CocoaPods](http://cocoapods.org/) with **Podfile**:
 
-	platform :ios, '7.0'
-	pod "EChart"
+```ruby
+platform :ios, '7.0'
+pod "EChart"
+```
 
 or Download project [here](https://github.com/zhuhuihuihui/EChart)
 
