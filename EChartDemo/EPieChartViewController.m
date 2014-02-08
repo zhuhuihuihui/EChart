@@ -13,6 +13,7 @@
 @end
 
 @implementation EPieChartViewController
+@synthesize ePieChart = _ePieChart;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,19 +29,23 @@
     [super viewDidLoad];
 	EPieChartDataModel *ePieChartDataModel = [[EPieChartDataModel alloc] initWithBudget:133 current:33 estimate:77];
     
-//    EPieChart *ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(100, 150, 150, 150)];
-    EPieChart *ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(100, 150, 150, 150)
-                                         ePieChartDataModel:ePieChartDataModel];
-    ePieChart.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    if (!_ePieChart)
+    {
+        //EPieChart *ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(100, 150, 150, 150)];
+        _ePieChart = [[EPieChart alloc] initWithFrame:CGRectMake(100, 150, 150, 150)
+                                             ePieChartDataModel:ePieChartDataModel];
+    }
+
+    _ePieChart.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
 //    [ePieChart.frontPie setLineWidth:1];
 //    [ePieChart.frontPie setRadius:30];
 //    ePieChart.frontPie.currentColor = [UIColor redColor];
 //    ePieChart.frontPie.budgetColor = [UIColor grayColor];
 //    ePieChart.frontPie.estimateColor = [UIColor blueColor];
-    [ePieChart setDelegate:self];
-    [ePieChart setDataSource:self];
+    [_ePieChart setDelegate:self];
+    [_ePieChart setDataSource:self];
     
-    [self.view addSubview:ePieChart];
+    [self.view addSubview:_ePieChart];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +87,17 @@ didTurnToFrontViewWithFrontView:(UIView *)frontView
     [customizedView addSubview:label];
     
     return customizedView;
+}
+
+#pragma -mark- Actions
+- (IBAction)animationButtonPressed:(id)sender
+{
+    [_ePieChart.frontPie reloadContent];
+}
+
+- (IBAction)turnPageButtonPressed:(id)sender
+{
+    [_ePieChart turnPie];
 }
 
 

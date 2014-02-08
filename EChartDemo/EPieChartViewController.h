@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "EPieChart.h"
 @interface EPieChartViewController : UIViewController<EPieChartDelegate, EPieChartDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *turnPageButton;
+
+@property (strong, nonatomic) EPieChart *ePieChart;
 
 @end

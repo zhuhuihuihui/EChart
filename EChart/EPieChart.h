@@ -56,6 +56,8 @@
 - (id)initWithFrame:(CGRect)frame
  ePieChartDataModel:(EPieChartDataModel *)ePieChartDataModel;
 
+- (void) turnPie;
+
 @end
 
 @interface EPie : UIView

@@ -68,35 +68,41 @@
 
 - (void) taped:(UITapGestureRecognizer *) tapGestureRecognizer
 {
-    
+    [self turnPie];
+
+}
+
+
+- (void)turnPie
+{
     [UIView transitionWithView:self
                       duration:0.3
                        options:_isUpsideDown?UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight
                     animations:^
-    {
-        if (_isUpsideDown)
-        {
-            if ([_delegate respondsToSelector:@selector(ePieChart:didTurnToFrontViewWithFrontView:)])
-            {
-                [_delegate ePieChart:self didTurnToFrontViewWithFrontView:_frontPie];
-            }
-            
-            [_backPie removeFromSuperview];
-            [self addSubview:_frontPie];
-        }
-        else
-        {
-            if ([_delegate respondsToSelector:@selector(ePieChart:didTurnToBackViewWithBackView:)])
-            {
-                [_delegate ePieChart:self didTurnToBackViewWithBackView:_backPie];
-            }
-            
-            [_frontPie removeFromSuperview];
-            [self addSubview:_backPie];
-            
-        }
-        
-    } completion:nil];
+     {
+         if (_isUpsideDown)
+         {
+             if ([_delegate respondsToSelector:@selector(ePieChart:didTurnToFrontViewWithFrontView:)])
+             {
+                 [_delegate ePieChart:self didTurnToFrontViewWithFrontView:_frontPie];
+             }
+             
+             [_backPie removeFromSuperview];
+             [self addSubview:_frontPie];
+         }
+         else
+         {
+             if ([_delegate respondsToSelector:@selector(ePieChart:didTurnToBackViewWithBackView:)])
+             {
+                 [_delegate ePieChart:self didTurnToBackViewWithBackView:_backPie];
+             }
+             
+             [_frontPie removeFromSuperview];
+             [self addSubview:_backPie];
+             
+         }
+         
+     } completion:nil];
     
     _isUpsideDown = _isUpsideDown ? NO: YES;
 }
