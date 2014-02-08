@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "https://github.com/zhuhuihuihui/EChart.git", :commit => "4a54787a60ec3efbd7fbdbd8fc314f77c161a538" }
+  s.source       = { :git => "https://github.com/zhuhuihuihui/EChart.git", :tag => '0.1.1'  }
   s.source_files  = 'EChart', 'EChart/**/*.{h,m}'
   s.public_header_files = 'EChart/**/*.h'
   s.frameworks = 'CoreGraphics', 'UIKit', 'Foundation'
