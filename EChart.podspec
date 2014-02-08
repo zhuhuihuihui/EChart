@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "EChart"
-  s.version      = "0.0.1"
+  s.version      = "0.1.1"
   s.summary      = "iOS/iPhone/iPad Chart, Graph. Event handling and animation supported."
 
   s.description  = <<-DESC
