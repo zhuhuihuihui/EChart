@@ -63,6 +63,9 @@
 
 @property (nonatomic) BOOL showHighAndLowColumnWithColor;
 
+/** If this switch in on, all horizontal labels will show in Integer. */
+@property (nonatomic) BOOL showHorizontalLabelsWithInteger;
+
 /** IMPORTANT: 
     This should be setted before datasoucre has been set.*/
 @property (nonatomic) BOOL columnsIndexStartFromLeft;
