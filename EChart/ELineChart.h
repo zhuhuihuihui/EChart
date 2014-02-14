@@ -62,6 +62,8 @@
 @property (nonatomic) NSInteger lineWidth;
 @property (nonatomic, strong) UIColor *lineColor;
 
+@property (nonatomic) BOOL eLineIndexStartFromRight;
+
 //@property (nonatomic, strong) UIColor *minColumnColor;
 //@property (nonatomic, strong) UIColor *maxColumnColor;
 //@property (nonatomic, strong) UIColor *normalColumnColor;

@@ -49,6 +49,7 @@
     /** The Actual frame for the line is half height of the frame you specified, because the bottom half is for the touch control, but it's empty */
     //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 400)];
     _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 150, CGRectGetWidth(self.view.frame), 300)];
+    
 	[_eLineChart setDelegate:self];
     [_eLineChart setDataSource:self];
     [self.view addSubview:_eLineChart];

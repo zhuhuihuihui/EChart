@@ -31,6 +31,7 @@
 @synthesize isInLastScreen = _isInLastScreen;
 @synthesize lineWidth = _lineWidth;
 @synthesize lineColor = _lineColor;
+@synthesize eLineIndexStartFromRight = _eLineIndexStartFromRight;
 
 @synthesize eLine = _eLine;
 
@@ -85,9 +86,17 @@
         _dataSource = dataSource;
         /** Check if every dataSource is implemented*/
         
+        if (_eLineIndexStartFromRight)
+        {
+            _rightMostIndex = 0;
+            _leftMostIndex = ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
+        }
+        else
+        {
+            _leftMostIndex = 0;
+            _rightMostIndex = ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
+        }
         
-        _leftMostIndex = 0;
-        _rightMostIndex = ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
         _horizentalGap = _scrollView.contentSize.width / (([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT);
         [self reloadContent];
     }
