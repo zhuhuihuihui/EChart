@@ -84,9 +84,10 @@
     CGFloat firstPointValue = [_dataSource eLine:self valueForIndex: 0].value;
     [eLineChartPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (firstPointValue / highestPointValue))];
     [animFromPath moveToPoint:CGPointMake(0, CGRectGetHeight(_shapeLayer.bounds))];
-    for (NSInteger i = 1; i < [_dataSource numberOfPointsInELine:self]; i++)
+    for (NSInteger i = 0; i < [_dataSource numberOfPointsInELine:self]; i++)
     {
         CGFloat pointValue = [_dataSource eLine:self valueForIndex: i].value;
+        //NSLog(@"%.1f", pointValue);
         [eLineChartPath addLineToPoint:CGPointMake(i * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds) - CGRectGetHeight(_shapeLayer.bounds) * (pointValue / highestPointValue))];
         [animFromPath addLineToPoint:CGPointMake(i * _horizentalGap, CGRectGetHeight(_shapeLayer.bounds))];
     }
@@ -148,7 +149,7 @@
         
     }];
 
-    NSLog(@"x = %.1f", _dot.frame.origin.x);
+    //NSLog(@"x = %.1f", _dot.frame.origin.x);
     [self addSubview:_dot];
 
     //TODO: When the path changed, the dot gonna still be there

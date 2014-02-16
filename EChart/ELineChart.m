@@ -10,6 +10,7 @@
 
 #define DIRECTION  -1
 #define VIRTUAL_SCREEN_COUNT 5
+#define DIRECTION  (_eLineIndexStartFromRight? - 1 : 1)
 
 @interface ELineChart()
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -121,8 +122,12 @@
     }
     [_eLine reloadDataWithAnimation:(_reloadCount <= 1)];
     [_scrollView addSubview:_eLine];
-    
-    NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
+    if (_reloadCount <= 1 && _eLineIndexStartFromRight)
+    {
+        [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.frame) * (VIRTUAL_SCREEN_COUNT - 1), _scrollView.contentOffset.y)];
+    }
+    //NSLog(@"%@", NSStringFromCGRect(_eLine.frame));
+    //NSLog(@"From %d To %d", _leftMostIndex, _rightMostIndex);
 }
 
 
@@ -145,46 +150,93 @@
     //CGFloat distanceFromCenter = fabs(currentOffset.x - centerOffsetX);
     CGFloat distanceFromCenter = currentOffset.x - centerOffsetX;
     
-    if (distanceFromCenter > centerOffsetX && _rightMostIndex < ([_dataSource numberOfPointsInELineChart:self] - 1))
+    if (_eLineIndexStartFromRight)
     {
-        NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
-        scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
-        //reset content layer
-        _leftMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
-        _rightMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
-        if (_rightMostIndex > ([_dataSource numberOfPointsInELineChart:self] - 1))
+        if (distanceFromCenter > centerOffsetX && _rightMostIndex > 0)
         {
-            _rightMostIndex = [_dataSource numberOfPointsInELineChart:self] - 1;
-            /** Reach the end of data, decrese the contentSize.width to fit*/
-            _scrollView.contentSize = CGSizeMake(_horizentalGap * (_rightMostIndex - _leftMostIndex), CGRectGetHeight(_scrollView.bounds));
-            _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
-            _isInLastScreen = YES;
+            //NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
+            //reset content layer
+            _rightMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            _leftMostIndex = _rightMostIndex + ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
+            _rightMostIndex = _rightMostIndex < 0 ? 0 :_rightMostIndex;
+            
+            if (_scrollView.contentSize.width < CGRectGetWidth(_scrollView.bounds) * VIRTUAL_SCREEN_COUNT)
+            {
+                /** contentSize.width is changed before, so change it back, So that you can set the right contentOffset*/
+                _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
+                _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
+                currentOffset = [scrollView contentOffset];
+                contentWidth = [scrollView contentSize].width;
+                centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
+            }
+            scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+            [self reloadContent];
         }
         
-        [self reloadContent];
-        
+        if (distanceFromCenter < - 1 * centerOffsetX && _leftMostIndex < ([_dataSource numberOfPointsInELineChart:self] - 1))
+        {
+            //NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
+            //reset content layer
+            scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+            NSInteger oldLeftMost = _leftMostIndex;
+            _leftMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            _rightMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            if (_leftMostIndex > ([_dataSource numberOfPointsInELineChart:self] - 1))
+            {
+                _leftMostIndex = [_dataSource numberOfPointsInELineChart:self] - 1;
+                /** Reach the end of data, decrese the contentSize.width to fit*/
+                _scrollView.contentSize = CGSizeMake(_horizentalGap * (_leftMostIndex - _rightMostIndex), CGRectGetHeight(_scrollView.bounds));
+                _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
+                _isInLastScreen = YES;
+                scrollView.contentOffset = CGPointMake(_horizentalGap * (_leftMostIndex - oldLeftMost), currentOffset.y);
+            }
+            
+            [self reloadContent];
+        }
     }
-    
-    if (distanceFromCenter < - 1 * centerOffsetX && _leftMostIndex > 0)
+    else
     {
-        NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
-        if (_scrollView.contentSize.width < CGRectGetWidth(_scrollView.bounds) * VIRTUAL_SCREEN_COUNT)
+        if (distanceFromCenter > centerOffsetX && _rightMostIndex < ([_dataSource numberOfPointsInELineChart:self] - 1))
         {
-            /** contentSize.width is changed before, so change it back, So that you can set the right contentOffset*/
-            _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
-            _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
-            currentOffset = [scrollView contentOffset];
-            contentWidth = [scrollView contentSize].width;
-            centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
+            //NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
+            scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+            //reset content layer
+            _leftMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            _rightMostIndex += ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            if (_rightMostIndex > ([_dataSource numberOfPointsInELineChart:self] - 1))
+            {
+                _rightMostIndex = [_dataSource numberOfPointsInELineChart:self] - 1;
+                /** Reach the end of data, decrese the contentSize.width to fit*/
+                _scrollView.contentSize = CGSizeMake(_horizentalGap * (_rightMostIndex - _leftMostIndex), CGRectGetHeight(_scrollView.bounds));
+                _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
+                _isInLastScreen = YES;
+            }
+            
+            [self reloadContent];
+            
         }
         
-        scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
-        
-        //reset content layer
-        _leftMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
-        _rightMostIndex = _leftMostIndex + ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
-        _leftMostIndex = _leftMostIndex < 0 ? 0 :_leftMostIndex;
-        [self reloadContent];
+        if (distanceFromCenter < - 1 * centerOffsetX && _leftMostIndex > 0)
+        {
+            //NSLog(@"Scroll.ContentSize %@", NSStringFromCGSize(_scrollView.contentSize));
+            if (_scrollView.contentSize.width < CGRectGetWidth(_scrollView.bounds) * VIRTUAL_SCREEN_COUNT)
+            {
+                /** contentSize.width is changed before, so change it back, So that you can set the right contentOffset*/
+                _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.frame) * VIRTUAL_SCREEN_COUNT, CGRectGetHeight(self.frame));
+                _eLine.frame = CGRectMake(CGRectGetMinX(_eLine.frame), CGRectGetMinY(_eLine.frame), _scrollView.contentSize.width, CGRectGetHeight(_eLine.frame));
+                currentOffset = [scrollView contentOffset];
+                contentWidth = [scrollView contentSize].width;
+                centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
+            }
+            
+            scrollView.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+            
+            //reset content layer
+            _leftMostIndex -= ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * 2;
+            _rightMostIndex = _leftMostIndex + ([_dataSource numberOfPointsPresentedEveryTime:self] - 1) * VIRTUAL_SCREEN_COUNT;
+            _leftMostIndex = _leftMostIndex < 0 ? 0 :_leftMostIndex;
+            [self reloadContent];
+        }
     }
     
     if (_isInLastScreen)
@@ -231,11 +283,11 @@
     
     if (distanceOverGapCount >= _horizentalGap / 2.0)
     {
-        return [_dataSource eLineChart:self valueForIndex: _leftMostIndex + (gapCount + 1)];
+        return [_dataSource eLineChart:self valueForIndex: _leftMostIndex + (gapCount + 1) * DIRECTION];
     }
     else
     {
-        return [_dataSource eLineChart:self valueForIndex: _leftMostIndex + gapCount];
+        return [_dataSource eLineChart:self valueForIndex: _leftMostIndex + gapCount * DIRECTION];
     }
 }
 
@@ -261,7 +313,7 @@
     if (_delegate && [_delegate respondsToSelector:@selector(eLineChart:didTapAtPoint:)])
     {
         [_delegate eLineChart:self didTapAtPoint:[self eLineChartDataModelForPoint:touchPoint]];
-        NSInteger index = [self eLineChartDataModelForPoint:touchPoint].index - _leftMostIndex;
+        NSInteger index = ([self eLineChartDataModelForPoint:touchPoint].index - _leftMostIndex) * DIRECTION;
         [_eLine putDotAt: index];
     }
     
@@ -275,7 +327,7 @@
     if (_delegate && [_delegate respondsToSelector:@selector(eLineChart:didHoldAndMoveToPoint:)])
     {
         [_delegate eLineChart:self didHoldAndMoveToPoint:[self eLineChartDataModelForPoint:touchPoint]];
-        NSInteger index = [self eLineChartDataModelForPoint:touchPoint].index - _leftMostIndex;
+        NSInteger index = ([self eLineChartDataModelForPoint:touchPoint].index - _leftMostIndex) * DIRECTION;
         [_eLine putDotAt: index];
     }
 }
@@ -289,12 +341,28 @@
 #pragma -mark- ELine DataSource Delegate
 - (ELineChartDataModel *)eLine:(ELine *)eLine valueForIndex:(NSInteger)index
 {
-    return [_dataSource eLineChart:self valueForIndex: (_leftMostIndex + index)];
+    if (_eLineIndexStartFromRight)
+    {
+        return [_dataSource eLineChart:self valueForIndex: (_leftMostIndex - index)];
+    }
+    else
+    {
+        return [_dataSource eLineChart:self valueForIndex: (_leftMostIndex + index)];
+    }
+    
 }
 
 - (NSInteger)numberOfPointsInELine:(ELine *)eLine
 {
-    return _rightMostIndex - _leftMostIndex + 1;
+    if (_eLineIndexStartFromRight)
+    {
+        return _leftMostIndex - _rightMostIndex + 1;
+    }
+    else
+    {
+        return _rightMostIndex - _leftMostIndex + 1;
+    }
+    
 }
 
 - (ELineChartDataModel *)highestValueInELine:(ELine *)eLine

@@ -38,7 +38,7 @@
     
     /** Generate data for _eLineChart*/
 	NSMutableArray *tempArray = [NSMutableArray array];
-    for (int i = 0 ; i < 1000; i++)
+    for (int i = 0 ; i < 300; i++)
     {
         int number = arc4random() % 100;
         ELineChartDataModel *eLineChartDataModel = [[ELineChartDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:number index:i unit:@"kWh"];
@@ -49,7 +49,7 @@
     /** The Actual frame for the line is half height of the frame you specified, because the bottom half is for the touch control, but it's empty */
     //_eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 400)];
     _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 150, CGRectGetWidth(self.view.frame), 300)];
-    
+    //[_eLineChart setELineIndexStartFromRight: YES];
 	[_eLineChart setDelegate:self];
     [_eLineChart setDataSource:self];
     [self.view addSubview:_eLineChart];
@@ -137,5 +137,28 @@
 
 #pragma -mark- Actions
 
+- (IBAction)chartDirectionChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eLineChart removeFromSuperview];
+        _eLineChart = nil;
+        _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 150, CGRectGetWidth(self.view.frame), 300)];
+        [_eLineChart setELineIndexStartFromRight:YES];
+        [_eLineChart setDelegate:self];
+        [_eLineChart setDataSource:self];
+        [self.view addSubview:_eLineChart];
+    }
+    else
+    {
+        [_eLineChart removeFromSuperview];
+        _eLineChart = nil;
+        _eLineChart = [[ELineChart alloc] initWithFrame:CGRectMake(0, 150, CGRectGetWidth(self.view.frame), 300)];
+        [_eLineChart setDelegate:self];
+        [_eLineChart setDataSource:self];
+        [self.view addSubview:_eLineChart];
+    }
+}
 
 @end
