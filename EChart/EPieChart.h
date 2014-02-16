@@ -49,6 +49,9 @@
 
 @property (nonatomic) BOOL isUpsideDown;
 
+/** motionEffect supports only iOS7 or higher, So don't turn it on if you are not using it in iOS7.*/
+@property (nonatomic) BOOL motionEffectOn;
+
 @property (weak, nonatomic) id <EPieChartDelegate> delegate;
 
 @property (weak ,nonatomic) id <EPieChartDataSource> dataSource;

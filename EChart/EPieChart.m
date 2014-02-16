@@ -17,6 +17,7 @@
 @synthesize delegate = _delegate;
 @synthesize dataSource = _dataSource;
 @synthesize ePieChartDataModel = _ePieChartDataModel;
+@synthesize motionEffectOn = _motionEffectOn;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -62,6 +63,7 @@
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taped:)];
         [self addGestureRecognizer:tapGestureRecognizer];
+        
     }
     return self;
 }
@@ -108,6 +110,7 @@
 }
 
 
+#pragma -mark- EPieChart Setter and Getter
 - (void)setDelegate:(id<EPieChartDelegate>)delegate
 {
     if (delegate && delegate != _delegate)
@@ -135,14 +138,37 @@
         
     }
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+/** motionEffect supports only iOS7 or higher, So don't turn it on if you are not using it in iOS7.*/
+- (void)setMotionEffectOn:(BOOL)motionEffectOn
 {
-    // Drawing code
+    _motionEffectOn = motionEffectOn;
+    if (_motionEffectOn)
+    {
+        UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                                                                            type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+        
+        verticalMotionEffect.minimumRelativeValue = @(-25);
+        
+        verticalMotionEffect.maximumRelativeValue = @(25);
+        
+        UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                                                                              type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+        
+        horizontalMotionEffect.minimumRelativeValue = @(-25);
+        
+        horizontalMotionEffect.maximumRelativeValue = @(25);
+        
+        
+        
+        UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+        
+        group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+        
+        [self addMotionEffect:group];
+    }
 }
-*/
+
 
 @end
 

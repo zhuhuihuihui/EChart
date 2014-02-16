@@ -44,6 +44,7 @@
 //    ePieChart.frontPie.estimateColor = [UIColor blueColor];
     [_ePieChart setDelegate:self];
     [_ePieChart setDataSource:self];
+    [_ePieChart setMotionEffectOn:YES];
     
     [self.view addSubview:_ePieChart];
 }
