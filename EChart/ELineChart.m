@@ -8,7 +8,6 @@
 #import "EColor.h"
 #import "ELineChart.h"
 
-#define DIRECTION  -1
 #define VIRTUAL_SCREEN_COUNT 5
 #define DIRECTION  (_eLineIndexStartFromRight? - 1 : 1)
 
