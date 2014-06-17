@@ -59,6 +59,7 @@
     
     
     _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+    //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
     [_eColumnChart setColumnsIndexStartFromLeft:YES];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
