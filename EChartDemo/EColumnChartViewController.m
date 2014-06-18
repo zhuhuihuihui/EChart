@@ -203,6 +203,19 @@
     return [_data objectAtIndex:index];
 }
 
+//- (UIColor *)colorForEColumn:(EColumn *)eColumn
+//{
+//    if (eColumn.eColumnDataModel.index < 5)
+//    {
+//        return [UIColor purpleColor];
+//    }
+//    else
+//    {
+//        return [UIColor redColor];
+//    }
+//    
+//}
+
 #pragma -mark- EColumnChartDelegate
 - (void)eColumnChart:(EColumnChart *)eColumnChart
      didSelectColumn:(EColumn *)eColumn

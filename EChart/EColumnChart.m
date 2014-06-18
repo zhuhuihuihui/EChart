@@ -263,7 +263,16 @@
         if (nil == eColumn)
         {
             eColumn = [[EColumn alloc] initWithFrame:CGRectMake(widthOfTheColumnShouldBe * 0.5 + (i * widthOfTheColumnShouldBe * 1.5), 0, widthOfTheColumnShouldBe, self.frame.size.height)];
-            eColumn.barColor = _normalColumnColor;
+            
+//            if ([_dataSource respondsToSelector:@selector(colorForEColumn:)])
+//            {
+//                eColumn.barColor = [_dataSource colorForEColumn:eColumn];
+//            }
+//            else
+//            {
+//                eColumn.barColor = _normalColumnColor;
+//            }
+            
             eColumn.backgroundColor = [UIColor clearColor];
             eColumn.grade = eColumnDataModel.value / _fullValueOfTheGraph;
             eColumn.eColumnDataModel = eColumnDataModel;
@@ -271,7 +280,14 @@
             [self addSubview:eColumn];
             [_eColumns setObject:eColumn forKey:[NSNumber numberWithInteger:currentIndex ]];
         }
-        eColumn.barColor = _normalColumnColor;
+        if ([_dataSource respondsToSelector:@selector(colorForEColumn:)])
+        {
+            eColumn.barColor = [_dataSource colorForEColumn:eColumn];
+        }
+        else
+        {
+            eColumn.barColor = _normalColumnColor;
+        }
         
         /** Construct labels for corresponding columns */
         EColumnChartLabel *eColumnChartLabel = [_eLabels objectForKey:[NSNumber numberWithInteger:(currentIndex)]];

@@ -25,7 +25,14 @@
 /** Value for each column*/
 - (EColumnDataModel *)     eColumnChart:(EColumnChart *) eColumnChart
                         valueForIndex:(NSInteger)index;
+
+@optional
+/** Allow you to customize the color of every coloum as you wish.*/
+- (UIColor *) colorForEColumn:(EColumn *)eColumn;
+
 /** New protocals coming soon, will allow you to customize column*/
+
+
 
 @end
 
