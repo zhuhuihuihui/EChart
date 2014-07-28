@@ -34,6 +34,39 @@
 		A69362AF186B00820082E97A /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362AE186B00820082E97A /* ELineChart.m */; };
 		A69362B2186B012E0082E97A /* ELineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362B1186B012E0082E97A /* ELineChartViewController.m */; };
 		A6E24999185A02FF00009F49 /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E24998185A02FF00009F49 /* EColumnDataModel.m */; };
+		D2418EDA1962734D0094643C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F618586A3700B99AA3 /* Foundation.framework */; };
+		D2418EDF1962734D0094643C /* libEChart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2418EDE1962734D0094643C /* libEChart.h */; };
+		D2418EE11962734D0094643C /* libEChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D2418EE01962734D0094643C /* libEChart.m */; };
+		D2418EE71962734D0094643C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E81518586A3800B99AA3 /* XCTest.framework */; };
+		D2418EE81962734D0094643C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7F618586A3700B99AA3 /* Foundation.framework */; };
+		D2418EE91962734D0094643C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E7FA18586A3800B99AA3 /* UIKit.framework */; };
+		D2418EEC1962734D0094643C /* liblibEChart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2418ED91962734D0094643C /* liblibEChart.a */; };
+		D2418EF21962734D0094643C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2418EF01962734D0094643C /* InfoPlist.strings */; };
+		D2418EF41962734D0094643C /* libEChartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2418EF31962734D0094643C /* libEChartTests.m */; };
+		D2418EFB1962740A0094643C /* UICountingLabel.h in Sources */ = {isa = PBXBuildFile; fileRef = 6C9FB09B18962E14002920E6 /* UICountingLabel.h */; };
+		D2418EFC1962740A0094643C /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9FB09C18962E14002920E6 /* UICountingLabel.m */; };
+		D2418EFD1962740A0094643C /* EColumn.h in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E8331858750300B99AA3 /* EColumn.h */; };
+		D2418EFE1962740A0094643C /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E8341858750300B99AA3 /* EColumn.m */; };
+		D2418EFF1962740A0094643C /* EColor.h in Sources */ = {isa = PBXBuildFile; fileRef = 6C795C8018596AA500C80D60 /* EColor.h */; };
+		D2418F001962740A0094643C /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C795C8118596AA500C80D60 /* EColor.m */; };
+		D2418F011962740A0094643C /* EColumnDataModel.h in Sources */ = {isa = PBXBuildFile; fileRef = A6E24997185A02FF00009F49 /* EColumnDataModel.h */; };
+		D2418F021962740A0094643C /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E24998185A02FF00009F49 /* EColumnDataModel.m */; };
+		D2418F031962740A0094643C /* EColumnChartLabel.h in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE9BAC185AEB3F009AA75B /* EColumnChartLabel.h */; };
+		D2418F041962740A0094643C /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE9BAD185AEB3F009AA75B /* EColumnChartLabel.m */; };
+		D2418F051962740A0094643C /* EFloatBox.h in Sources */ = {isa = PBXBuildFile; fileRef = 6C9EDB311860281200291D95 /* EFloatBox.h */; };
+		D2418F061962740A0094643C /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9EDB321860281200291D95 /* EFloatBox.m */; };
+		D2418F071962740A0094643C /* ELineChartDataModel.h in Sources */ = {isa = PBXBuildFile; fileRef = D2ED749F18799ECF0040D1AF /* ELineChartDataModel.h */; };
+		D2418F081962740A0094643C /* ELineChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ED74A018799ECF0040D1AF /* ELineChartDataModel.m */; };
+		D2418F091962740A0094643C /* ELine.h in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB30918862D710055FFE4 /* ELine.h */; };
+		D2418F0A1962740A0094643C /* ELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB30A18862D710055FFE4 /* ELine.m */; };
+		D2418F0B1962740A0094643C /* EColumnChart.h in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E82F18586D2500B99AA3 /* EColumnChart.h */; };
+		D2418F0C1962740A0094643C /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E83018586D2500B99AA3 /* EColumnChart.m */; };
+		D2418F0D1962740A0094643C /* ELineChart.h in Sources */ = {isa = PBXBuildFile; fileRef = A69362AD186B00820082E97A /* ELineChart.h */; };
+		D2418F0E1962740A0094643C /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A69362AE186B00820082E97A /* ELineChart.m */; };
+		D2418F0F1962740A0094643C /* EPieChart.h in Sources */ = {isa = PBXBuildFile; fileRef = 6CBE6F4D1892586D00C439D6 /* EPieChart.h */; };
+		D2418F101962740A0094643C /* EPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBE6F4E1892586D00C439D6 /* EPieChart.m */; };
+		D2418F111962740A0094643C /* EViewSwitcher.h in Sources */ = {isa = PBXBuildFile; fileRef = D255F5891899C8400054691D /* EViewSwitcher.h */; };
+		D2418F121962740A0094643C /* EViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D255F58A1899C8400054691D /* EViewSwitcher.m */; };
 		D255F5881899C7EC0054691D /* EViewSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D255F5871899C7EC0054691D /* EViewSwitcherViewController.m */; };
 		D255F58B1899C8400054691D /* EViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D255F58A1899C8400054691D /* EViewSwitcher.m */; };
 		D2ED74A118799ECF0040D1AF /* ELineChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ED74A018799ECF0040D1AF /* ELineChartDataModel.m */; };
@@ -47,7 +80,27 @@
 			remoteGlobalIDString = 6CB6E7F218586A3700B99AA3;
 			remoteInfo = EChart;
 		};
+		D2418EEA1962734D0094643C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6CB6E7EB18586A3700B99AA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2418ED81962734D0094643C;
+			remoteInfo = libEChart;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2418ED71962734D0094643C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				D2418EDF1962734D0094643C /* libEChart.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6C5EB30918862D710055FFE4 /* ELine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELine.h; sourceTree = "<group>"; };
@@ -95,6 +148,14 @@
 		A69362B1186B012E0082E97A /* ELineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChartViewController.m; sourceTree = "<group>"; };
 		A6E24997185A02FF00009F49 /* EColumnDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnDataModel.h; sourceTree = "<group>"; };
 		A6E24998185A02FF00009F49 /* EColumnDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnDataModel.m; sourceTree = "<group>"; };
+		D2418ED91962734D0094643C /* liblibEChart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibEChart.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2418EDD1962734D0094643C /* libEChart-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libEChart-Prefix.pch"; sourceTree = "<group>"; };
+		D2418EDE1962734D0094643C /* libEChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libEChart.h; sourceTree = "<group>"; };
+		D2418EE01962734D0094643C /* libEChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libEChart.m; sourceTree = "<group>"; };
+		D2418EE61962734D0094643C /* libEChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libEChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2418EEF1962734D0094643C /* libEChartTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libEChartTests-Info.plist"; sourceTree = "<group>"; };
+		D2418EF11962734D0094643C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2418EF31962734D0094643C /* libEChartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libEChartTests.m; sourceTree = "<group>"; };
 		D255F5861899C7EC0054691D /* EViewSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EViewSwitcherViewController.h; sourceTree = "<group>"; };
 		D255F5871899C7EC0054691D /* EViewSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EViewSwitcherViewController.m; sourceTree = "<group>"; };
 		D255F5891899C8400054691D /* EViewSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EViewSwitcher.h; sourceTree = "<group>"; };
@@ -124,6 +185,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2418ED61962734D0094643C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2418EDA1962734D0094643C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2418EE31962734D0094643C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2418EE71962734D0094643C /* XCTest.framework in Frameworks */,
+				D2418EE91962734D0094643C /* UIKit.framework in Frameworks */,
+				D2418EEC1962734D0094643C /* liblibEChart.a in Frameworks */,
+				D2418EE81962734D0094643C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -142,6 +222,8 @@
 				A6E879321866B502007B2977 /* EChart */,
 				6CB6E7FC18586A3800B99AA3 /* EChartDemo */,
 				6CB6E81B18586A3800B99AA3 /* EChartTests */,
+				D2418EDB1962734D0094643C /* libEChart */,
+				D2418EED1962734D0094643C /* libEChartTests */,
 				6CB6E7F518586A3700B99AA3 /* Frameworks */,
 				6CB6E7F418586A3700B99AA3 /* Products */,
 			);
@@ -152,6 +234,8 @@
 			children = (
 				6CB6E7F318586A3700B99AA3 /* EChartDemo.app */,
 				6CB6E81418586A3800B99AA3 /* EChartDemoTests.xctest */,
+				D2418ED91962734D0094643C /* liblibEChart.a */,
+				D2418EE61962734D0094643C /* libEChartTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +356,42 @@
 			path = EChart;
 			sourceTree = "<group>";
 		};
+		D2418EDB1962734D0094643C /* libEChart */ = {
+			isa = PBXGroup;
+			children = (
+				D2418EDE1962734D0094643C /* libEChart.h */,
+				D2418EE01962734D0094643C /* libEChart.m */,
+				D2418EDC1962734D0094643C /* Supporting Files */,
+			);
+			path = libEChart;
+			sourceTree = "<group>";
+		};
+		D2418EDC1962734D0094643C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2418EDD1962734D0094643C /* libEChart-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2418EED1962734D0094643C /* libEChartTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2418EF31962734D0094643C /* libEChartTests.m */,
+				D2418EEE1962734D0094643C /* Supporting Files */,
+			);
+			path = libEChartTests;
+			sourceTree = "<group>";
+		};
+		D2418EEE1962734D0094643C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2418EEF1962734D0094643C /* libEChartTests-Info.plist */,
+				D2418EF01962734D0094643C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,6 +430,41 @@
 			productReference = 6CB6E81418586A3800B99AA3 /* EChartDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D2418ED81962734D0094643C /* libEChart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2418EF91962734E0094643C /* Build configuration list for PBXNativeTarget "libEChart" */;
+			buildPhases = (
+				D2418ED51962734D0094643C /* Sources */,
+				D2418ED61962734D0094643C /* Frameworks */,
+				D2418ED71962734D0094643C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libEChart;
+			productName = libEChart;
+			productReference = D2418ED91962734D0094643C /* liblibEChart.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D2418EE51962734D0094643C /* libEChartTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2418EFA1962734E0094643C /* Build configuration list for PBXNativeTarget "libEChartTests" */;
+			buildPhases = (
+				D2418EE21962734D0094643C /* Sources */,
+				D2418EE31962734D0094643C /* Frameworks */,
+				D2418EE41962734D0094643C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2418EEB1962734D0094643C /* PBXTargetDependency */,
+			);
+			name = libEChartTests;
+			productName = libEChartTests;
+			productReference = D2418EE61962734D0094643C /* libEChartTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -321,6 +476,9 @@
 				ORGANIZATIONNAME = "Scott Zhu";
 				TargetAttributes = {
 					6CB6E81318586A3800B99AA3 = {
+						TestTargetID = 6CB6E7F218586A3700B99AA3;
+					};
+					D2418EE51962734D0094643C = {
 						TestTargetID = 6CB6E7F218586A3700B99AA3;
 					};
 				};
@@ -340,6 +498,8 @@
 			targets = (
 				6CB6E7F218586A3700B99AA3 /* EChartDemo */,
 				6CB6E81318586A3800B99AA3 /* EChartDemoTests */,
+				D2418ED81962734D0094643C /* libEChart */,
+				D2418EE51962734D0094643C /* libEChartTests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,6 +520,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CB6E82018586A3800B99AA3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2418EE41962734D0094643C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2418EF21962734D0094643C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +568,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2418ED51962734D0094643C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2418EFB1962740A0094643C /* UICountingLabel.h in Sources */,
+				D2418EFC1962740A0094643C /* UICountingLabel.m in Sources */,
+				D2418EFD1962740A0094643C /* EColumn.h in Sources */,
+				D2418EFE1962740A0094643C /* EColumn.m in Sources */,
+				D2418EFF1962740A0094643C /* EColor.h in Sources */,
+				D2418F001962740A0094643C /* EColor.m in Sources */,
+				D2418F011962740A0094643C /* EColumnDataModel.h in Sources */,
+				D2418F021962740A0094643C /* EColumnDataModel.m in Sources */,
+				D2418F031962740A0094643C /* EColumnChartLabel.h in Sources */,
+				D2418F041962740A0094643C /* EColumnChartLabel.m in Sources */,
+				D2418F051962740A0094643C /* EFloatBox.h in Sources */,
+				D2418F061962740A0094643C /* EFloatBox.m in Sources */,
+				D2418F071962740A0094643C /* ELineChartDataModel.h in Sources */,
+				D2418F081962740A0094643C /* ELineChartDataModel.m in Sources */,
+				D2418F091962740A0094643C /* ELine.h in Sources */,
+				D2418F0A1962740A0094643C /* ELine.m in Sources */,
+				D2418F0B1962740A0094643C /* EColumnChart.h in Sources */,
+				D2418F0C1962740A0094643C /* EColumnChart.m in Sources */,
+				D2418F0D1962740A0094643C /* ELineChart.h in Sources */,
+				D2418F0E1962740A0094643C /* ELineChart.m in Sources */,
+				D2418F0F1962740A0094643C /* EPieChart.h in Sources */,
+				D2418F101962740A0094643C /* EPieChart.m in Sources */,
+				D2418F111962740A0094643C /* EViewSwitcher.h in Sources */,
+				D2418F121962740A0094643C /* EViewSwitcher.m in Sources */,
+				D2418EE11962734D0094643C /* libEChart.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2418EE21962734D0094643C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2418EF41962734D0094643C /* libEChartTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -407,6 +615,11 @@
 			isa = PBXTargetDependency;
 			target = 6CB6E7F218586A3700B99AA3 /* EChartDemo */;
 			targetProxy = 6CB6E81918586A3800B99AA3 /* PBXContainerItemProxy */;
+		};
+		D2418EEB1962734D0094643C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2418ED81962734D0094643C /* libEChart */;
+			targetProxy = D2418EEA1962734D0094643C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -431,6 +644,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				6CB6E81F18586A3800B99AA3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2418EF01962734D0094643C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2418EF11962734D0094643C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -542,7 +763,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChart.app/EChart";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChartDemo.app/EChartDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -565,7 +786,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChart.app/EChart";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChartDemo.app/EChartDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -575,6 +796,82 @@
 				GCC_PREFIX_HEADER = "EChart/EChart-Prefix.pch";
 				INFOPLIST_FILE = "EChartTests/EChartDemoTests-Info.plist";
 				PRODUCT_NAME = EChartDemoTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		D2418EF51962734E0094643C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libEChart.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libEChart/libEChart-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D2418EF61962734E0094643C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libEChart.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libEChart/libEChart-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D2418EF71962734E0094643C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChartDemo.app/EChartDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libEChart/libEChart-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "libEChartTests/libEChartTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D2418EF81962734E0094643C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EChartDemo.app/EChartDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libEChart/libEChart-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "libEChartTests/libEChartTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -609,6 +906,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D2418EF91962734E0094643C /* Build configuration list for PBXNativeTarget "libEChart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2418EF51962734E0094643C /* Debug */,
+				D2418EF61962734E0094643C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2418EFA1962734E0094643C /* Build configuration list for PBXNativeTarget "libEChartTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2418EF71962734E0094643C /* Debug */,
+				D2418EF81962734E0094643C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
