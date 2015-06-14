@@ -58,14 +58,16 @@
     _data = [NSArray arrayWithArray:temp];
     
     
-    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-    //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
+//    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+//    //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
+//    [_eColumnChart setColumnsIndexStartFromLeft:YES];
+//	[_eColumnChart setDelegate:self];
+//    [_eColumnChart setDataSource:self];
+//    [self.view addSubview:_eColumnChart];
+    
     [_eColumnChart setColumnsIndexStartFromLeft:YES];
 	[_eColumnChart setDelegate:self];
     [_eColumnChart setDataSource:self];
-    
-    
-    [self.view addSubview:_eColumnChart];
     
 }
 

@@ -42,6 +42,45 @@
 @synthesize delegate = _delegate;
 
 
+#pragma -mark- UIView Inherited Methods
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        /** Should i release these two objects before self have been destroyed*/
+        _eLabels = [NSMutableDictionary dictionary];
+        _eColumns = [NSMutableDictionary dictionary];
+        
+        [self initData];
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        NSLog(@"initWithCoder");
+        /** Should i release these two objects before self have been destroyed*/
+        _eLabels = [NSMutableDictionary dictionary];
+        _eColumns = [NSMutableDictionary dictionary];
+        
+        [self initData];
+    }
+    return self;
+}
+
+-(void)awakeFromNib
+{
+    NSLog(@"awakeFromNib");
+}
+
+-(void)layoutSubviews
+{
+    NSLog(@"layoutSubviews");
+}
+
 #pragma -mark- Setter and Getter
 - (void)setDelegate:(id<EColumnChartDelegate>)delegate
 {
@@ -200,22 +239,6 @@
 
 
 #pragma -mark- Custom Methed
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        /** Should i release these two objects before self have been destroyed*/
-        _eLabels = [NSMutableDictionary dictionary];
-        _eColumns = [NSMutableDictionary dictionary];
-        
-        [self initData];
-    }
-    return self;
-}
-
-
-
 - (void)initData
 {
     /** Initialize colors for max and min column*/

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BOe-Od-S3g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BOe-Od-S3g">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Chart View Controller - EChart-->
+        <!--EChart-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="EChartViewController" sceneMemberID="viewController">
@@ -16,9 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-vV-kyd">
-                                <rect key="frame" x="100" y="144" width="120" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-vV-kyd">
+                                <rect key="frame" x="103" y="72" width="113" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="EColumnChart">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,20 +29,8 @@
                                     <segue destination="2T9-xp-h0B" kind="push" id="Xe9-6e-f8x"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynu-tR-X6W">
-                                <rect key="frame" x="100" y="222" width="120" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="ELineChart">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Odr-jq-0Cy" kind="push" id="n46-Uk-wmK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGN-eg-qjw">
-                                <rect key="frame" x="100" y="282" width="120" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGN-eg-qjw">
+                                <rect key="frame" x="121" y="154" width="77" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="EPieChart">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,9 +39,8 @@
                                     <segue destination="Bha-Mq-0BO" kind="push" id="Tr1-hz-YO5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWn-x5-Ks7">
-                                <rect key="frame" x="109" y="350" width="102" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWn-x5-Ks7">
+                                <rect key="frame" x="109" y="195" width="102" height="30"/>
                                 <state key="normal" title="EViewSwitcher">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -59,8 +48,28 @@
                                     <segue destination="s4T-Pv-29U" kind="push" id="IEk-na-MBd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynu-tR-X6W">
+                                <rect key="frame" x="117.5" y="113" width="85" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="ELineChart">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Odr-jq-0Cy" kind="push" id="n46-Uk-wmK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ynu-tR-X6W" firstAttribute="top" secondItem="fcE-vV-kyd" secondAttribute="bottom" constant="8" id="638-HL-qu3"/>
+                            <constraint firstAttribute="centerX" secondItem="Ynu-tR-X6W" secondAttribute="centerX" id="9Nc-gE-6FX"/>
+                            <constraint firstItem="hWn-x5-Ks7" firstAttribute="top" secondItem="VGN-eg-qjw" secondAttribute="bottom" constant="8" symbolic="YES" id="Bke-PX-5cF"/>
+                            <constraint firstItem="fcE-vV-kyd" firstAttribute="top" secondItem="sSm-Ht-RHy" secondAttribute="bottom" constant="8" symbolic="YES" id="Rlm-0b-C24"/>
+                            <constraint firstAttribute="centerX" secondItem="VGN-eg-qjw" secondAttribute="centerX" id="hN9-c2-i5Y"/>
+                            <constraint firstAttribute="centerX" secondItem="hWn-x5-Ks7" secondAttribute="centerX" id="pmL-In-93P"/>
+                            <constraint firstItem="VGN-eg-qjw" firstAttribute="top" secondItem="Ynu-tR-X6W" secondAttribute="bottom" constant="8" symbolic="YES" id="qIp-VD-pH6"/>
+                            <constraint firstAttribute="centerX" secondItem="fcE-vV-kyd" secondAttribute="centerX" id="vIW-jw-4OM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="EChart" id="TBP-SC-B6d"/>
                 </viewController>
@@ -68,7 +77,7 @@
             </objects>
             <point key="canvasLocation" x="590" y="86"/>
         </scene>
-        <!--Pie Chart View Controller - EPieChart-->
+        <!--EPieChart-->
         <scene sceneID="KLQ-lS-UE2">
             <objects>
                 <viewController id="Bha-Mq-0BO" customClass="EPieChartViewController" sceneMemberID="viewController">
@@ -82,7 +91,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhh-DS-6CQ">
                                 <rect key="frame" x="20" y="404" width="74" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="17"/>
                                 <state key="normal" title="Turn">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,7 +101,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tc-Ah-7Qi">
                                 <rect key="frame" x="193" y="404" width="107" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="17"/>
                                 <state key="normal" title="Animation">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,7 +121,7 @@
             </objects>
             <point key="canvasLocation" x="590" y="675"/>
         </scene>
-        <!--Column Chart View Controller - EColumnChart-->
+        <!--EColumnChart-->
         <scene sceneID="SlU-2n-0PW">
             <objects>
                 <viewController id="2T9-xp-h0B" customClass="EColumnChartViewController" sceneMemberID="viewController">
@@ -128,7 +135,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xg-CL-zti">
                                 <rect key="frame" x="20" y="430" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="Left">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,7 +145,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLE-hV-GwG">
                                 <rect key="frame" x="257" y="430" width="43" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="15"/>
                                 <state key="normal" title="Right">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,69 +155,74 @@
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Is8-I6-uyI">
                                 <rect key="frame" x="102" y="337" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="highlightMaxAndMinChanged:" destination="2T9-xp-h0B" eventType="valueChanged" id="gud-g1-p3X"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Highlight Max&amp;Min" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="Gqg-vf-ovv">
                                 <rect key="frame" x="20" y="334" width="74" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Receive" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="UmQ-YF-Lph">
                                 <rect key="frame" x="20" y="374" width="74" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Direction" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="EIR-Q1-drO">
                                 <rect key="frame" x="183" y="333" width="74" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5r-yG-AJr">
                                 <rect key="frame" x="102" y="378" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="eventHandleChanged:" destination="2T9-xp-h0B" eventType="valueChanged" id="wtT-Pp-epl"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usw-g9-Zgw">
-                                <rect key="frame" x="128" y="77" width="65" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvf-fF-m9A">
                                 <rect key="frame" x="251" y="337" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="chartDirectionChanged:" destination="2T9-xp-h0B" eventType="valueChanged" id="Dyy-y5-eTC"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1dE-1i-Vdg">
                                 <rect key="frame" x="251" y="382" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="shouldOnlyShowInteger:" destination="2T9-xp-h0B" eventType="valueChanged" id="i33-E0-uUW"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Integer Only" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="ADg-zU-Dhb">
                                 <rect key="frame" x="183" y="374" width="74" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-no-cQI" customClass="EColumnChart">
+                                <rect key="frame" x="66" y="100" width="188" height="96"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usw-g9-Zgw">
+                                <rect key="frame" x="135" y="72" width="51.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" secondItem="hbh-no-cQI" secondAttribute="height" multiplier="5:1" id="4oL-R9-5iW"/>
+                            <constraint firstAttribute="centerX" secondItem="hbh-no-cQI" secondAttribute="centerX" id="GOx-Z6-M0R"/>
+                            <constraint firstItem="hbh-no-cQI" firstAttribute="trailing" secondItem="meg-Da-NcA" secondAttribute="trailingMargin" constant="-50" id="NuG-oo-HjN"/>
+                            <constraint firstItem="hbh-no-cQI" firstAttribute="leading" secondItem="meg-Da-NcA" secondAttribute="leadingMargin" constant="50" id="bim-HV-2Qs"/>
+                            <constraint firstAttribute="centerX" secondItem="Usw-g9-Zgw" secondAttribute="centerX" constant="-0.5" id="cpD-dh-yMX"/>
+                            <constraint firstItem="hbh-no-cQI" firstAttribute="top" secondItem="Usw-g9-Zgw" secondAttribute="bottom" constant="8" symbolic="YES" id="i7O-L1-7L7"/>
+                            <constraint firstItem="Usw-g9-Zgw" firstAttribute="top" secondItem="VXY-fw-T2G" secondAttribute="bottom" constant="8" id="xic-q8-hnu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="EColumnChart" id="v1T-nK-Q4N"/>
                     <connections>
+                        <outlet property="eColumnChart" destination="hbh-no-cQI" id="Bxk-aJ-0EK"/>
                         <outlet property="valueLabel" destination="Usw-g9-Zgw" id="IS3-3P-pBE"/>
                     </connections>
                 </viewController>
@@ -220,7 +230,7 @@
             </objects>
             <point key="canvasLocation" x="1124" y="-186"/>
         </scene>
-        <!--View Switcher View Controller - EViewSwitcher-->
+        <!--EViewSwitcher-->
         <scene sceneID="5C0-EV-iEC">
             <objects>
                 <viewController id="s4T-Pv-29U" customClass="EViewSwitcherViewController" sceneMemberID="viewController">
@@ -239,7 +249,7 @@
             </objects>
             <point key="canvasLocation" x="967" y="675"/>
         </scene>
-        <!--Line Chart View Controller - ELineChart-->
+        <!--ELineChart-->
         <scene sceneID="9pm-xl-dI3">
             <objects>
                 <viewController id="Odr-jq-0Cy" customClass="ELineChartViewController" sceneMemberID="viewController">
@@ -253,21 +263,18 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwy-BM-0uD">
                                 <rect key="frame" x="198" y="62" width="102" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="50"/>
                                 <color key="textColor" red="0.54117649793624878" green="0.75294125080108643" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPS-1e-83z">
                                 <rect key="frame" x="251" y="445" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="chartDirectionChanged:" destination="Odr-jq-0Cy" eventType="valueChanged" id="ibE-CE-k9K"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Direction" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="mFY-XF-dxw">
                                 <rect key="frame" x="169" y="441" width="74" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>

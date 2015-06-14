@@ -10,8 +10,9 @@
 #import "EColumnChart.h"
 @interface EColumnChartViewController : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
 
-@property (strong, nonatomic) EColumnChart *eColumnChart;
+//@property (strong, nonatomic) EColumnChart *eColumnChart;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
+@property (weak, nonatomic) IBOutlet EColumnChart *eColumnChart;
 
 @end

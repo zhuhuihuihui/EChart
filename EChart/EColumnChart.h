@@ -59,7 +59,7 @@
 @end
 
 
-
+//IB_DESIGNABLE
 @interface EColumnChart : UIView <EColumnDelegate>
 @property (nonatomic, readonly) NSInteger leftMostIndex;
 @property (nonatomic, readonly) NSInteger rightMostIndex;
