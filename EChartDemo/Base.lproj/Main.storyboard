@@ -199,8 +199,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbh-no-cQI" customClass="EColumnChart">
-                                <rect key="frame" x="66" y="100" width="188" height="96"/>
+                                <rect key="frame" x="41" y="100" width="238" height="96"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2T9-xp-h0B" id="vgL-zK-tOc"/>
+                                    <outlet property="delegate" destination="2T9-xp-h0B" id="yNv-fO-FVj"/>
+                                </connections>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usw-g9-Zgw">
                                 <rect key="frame" x="135" y="72" width="51.5" height="20"/>
@@ -213,8 +217,8 @@
                         <constraints>
                             <constraint firstAttribute="height" secondItem="hbh-no-cQI" secondAttribute="height" multiplier="5:1" id="4oL-R9-5iW"/>
                             <constraint firstAttribute="centerX" secondItem="hbh-no-cQI" secondAttribute="centerX" id="GOx-Z6-M0R"/>
-                            <constraint firstItem="hbh-no-cQI" firstAttribute="trailing" secondItem="meg-Da-NcA" secondAttribute="trailingMargin" constant="-50" id="NuG-oo-HjN"/>
-                            <constraint firstItem="hbh-no-cQI" firstAttribute="leading" secondItem="meg-Da-NcA" secondAttribute="leadingMargin" constant="50" id="bim-HV-2Qs"/>
+                            <constraint firstItem="hbh-no-cQI" firstAttribute="trailing" secondItem="meg-Da-NcA" secondAttribute="trailingMargin" constant="-25" id="NuG-oo-HjN"/>
+                            <constraint firstItem="hbh-no-cQI" firstAttribute="leading" secondItem="meg-Da-NcA" secondAttribute="leadingMargin" constant="25" id="bim-HV-2Qs"/>
                             <constraint firstAttribute="centerX" secondItem="Usw-g9-Zgw" secondAttribute="centerX" constant="-0.5" id="cpD-dh-yMX"/>
                             <constraint firstItem="hbh-no-cQI" firstAttribute="top" secondItem="Usw-g9-Zgw" secondAttribute="bottom" constant="8" symbolic="YES" id="i7O-L1-7L7"/>
                             <constraint firstItem="Usw-g9-Zgw" firstAttribute="top" secondItem="VXY-fw-T2G" secondAttribute="bottom" constant="8" id="xic-q8-hnu"/>

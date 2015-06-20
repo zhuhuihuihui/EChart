@@ -39,6 +39,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"EColumnChartViewController initWithNibName------");
     }
     return self;
 }
@@ -46,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"EColumnChartViewController viewDidLoad------Begin");
     
     NSMutableArray *temp = [NSMutableArray array];
     for (int i = 0; i < 50; i++)
@@ -65,10 +66,10 @@
 //    [_eColumnChart setDataSource:self];
 //    [self.view addSubview:_eColumnChart];
     
-    [_eColumnChart setColumnsIndexStartFromLeft:YES];
-	[_eColumnChart setDelegate:self];
-    [_eColumnChart setDataSource:self];
-    
+//    [_eColumnChart setColumnsIndexStartFromLeft:YES];
+//	[_eColumnChart setDelegate:self];
+//    [_eColumnChart setDataSource:self];
+    NSLog(@"EColumnChartViewController viewDidLoad------End");
 }
 
 - (void)viewWillAppear:(BOOL)animated

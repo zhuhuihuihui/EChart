@@ -88,6 +88,6 @@
 /** Call to redraw the whole chart*/
 - (void)reloadData;
 
-@property (weak, nonatomic) id <EColumnChartDataSource> dataSource;
-@property (weak, nonatomic) id <EColumnChartDelegate> delegate;
+@property (weak, nonatomic) IBOutlet id <EColumnChartDataSource> dataSource;
+@property (weak, nonatomic) IBOutlet id <EColumnChartDelegate> delegate;
 @end
