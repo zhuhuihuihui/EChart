@@ -33,33 +33,59 @@
     return self;
 }
 
-
-
 -(void)setGrade:(float)grade
 {
-	_grade = grade;
-	UIBezierPath *progressline = [UIBezierPath bezierPath];
-    
-    [progressline moveToPoint:CGPointMake(self.frame.size.width/2.0, self.frame.size.height)];
-	[progressline addLineToPoint:CGPointMake(self.frame.size.width/2.0, (1 - grade) * self.frame.size.height)];
-	
-    [progressline setLineWidth:1.0];
-    [progressline setLineCapStyle:kCGLineCapSquare];
-	_chartLine.path = progressline.CGPath;
-	if (_barColor) {
-		_chartLine.strokeColor = [_barColor CGColor];
-	}else{
-		_chartLine.strokeColor = [EGreen CGColor];
-	}
-    
-    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.duration = 1.0;
-    pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-    pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-    [_chartLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
-    
-    _chartLine.strokeEnd = 1.0;
+    _grade = grade;
+
+    if(_chartLine.path == nil)
+    {
+        UIBezierPath *_progressline = [UIBezierPath bezierPath];
+        if (_prevGrade != 0.0f) {
+            if (grade < _prevGrade) { //Bar graph going down
+                [_progressline moveToPoint:CGPointMake(self.frame.size.width/2.0, (1 + _prevGrade) * self.frame.size.height)];
+            } else { //Bar graph going up
+                [_progressline moveToPoint:CGPointMake(self.frame.size.width/2.0, (1 - _prevGrade) * self.frame.size.height)];
+            }
+        } else {
+            [_progressline moveToPoint:CGPointMake(self.frame.size.width/2.0, self.frame.size.height)];
+        }
+        [_progressline addLineToPoint:CGPointMake(self.frame.size.width/2.0, (1 - grade) * self.frame.size.height)];
+
+        _chartLine.path = _progressline.CGPath;
+        _chartLine.strokeEnd = 1.0;
+    }else
+    {
+        CAKeyframeAnimation *morph = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        morph.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        morph.values = [self getPathValuesForAnimation:_chartLine startGrade:_prevGrade neededGrade:_grade];
+        morph.duration = 1;
+        morph.removedOnCompletion = YES;
+        morph.fillMode = kCAFillModeForwards;
+        morph.delegate = self;
+        [_chartLine addAnimation:morph forKey:@"pathAnimation"];
+        _chartLine.path = (__bridge CGPathRef _Nullable)((id)[morph.values lastObject]);
+    }
+    _prevGrade = grade;
+}
+
+
+//this method return values for path animation
+
+-(NSArray*)getPathValuesForAnimation:(CAShapeLayer*)layer startGrade:(float)currentGrade neededGrade:(float)neededGrade
+{
+
+    NSMutableArray * values = [NSMutableArray array];
+    if(_prevGrade != 0.0f)
+        [values addObject:(id)layer.path];
+
+    UIBezierPath * finalPath = [UIBezierPath bezierPath];
+
+    [finalPath moveToPoint:CGPointMake(self.frame.size.width/2.0, self.frame.size.height)];
+    [finalPath addLineToPoint:CGPointMake(self.frame.size.width/2.0,(1 - neededGrade)*self.frame.size.height)];
+
+    [values addObject:(id)[finalPath CGPath]];
+
+    return values;
 }
 
 - (void)setBarColor:(UIColor *)barColor
